@@ -86,9 +86,11 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
         }
     }
 
-    public override void OnReadyForUse()
+//    public override void OnReadyForUse()
+    public override void Release()
     {
-        base.OnReadyForUse();
+//        base.OnReadyForUse();
+        base.Release();
         ReturnCollisionPropertiesToDefault();
     }
 
