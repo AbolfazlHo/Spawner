@@ -6,6 +6,7 @@ public class BasicSpawnable2D : MonoBehaviour
 {
     public UnityEvent onEnableEvent;
     public UnityEvent onSpawnDoneEvent;
+    public UnityEvent onDisableEvent;
 
     [SerializeField]
     protected Renderer _renderer;
@@ -26,5 +27,11 @@ public class BasicSpawnable2D : MonoBehaviour
     {
         _renderer.enabled = true;
         onSpawnDoneEvent?.Invoke();
+    }
+
+    protected virtual void OnDisable()
+    {
+        _renderer.enabled = false;
+        onDisableEvent?.Invoke();
     }
 }

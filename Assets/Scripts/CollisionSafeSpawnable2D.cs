@@ -12,8 +12,14 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
 
     protected Collider2D _collider;
 
+    private Rigidbody2D _rigidbody2D;
+
     protected override void OnEnable()
     {
+        _isCollided = false;
+
+        
+        
         base.OnEnable();
         
 #if UNITY_EDITOR
@@ -33,6 +39,16 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
         }
 
         _collider.enabled = true;
+
+        SetCollisionInfrastructure();
+        
+        if (_rigidbody2D == null)
+        {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+        }
+
+        _rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAwake;
+        _rigidbody2D.WakeUp();
 
         // TODO: Set isTrigger "true" and ...
     }
@@ -63,8 +79,16 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
 
     public override void OnReadyForUse()
     {
-        
+        base.OnReadyForUse();
+        ReturnCollisionPropertiesToDefault();
     }
+
+//    protected override void OnDisable()
+//    {
+//        base.OnDisable();
+//        
+//        
+//    }
 
     protected abstract void SetCollisionInfrastructure();
     protected abstract void ReturnCollisionPropertiesToDefault();
