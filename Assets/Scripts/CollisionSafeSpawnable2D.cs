@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEditorInternal;
 using UnityEngine;
@@ -54,52 +53,11 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
     protected override void OnEnable()
     {
         _isCollided = false;
-
-        
-        
         base.OnEnable();
-
         SetTag();
-//        
-//#if UNITY_EDITOR
-//        var tags = InternalEditorUtility.tags;
-//        
-//        if (!tags.ToList().Contains("SoorSpawnable"))
-//        {
-//            InternalEditorUtility.AddTag("SoorSpawnable");
-//        }
-//#endif
-//
-//        gameObject.tag = "SoorSpawnable";
-        
-
-
-//
-//        if (_collider == null)
-//        {
-//            _collider = GetComponent<Collider2D>();
-//        }
-//
-//        _collider.enabled = true;
-
-
-
         GetCollider();
-        
-        
         SetCollisionInfrastructure();
-
-
         SetRigidbody2DSleepMode();
-        
-//        
-//        if (_rigidbody2D == null)
-//        {
-//            _rigidbody2D = GetComponent<Rigidbody2D>();
-//        }
-//
-//        _rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAwake;
-//        _rigidbody2D.WakeUp();
 
         // TODO: Set isTrigger "true" and ...
     }

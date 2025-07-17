@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +9,6 @@ public class BasicSpawnable2D : MonoBehaviour
 
     [SerializeField]
     protected Renderer _renderer;
-    
     
     protected virtual void OnEnable()
     {
