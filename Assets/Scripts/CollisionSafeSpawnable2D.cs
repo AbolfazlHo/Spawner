@@ -14,14 +14,10 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
 
     private Rigidbody2D _rigidbody2D;
 
-    protected override void OnEnable()
+    
+    private void SetTag()
     {
-        _isCollided = false;
-
-        
-        
-        base.OnEnable();
-        
+              
 #if UNITY_EDITOR
         var tags = InternalEditorUtility.tags;
         
@@ -32,16 +28,20 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
 #endif
 
         gameObject.tag = "SoorSpawnable";
-        
+    }
+
+    private void GetCollider()
+    {
         if (_collider == null)
         {
             _collider = GetComponent<Collider2D>();
         }
 
         _collider.enabled = true;
+    }
 
-        SetCollisionInfrastructure();
-        
+    private void SetRigidbody2DSleepMode()
+    {
         if (_rigidbody2D == null)
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -49,6 +49,57 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
 
         _rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAwake;
         _rigidbody2D.WakeUp();
+    }
+    
+    protected override void OnEnable()
+    {
+        _isCollided = false;
+
+        
+        
+        base.OnEnable();
+
+        SetTag();
+//        
+//#if UNITY_EDITOR
+//        var tags = InternalEditorUtility.tags;
+//        
+//        if (!tags.ToList().Contains("SoorSpawnable"))
+//        {
+//            InternalEditorUtility.AddTag("SoorSpawnable");
+//        }
+//#endif
+//
+//        gameObject.tag = "SoorSpawnable";
+        
+
+
+//
+//        if (_collider == null)
+//        {
+//            _collider = GetComponent<Collider2D>();
+//        }
+//
+//        _collider.enabled = true;
+
+
+
+        GetCollider();
+        
+        
+        SetCollisionInfrastructure();
+
+
+        SetRigidbody2DSleepMode();
+        
+//        
+//        if (_rigidbody2D == null)
+//        {
+//            _rigidbody2D = GetComponent<Rigidbody2D>();
+//        }
+//
+//        _rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAwake;
+//        _rigidbody2D.WakeUp();
 
         // TODO: Set isTrigger "true" and ...
     }
@@ -82,13 +133,6 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
         base.OnReadyForUse();
         ReturnCollisionPropertiesToDefault();
     }
-
-//    protected override void OnDisable()
-//    {
-//        base.OnDisable();
-//        
-//        
-//    }
 
     protected abstract void SetCollisionInfrastructure();
     protected abstract void ReturnCollisionPropertiesToDefault();
