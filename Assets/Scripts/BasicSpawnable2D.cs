@@ -4,13 +4,14 @@ using UnityEngine.Events;
 
 public class BasicSpawnable2D : MonoBehaviour
 {
+    public UnityEvent onEnableEvent;
     public UnityEvent onSpawnDoneEvent;
 
     [SerializeField]
     protected Renderer _renderer;
     
     
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         if (_renderer == null)
         {
@@ -18,10 +19,12 @@ public class BasicSpawnable2D : MonoBehaviour
         }
         
         _renderer.enabled = false;
+        onEnableEvent?.Invoke();
     }
 
     public virtual void OnReadyForUse()
     {
+        _renderer.enabled = true;
         onSpawnDoneEvent?.Invoke();
     }
 }

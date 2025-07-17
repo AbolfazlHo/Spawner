@@ -12,13 +12,10 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
 
     protected Collider2D _collider;
 
-//    [SerializeField]
-//    protected Renderer _renderer;
-
-
-    protected virtual void OnEnable()
+    protected override void OnEnable()
     {
-
+        base.OnEnable();
+        
 #if UNITY_EDITOR
         var tags = InternalEditorUtility.tags;
         
@@ -35,12 +32,6 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
             _collider = GetComponent<Collider2D>();
         }
 
-//        if (_renderer == null)
-//        {
-//            _renderer = GetComponent<Renderer>();
-//        }
-
-//        _renderer.enabled = false;
         _collider.enabled = true;
 
         // TODO: Set isTrigger "true" and ...
@@ -69,4 +60,12 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
             _isCollided = true;
         }
     }
+
+    public override void OnReadyForUse()
+    {
+        
+    }
+
+    protected abstract void SetCollisionInfrastructure();
+    protected abstract void ReturnCollisionPropertiesToDefault();
 }
