@@ -119,6 +119,88 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &331599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 331603}
+  - component: {fileID: 331602}
+  - component: {fileID: 331601}
+  - component: {fileID: 331600}
+  m_Layer: 0
+  m_Name: Spawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &331600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27533f64529a54944b4d3c459587d9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnAreaGameObject: {fileID: 864093096}
+  _spawnables:
+  - {fileID: -2780053485929960085, guid: 35dfe1e12cf8f43d5ac66e5acef08f55, type: 3}
+  - {fileID: 8166821763944319367, guid: c19956bf2a7d94f0185ef77fa6ead5d6, type: 3}
+--- !u!114 &331601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331599}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f52c88fdef8e44d89cc0e7a5fa75c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnAreaGameObject: {fileID: 864093096}
+  _spawnables:
+  - {fileID: -2780053485929960085, guid: 35dfe1e12cf8f43d5ac66e5acef08f55, type: 3}
+  - {fileID: 8166821763944319367, guid: c19956bf2a7d94f0185ef77fa6ead5d6, type: 3}
+--- !u!114 &331602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331599}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91725f935b68458bb7a3c5c1e0ec0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnAreaGameObject: {fileID: 864093096}
+  _spawnables:
+  - {fileID: 3149369631044167704, guid: cbb40ec5d072541cfb8c623da7d88df9, type: 3}
+  - {fileID: -5083291042946301139, guid: dc70b2e3ef77f47f48082e211c5d1487, type: 3}
+--- !u!4 &331603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331599}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1141049476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,7 +691,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _manualBasicSpawner2D: {fileID: 0}
   _automaticBasicSpawner2D: {fileID: 0}
-  _manualCollisionSafeSpawner2D: {fileID: 1141049476}
+  manualCollisionSafeDisplacementSpawner2D: {fileID: 1813413560}
+  _manualCollisionSafePlacementSpawner2D: {fileID: 331600}
 --- !u!4 &1758383024
 Transform:
   m_ObjectHideFlags: 0
@@ -642,7 +725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1813413558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,6 +903,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1813413559}
+  - {fileID: 331603}
   - {fileID: 1141049478}
   - {fileID: 864093098}
   - {fileID: 6466258440364596430}

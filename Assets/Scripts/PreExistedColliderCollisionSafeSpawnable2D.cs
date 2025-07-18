@@ -10,12 +10,15 @@ public class PreExistedColliderCollisionSafeSpawnable2D : CollisionSafeSpawnable
 
     protected override void SetCollisionInfrastructure()
     {
+        Debug.Log("------------------  protected override void SetCollisionInfrastructure() -----------------");
+        
         _isTrigger = _collider.isTrigger;
         _collider.isTrigger = true;
     }
 
     protected override void ReturnCollisionPropertiesToDefault()
     {
+        Debug.Log("protected override void ReturnCollisionPropertiesToDefault()");
         _collider.isTrigger = _isTrigger;
     }
 }

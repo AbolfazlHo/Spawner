@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,7 +24,8 @@ public class ManualBasicSpawner2D : MonoBehaviour
     {
         if (!_spawnAreaHasSet) SetSpawnArea();
         var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
-        SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
+//        SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
+        SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
     }
 
     public void ChangeSpawnAreaGameObject(GameObject newSpawnArea)
@@ -72,11 +75,10 @@ public class ManualBasicSpawner2D : MonoBehaviour
         _spawnAreaHasSet = true;
     }
 
-    // ToDo: wait for 'PlaceSpawnable'
-    protected virtual void SpawnASpawnableOf(BasicSpawnable2D spawnable2DSource)
+    protected virtual async UniTask SpawnASpawnableOf(BasicSpawnable2D spawnable2DSource)
     {
         var spawnable = InstantiateSpawnable(spawnable2DSource);
-        PlaceSpawnable(spawnable);
+        await PlaceSpawnable(spawnable);
         ReleaseSpawnable(spawnable);
     }
     
@@ -86,19 +88,33 @@ public class ManualBasicSpawner2D : MonoBehaviour
         return newSpawnable;
     }
 
-    // ToDo: Make the following method async
-    protected virtual void PlaceSpawnable(BasicSpawnable2D spawnable2D)
+    protected virtual async UniTask PlaceSpawnable(BasicSpawnable2D spawnable2D)
     {
         var randomX = 0.0f;
         var randomY = 0.0f;
-        
+//
+//        randomX = Math.Abs(_spawnArea.x - _spawnArea.z) < 0.1f
+//            ? _spawnArea.x
+//            : Random.Range(_spawnArea.x, _spawnArea.z);
+//            
+//        randomY = Math.Abs(_spawnArea.y - _spawnArea.w) < 0.1f
+//            ? _spawnArea.y
+//            : Random.Range(_spawnArea.y, _spawnArea.w);
+//        
+//        await Task.Run(() =>
+//        {
+//            
+//
+//            spawnable2D.transform.position = new Vector3(randomX, randomY, 0);
+//        });
+//        
         randomX = Math.Abs(_spawnArea.x - _spawnArea.z) < 0.1f ? _spawnArea.x : Random.Range(_spawnArea.x, _spawnArea.z);
         randomY = Math.Abs(_spawnArea.y - _spawnArea.w) < 0.1f ? _spawnArea.y : Random.Range(_spawnArea.y, _spawnArea.w);
 
         spawnable2D.transform.position = new Vector3(randomX, randomY, 0);
-        spawnable2D.enabled = true;
     }
 
+//    protected virtual void ReleaseSpawnable(BasicSpawnable2D spawnable2D)
     protected virtual void ReleaseSpawnable(BasicSpawnable2D spawnable2D)
     {
         spawnable2D.Release();
