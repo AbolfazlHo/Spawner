@@ -72,6 +72,7 @@ public class ManualBasicSpawner2D : MonoBehaviour
         _spawnAreaHasSet = true;
     }
 
+    // ToDo: wait for 'PlaceSpawnable'
     protected virtual void SpawnASpawnableOf(BasicSpawnable2D spawnable2DSource)
     {
         var spawnable = InstantiateSpawnable(spawnable2DSource);
@@ -85,6 +86,7 @@ public class ManualBasicSpawner2D : MonoBehaviour
         return newSpawnable;
     }
 
+    // ToDo: Make the following method async
     protected virtual void PlaceSpawnable(BasicSpawnable2D spawnable2D)
     {
         var randomX = 0.0f;

@@ -60,6 +60,8 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
 
     protected void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("protected void OnTriggerEnter2D(Collider2D other)");
+        
         if (other.CompareTag("SoorSpawnable"))
         {
             _isCollided = true;
@@ -68,6 +70,8 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
     
     protected void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("protected void OnTriggerExit2D(Collider2D other)");
+
         if (other.CompareTag("SoorSpawnable"))
         {
             _isCollided = false;
@@ -76,6 +80,8 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        Debug.Log(" private void OnTriggerStay2D(Collider2D other)");
+   
         if (other.CompareTag("SoorSpawnable"))
         {
             _isCollided = true;
