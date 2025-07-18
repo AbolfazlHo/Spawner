@@ -4,15 +4,11 @@ using UnityEngine;
 
 public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
 {
-
-    private bool _isCollided = false;
-
     public bool IsCollided => _isCollided;
-
     protected Collider2D _collider;
 
     private Rigidbody2D _rigidbody2D;
-
+    private bool _isCollided = false;
     
     private void SetTag()
     {

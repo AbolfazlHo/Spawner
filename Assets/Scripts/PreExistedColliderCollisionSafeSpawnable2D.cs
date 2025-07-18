@@ -2,25 +2,20 @@ using UnityEngine;
 
 public class PreExistedColliderCollisionSafeSpawnable2D : CollisionSafeSpawnable2D
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    #region COLLIDER_PREMITIVE_PROPERTIES
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private bool _isTrigger = false;
+
+    #endregion COLLIDER_PREMITIVE_PROPERTIES
 
     protected override void SetCollisionInfrastructure()
     {
-        throw new System.NotImplementedException();
+        _isTrigger = _collider.isTrigger;
+        _collider.isTrigger = true;
     }
 
     protected override void ReturnCollisionPropertiesToDefault()
     {
-        throw new System.NotImplementedException();
+        _collider.isTrigger = _isTrigger;
     }
 }
