@@ -93,7 +93,7 @@ public class ManualBasicSpawner2D : MonoBehaviour
         var randomX = 0.0f;
         var randomY = 0.0f;
         
-        randomX = Math.Abs(_spawnArea.x - _spawnArea.z) < 0.1f ? _spawnArea.x : Random.Range(_spawnArea.x, _spawnArea.y);
+        randomX = Math.Abs(_spawnArea.x - _spawnArea.z) < 0.1f ? _spawnArea.x : Random.Range(_spawnArea.x, _spawnArea.z);
         randomY = Math.Abs(_spawnArea.y - _spawnArea.w) < 0.1f ? _spawnArea.y : Random.Range(_spawnArea.y, _spawnArea.w);
 
         spawnable2D.transform.position = new Vector3(randomX, randomY, 0);
