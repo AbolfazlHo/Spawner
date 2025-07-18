@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CollisionSafeSpawner2D : ManualBasicSpawner2D
+public class ManualCollisionSafeSpawner2D : ManualBasicSpawner2D
 {
 
 

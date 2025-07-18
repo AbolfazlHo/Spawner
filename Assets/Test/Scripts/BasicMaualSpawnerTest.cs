@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TestScript : MonoBehaviour
+public class BasicMaualSpawnerTest : MonoBehaviour
 {
 
     [SerializeField]

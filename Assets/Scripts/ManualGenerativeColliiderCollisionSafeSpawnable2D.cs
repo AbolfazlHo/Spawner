@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GenerativeColliiderCollisionSafeSpawnable2D : CollisionSafeSpawnable2D
+public class ManualGenerativeColliiderCollisionSafeSpawnable2D : CollisionSafeSpawnable2D
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
