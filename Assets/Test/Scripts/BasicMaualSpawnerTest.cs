@@ -4,7 +4,9 @@ public class BasicMaualSpawnerTest : MonoBehaviour
 {
 
     [SerializeField]
-    private ManualBasicSpawner2D _spawner;
+    private ManualBasicSpawner2D _manualBasicSpawner2D;
+
+    [SerializeField] private AutomaticBasicSpawner2D _automaticBasicSpawner2D;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,8 +19,20 @@ public class BasicMaualSpawnerTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log("_spawner.Spawn();");
-            _spawner.Spawn();
+            Debug.Log("_manualBasicSpawner2D.Spawn();");
+            _manualBasicSpawner2D.Spawn();
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("_automaticBasicSpawner2D.StartSpawningAutomatically()");
+            _automaticBasicSpawner2D.StartSpawningAutomatically();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("_automaticBasicSpawner2D.StopSpawning()");
+            _automaticBasicSpawner2D.StopSpawning();
         }
     }
 }

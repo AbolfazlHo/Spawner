@@ -11,7 +11,7 @@ public class ManualBasicSpawner2D : MonoBehaviour
     private Vector4 _spawnArea;
     private bool _spawnAreaHasSet = false;
     
-    private List<BasicSpawnable2D> _allSpwnedObjects = new List<BasicSpawnable2D>();
+    protected List<BasicSpawnable2D> _allSpwnedObjects = new List<BasicSpawnable2D>();
 
     void Start()
     {
@@ -21,7 +21,8 @@ public class ManualBasicSpawner2D : MonoBehaviour
     public void Spawn()
     {
         if (!_spawnAreaHasSet) SetSpawnArea();
-        var randomSpawnableIndex = Random.Range(0, _spawnables.Count - 1);
+//        var randomSpawnableIndex = Random.Range(0, _spawnables.Count - 1);
+        var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
         SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
     }
 
