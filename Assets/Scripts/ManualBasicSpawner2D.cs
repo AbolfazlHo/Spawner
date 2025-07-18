@@ -21,7 +21,6 @@ public class ManualBasicSpawner2D : MonoBehaviour
     public void Spawn()
     {
         if (!_spawnAreaHasSet) SetSpawnArea();
-//        var randomSpawnableIndex = Random.Range(0, _spawnables.Count - 1);
         var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
         SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
     }
@@ -35,12 +34,9 @@ public class ManualBasicSpawner2D : MonoBehaviour
 
     private void SetSpawnArea()
     {
-//        _spawnArea = _spawnAreaGameObject
-
         var horizontalBoundSize = 0.0f;
         var verticalBoundSize = 0.0f;
         var globalPositionofSpawnAreaGameObject = _spawnAreaGameObject.transform.position;
-
         var rendererComponentofSpawnAreaGameObject = _spawnAreaGameObject.GetComponent<Renderer>();
 
         if (rendererComponentofSpawnAreaGameObject != null)
