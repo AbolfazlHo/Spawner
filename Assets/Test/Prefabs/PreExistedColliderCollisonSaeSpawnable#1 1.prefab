@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6929275575288553547}
   - component: {fileID: 4907131775342872976}
-  - component: {fileID: -2780053485929960085}
   - component: {fileID: 5449088590504493347}
   - component: {fileID: 1998001780675782986}
+  - component: {fileID: 5028210155324776107}
   m_Layer: 0
   m_Name: PreExistedColliderCollisonSaeSpawnable#1 1
   m_TagString: Untagged
@@ -90,28 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-2780053485929960085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 13337161402454467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21d76bbb426534991824a73e31778a7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onEnableEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onRelaese:
-    m_PersistentCalls:
-      m_Calls: []
-  onDisableEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _renderer: {fileID: 4907131775342872976}
 --- !u!61 &5449088590504493347
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,4 +162,26 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 0
+--- !u!114 &5028210155324776107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13337161402454467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9cefee29a7045739c5f8c39a69cb12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onEnableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelaese:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _renderer: {fileID: 4907131775342872976}

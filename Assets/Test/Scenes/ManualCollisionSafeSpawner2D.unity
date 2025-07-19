@@ -152,8 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnAreaGameObject: {fileID: 864093096}
   _spawnables:
-  - {fileID: -2780053485929960085, guid: 35dfe1e12cf8f43d5ac66e5acef08f55, type: 3}
-  - {fileID: 8166821763944319367, guid: c19956bf2a7d94f0185ef77fa6ead5d6, type: 3}
+  - {fileID: 5028210155324776107, guid: 52ff243f6c24e46c9ac2bc0cf03827f7, type: 3}
+  - {fileID: 1615920891062766826, guid: 97bb1e38787ee4e88bc45ba93c19c381, type: 3}
 --- !u!114 &331601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,8 +627,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnAreaGameObject: {fileID: 864093096}
   _spawnables:
-  - {fileID: -2780053485929960085, guid: 52ff243f6c24e46c9ac2bc0cf03827f7, type: 3}
-  - {fileID: 8166821763944319367, guid: 97bb1e38787ee4e88bc45ba93c19c381, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1141049477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,7 +725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1813413558
 MonoBehaviour:
   m_ObjectHideFlags: 0

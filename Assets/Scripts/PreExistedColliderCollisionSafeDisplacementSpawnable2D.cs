@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PreExistedColliderCollisionSafeSpawnable2D : CollisionSafeSpawnable2D
+public class PreExistedColliderCollisionSafeDisplacementSpawnable2D : CollisionSafeSpawnable2D
 {
     #region COLLIDER_PREMITIVE_PROPERTIES
 

@@ -7,10 +7,10 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
     public bool IsCollided => _isCollided;
     protected Collider2D _collider;
 
-    private Rigidbody2D _rigidbody2D;
-    private bool _isCollided = false;
+    protected Rigidbody2D _rigidbody2D;
+    protected bool _isCollided = false;
     
-    private void SetTag()
+    protected void SetTag()
     {
               
 #if UNITY_EDITOR
@@ -52,8 +52,11 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
         base.OnEnable();
         SetTag();
         GetCollider();
-        SetCollisionInfrastructure();
+        
         SetRigidbody2DSleepMode();
+        
+        SetCollisionInfrastructure();
+//        SetRigidbody2DSleepMode();
 
         // TODO: Set isTrigger "true" and ...
     }
