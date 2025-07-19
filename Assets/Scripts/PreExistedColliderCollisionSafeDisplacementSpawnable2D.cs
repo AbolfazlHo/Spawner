@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PreExistedColliderCollisionSafeDisplacementSpawnable2D : CollisionSafeSpawnable2D
 {
     #region COLLIDER_PREMITIVE_PROPERTIES
@@ -10,15 +8,12 @@ public class PreExistedColliderCollisionSafeDisplacementSpawnable2D : CollisionS
 
     protected override void SetCollisionInfrastructure()
     {
-        Debug.Log("------------------  protected override void SetCollisionInfrastructure() -----------------");
-        
         _isTrigger = _collider.isTrigger;
         _collider.isTrigger = true;
     }
 
     protected override void ReturnCollisionPropertiesToDefault()
     {
-        Debug.Log("protected override void ReturnCollisionPropertiesToDefault()");
         _collider.isTrigger = _isTrigger;
     }
 }

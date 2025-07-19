@@ -4,7 +4,6 @@ using Cysharp.Threading.Tasks;
 
 public class ManualCollisionSafePlacementSpawner2D : ManualBasicSpawner2D
 {
-    //ToDo: Think about cancellation token
     protected override async UniTask PlaceSpawnable(BasicSpawnable2D spawnable2D)
     {
         var collisionSafeSpawnable = spawnable2D as CollisionSafeSpawnable2D;

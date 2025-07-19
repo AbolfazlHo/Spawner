@@ -25,11 +25,18 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
         gameObject.tag = "SoorSpawnable";
     }
 
+    // ToDo: Remove the following method.
+    // ToDo: Change the following method for generative collider.
     private void GetCollider()
     {
         if (_collider == null)
         {
             _collider = GetComponent<Collider2D>();
+        }
+
+        if (_collider == null)
+        {
+            _collider = gameObject.AddComponent<BoxCollider2D>();
         }
 
         _collider.enabled = true;
@@ -42,6 +49,11 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
+        if (_rigidbody2D == null)
+        {
+            _rigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+        }
+
         _rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAwake;
         _rigidbody2D.WakeUp();
     }
@@ -52,13 +64,8 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
         base.OnEnable();
         SetTag();
         GetCollider();
-        
         SetRigidbody2DSleepMode();
-        
         SetCollisionInfrastructure();
-//        SetRigidbody2DSleepMode();
-
-        // TODO: Set isTrigger "true" and ...
     }
 
     protected void OnTriggerEnter2D(Collider2D other)
@@ -91,10 +98,8 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
         }
     }
 
-//    public override void OnReadyForUse()
     public override void Release()
     {
-//        base.OnReadyForUse();
         base.Release();
         ReturnCollisionPropertiesToDefault();
     }

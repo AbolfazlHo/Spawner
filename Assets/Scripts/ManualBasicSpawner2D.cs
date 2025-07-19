@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -24,7 +23,6 @@ public class ManualBasicSpawner2D : MonoBehaviour
     {
         if (!_spawnAreaHasSet) SetSpawnArea();
         var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
-//        SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
         SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
     }
 
@@ -92,33 +90,16 @@ public class ManualBasicSpawner2D : MonoBehaviour
     {
         var randomX = 0.0f;
         var randomY = 0.0f;
-//
-//        randomX = Math.Abs(_spawnArea.x - _spawnArea.z) < 0.1f
-//            ? _spawnArea.x
-//            : Random.Range(_spawnArea.x, _spawnArea.z);
-//            
-//        randomY = Math.Abs(_spawnArea.y - _spawnArea.w) < 0.1f
-//            ? _spawnArea.y
-//            : Random.Range(_spawnArea.y, _spawnArea.w);
-//        
-//        await Task.Run(() =>
-//        {
-//            
-//
-//            spawnable2D.transform.position = new Vector3(randomX, randomY, 0);
-//        });
-//        
+  
         randomX = Math.Abs(_spawnArea.x - _spawnArea.z) < 0.1f ? _spawnArea.x : Random.Range(_spawnArea.x, _spawnArea.z);
         randomY = Math.Abs(_spawnArea.y - _spawnArea.w) < 0.1f ? _spawnArea.y : Random.Range(_spawnArea.y, _spawnArea.w);
 
         spawnable2D.transform.position = new Vector3(randomX, randomY, 0);
     }
 
-//    protected virtual void ReleaseSpawnable(BasicSpawnable2D spawnable2D)
     protected virtual void ReleaseSpawnable(BasicSpawnable2D spawnable2D)
     {
         spawnable2D.Release();
         _allSpwnedObjects.Add(spawnable2D);
-        // We can check the collision here again . . .
     }
 }
