@@ -16,20 +16,10 @@ public class Spawner : MonoBehaviour
     // ToDo: Handle appearance of the following fields using custom inspector (editor)
     [SerializeField] private Automation _spawnAutomationSettings;
 
-//    [SerializeField] private bool _isCollisionSafe;
-//    [SerializeField] private 
-    
-
-
-//    [SerializeField] private UnityEvent _onSpawnStartEvent;
-//    [SerializeField] private UnityEvent _onSpawnEndEvent;
     [SerializeField] private UnityEvent _onSpawnableSpawnedEvent;
-
-
 
     private Vector4 _spawnArea;
     private bool _spawnAreaHasSet = false;
-
     private Coroutine _autoSpawnRoutine = null;
     
     protected List<Spawnable> _allSpwnedObjects = new List<Spawnable>();
@@ -43,16 +33,9 @@ public class Spawner : MonoBehaviour
     {
         if (_spawnAutomaticaly)
         {
-
-//            if (_spawnAutomationSettings.StopSpawningAutomatically)
-//            {
-//                _autoSpawnRoutine = StartCoroutine(HandleAutomaticSpawning());
-//            }
-//            
             if (_autoSpawnRoutine != null)
             {
                 _autoSpawnRoutine = StartCoroutine(HandleAutomaticSpawning());
-//                StartAutomaticSpawn();
             }
             
             return;
@@ -63,20 +46,8 @@ public class Spawner : MonoBehaviour
         SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     private IEnumerator HandleAutomaticSpawning()
     {
-        
-        
-//        if (_stopSpawningAutomatically)
         if (_spawnAutomationSettings.StopSpawningAutomatically)
         {
             _spawnAutomationSettings.OnSpawnStart();
@@ -87,23 +58,7 @@ public class Spawner : MonoBehaviour
                 yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
             }
         }
-        
-        
-//        
-//        
-//        while (ContinueSpawing())
-//        {
-//            Spawn();
-//            yield return new WaitForSeconds(_perSpawnInterval);
-//        }
     }
-//    
-//    public void StartAutomaticSpawn()
-//    {
-////        _autoSpawnRoutine = StartCoroutine(nameof(_spawnAutomationSettings.HandleAutomaticSpawning));
-//        _autoSpawnRoutine = StartCoroutine(nameof(_spawnAutomationSettings.HandleAutomaticSpawning), _spawnables.Count);
-//        _spawnAutomationSettings.OnSpawnStart();
-//    }
     
     public void StopSpawning()
     {
@@ -112,19 +67,7 @@ public class Spawner : MonoBehaviour
             StopCoroutine(_autoSpawnRoutine);
             _spawnAutomationSettings.OnSpawnEnd();
         }
-        
-//        StopCoroutine(_autoSpawnRoutine);
-        //        _spawnAutomationSettings.OnEndSpawning();
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
 
     public void ChangeSpawnAreaGameObject(GameObject newSpawnArea)
     {
@@ -202,21 +145,6 @@ public class Spawner : MonoBehaviour
         spawnable.Release();
         _allSpwnedObjects.Add(spawnable);
     }
-    
-    
-    
-    
-    
-    
-//    public void OnSpawnStart()
-//    {
-//        _onSpawnStartEvent?.Invoke();
-//    }
-//
-//    public void OnSpawnEnd()
-//    {
-//        _onSpawnEndEvent?.Invoke();
-//    }
 
     public void OnSpawnableSpawned()
     {
