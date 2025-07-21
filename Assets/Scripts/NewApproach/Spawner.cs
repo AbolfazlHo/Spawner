@@ -10,17 +10,11 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject _spawnAreaGameObject;
     [SerializeField] private List<Spawnable> _spawnables;
-
-
     [SerializeField] private bool _spawnAutomaticaly;
     // ToDo: Handle appearance of the following fields using custom inspector (editor)
     [SerializeField] private Automation _spawnAutomationSettings;
-
-
     [SerializeField] private bool _isCollisionSafe = false;
     [SerializeField] private CollisionSafety _collisionSafetySettings;
-    
-
     [SerializeField] private UnityEvent _onSpawnableSpawnedEvent;
 
     private Vector4 _spawnArea;
@@ -36,8 +30,6 @@ public class Spawner : MonoBehaviour
     
     public void Spawn()
     {
-        Debug.Log("public void Spawn()");
-        
         DoSpawnPrerequisite();
         
         if (_spawnAutomaticaly)
@@ -46,20 +38,11 @@ public class Spawner : MonoBehaviour
             {
                 _autoSpawnRoutine = StartCoroutine(HandleAutomaticSpawning());
             }
-            
-//            return;
         }
         else
         {
-//            DoSpawnPrerequisite();
             SpawnRandomSpawnable();
         }
-        
-        
-        
-//        if (!_spawnAreaHasSet) SetSpawnArea();
-//        var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
-//        SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
     }
 
     private void DoSpawnPrerequisite()
@@ -75,19 +58,13 @@ public class Spawner : MonoBehaviour
     
     private IEnumerator HandleAutomaticSpawning()
     {
-        Debug.Log("private IEnumerator HandleAutomaticSpawning()");
-        
         if (_spawnAutomationSettings.StopSpawningAutomatically)
         {
             _spawnAutomationSettings.OnSpawnStart();
             
-//            while (!_spawnAutomationSettings._limitationSettings.LimitationReached(_spawnables.Count))
             while (!_spawnAutomationSettings._limitationSettings.LimitationReached(_allSpwnedObjects.Count))
             {
-//                Spawn();
-
                 SpawnRandomSpawnable();
-
                 yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
             }
         }
@@ -163,7 +140,6 @@ public class Spawner : MonoBehaviour
 
         if (_isCollisionSafe)
         {
-//            var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(spawnable);
             var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(spawnable, (UniTask) =>
             {
                 PlaceSpawnable(spawnable);
@@ -207,8 +183,6 @@ public class Spawner : MonoBehaviour
         {
             _collisionSafetySettings.ReleaseSpawnable(spawnable, (UniTask) => PlaceSpawnable(spawnable));
         }
-        
-        
     }
 
     public void OnSpawnableSpawned()

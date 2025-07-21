@@ -12,31 +12,13 @@ public class Spawnable : MonoBehaviour
     [SerializeField]
     protected Renderer _renderer;
     
-    
-    
-    
-    
     public bool IsCollisionSafe { get; set; }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public bool IsCollided => _isCollided;
-    protected Collider2D _collider;
+    private Collider2D _collider;
 
-    protected Rigidbody2D _rigidbody2D;
-    protected bool _isCollided = false;
+    private Rigidbody2D _rigidbody2D;
+    private bool _isCollided = false;
     
     protected void SetTag()
     {
@@ -85,16 +67,6 @@ public class Spawnable : MonoBehaviour
         _rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAwake;
         _rigidbody2D.WakeUp();
     }
-    
-//    protected override void OnEnable()
-//    {
-//        _isCollided = false;
-//        base.OnEnable();
-//        SetTag();
-//        GetCollider();
-//        SetRigidbody2DSleepMode();
-//        SetCollisionInfrastructure();
-//    }
 
     protected void OnTriggerEnter2D(Collider2D other)
     {
@@ -126,24 +98,6 @@ public class Spawnable : MonoBehaviour
         }
     }
 
-//    public override void Release()
-//    {
-//        base.Release();
-//        ReturnCollisionPropertiesToDefault();
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
     private void SetCollisionInfrastructure()
     {
         
@@ -154,28 +108,16 @@ public class Spawnable : MonoBehaviour
         
     }
     
-    
-    
-
-
-
-    
-    
-    
-
-//    protected virtual void OnEnable()
     private void OnEnable()
     {
         if (IsCollisionSafe)
         {
             _isCollided = false;
-//            base.OnEnable();
             SetTag();
             GetCollider();
             SetRigidbody2DSleepMode();
             SetCollisionInfrastructure();
         }
-        
         
         GetRenderer();
         onEnableEvent?.Invoke();
