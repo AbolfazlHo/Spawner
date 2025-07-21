@@ -16,6 +16,11 @@ public class Spawner : MonoBehaviour
     // ToDo: Handle appearance of the following fields using custom inspector (editor)
     [SerializeField] private Automation _spawnAutomationSettings;
 
+
+    [SerializeField] private bool _isCollisionSafe = false;
+    [SerializeField] private CollisionSafety _collisionSafetySettings;
+    
+
     [SerializeField] private UnityEvent _onSpawnableSpawnedEvent;
 
     private Vector4 _spawnArea;
@@ -76,7 +81,8 @@ public class Spawner : MonoBehaviour
         {
             _spawnAutomationSettings.OnSpawnStart();
             
-            while (!_spawnAutomationSettings._limitationSettings.LimitationReached(_spawnables.Count))
+//            while (!_spawnAutomationSettings._limitationSettings.LimitationReached(_spawnables.Count))
+            while (!_spawnAutomationSettings._limitationSettings.LimitationReached(_allSpwnedObjects.Count))
             {
 //                Spawn();
 
@@ -154,6 +160,23 @@ public class Spawner : MonoBehaviour
     protected virtual async UniTask SpawnASpawnableOf(Spawnable spawnable)
     {
         var newSpawnable = InstantiateSpawnable(spawnable);
+
+        if (_isCollisionSafe)
+        {
+//            var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(spawnable);
+            var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(spawnable, (UniTask) =>
+            {
+                PlaceSpawnable(spawnable);
+            });
+
+            if (!hasPlaced)
+            {
+                _allSpwnedObjects.Remove(spawnable);
+                Destroy(spawnable.gameObject);
+            }
+            
+        }
+        
         await PlaceSpawnable(newSpawnable);
         ReleaseSpawnable(newSpawnable);
     }
@@ -179,6 +202,13 @@ public class Spawner : MonoBehaviour
     {
         spawnable.Release();
         _allSpwnedObjects.Add(spawnable);
+
+        if (_isCollisionSafe)
+        {
+            _collisionSafetySettings.ReleaseSpawnable(spawnable, (UniTask) => PlaceSpawnable(spawnable));
+        }
+        
+        
     }
 
     public void OnSpawnableSpawned()

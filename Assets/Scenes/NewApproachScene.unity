@@ -386,9 +386,9 @@ MonoBehaviour:
     _perSpawnInterval: 0.1
     _stopSpawningAutomatically: 1
     _limitationSettings:
-      _limitationType: 1
+      _limitationType: 0
       _limitTimeBy: 10
-      _limitCountBy: 0
+      _limitCountBy: 5
       _onSpawnStartEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -494,9 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnAreaGameObject: {fileID: 1206056517}
-  _spawnables:
-  - {fileID: 1865368088099731149, guid: 39a8571990cd54fadb962f7255cee780, type: 3}
-  - {fileID: 7760752207694757053, guid: 963c4f76e13ec411e9f054f97d2f2789, type: 3}
+  _spawnables: []
   _spawnAutomaticaly: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0
