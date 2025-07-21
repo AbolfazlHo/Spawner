@@ -22,6 +22,8 @@ public class Automation
 
     public void OnSpawnStart()
     {
+        Debug.Log("public void OnSpawnStart()");
+        
         _onSpawnStartEvent?.Invoke();
         
         if (_stopSpawningAutomatically)

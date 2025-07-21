@@ -31,28 +31,63 @@ public class Spawner : MonoBehaviour
     
     public void Spawn()
     {
+        Debug.Log("public void Spawn()");
+        
+        DoSpawnPrerequisite();
+        
         if (_spawnAutomaticaly)
         {
-            if (_autoSpawnRoutine != null)
+            if (_autoSpawnRoutine == null)
             {
                 _autoSpawnRoutine = StartCoroutine(HandleAutomaticSpawning());
             }
             
-            return;
+//            return;
+        }
+        else
+        {
+//            DoSpawnPrerequisite();
+            SpawnRandomSpawnable();
         }
         
+        
+        
+//        if (!_spawnAreaHasSet) SetSpawnArea();
+//        var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
+//        SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
+    }
+
+    private void DoSpawnPrerequisite()
+    {
         if (!_spawnAreaHasSet) SetSpawnArea();
+    }
+    
+    private void SpawnRandomSpawnable()
+    {
         var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
         SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
     }
     
     private IEnumerator HandleAutomaticSpawning()
     {
+        Debug.Log("private IEnumerator HandleAutomaticSpawning()");
+        
         if (_spawnAutomationSettings.StopSpawningAutomatically)
         {
             _spawnAutomationSettings.OnSpawnStart();
             
             while (!_spawnAutomationSettings._limitationSettings.LimitationReached(_spawnables.Count))
+            {
+//                Spawn();
+
+                SpawnRandomSpawnable();
+
+                yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
+            }
+        }
+        else
+        {
+            while (true)
             {
                 Spawn();
                 yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
