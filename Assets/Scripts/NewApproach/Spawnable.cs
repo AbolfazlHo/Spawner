@@ -13,6 +13,7 @@ public class Spawnable : MonoBehaviour
     protected Renderer _renderer;
     
     public bool IsCollisionSafe { get; set; }
+    public bool UsePreExistedCollider { get; set; }
     
     public bool IsCollided => _isCollided;
     private Collider2D _collider;
@@ -100,16 +101,41 @@ public class Spawnable : MonoBehaviour
 
     private void SetCollisionInfrastructure()
     {
-        
+        if (UsePreExistedCollider)
+        {
+            
+        }
+        else
+        {
+            
+        }
     }
 
     private void ReturnCollisionPropertiesToDefault()
     {
+        Debug.Log("++++++++++++++++++         private void ReturnCollisionPropertiesToDefault()            ++++++++++++++++");
         
+        _collider.isTrigger = false;
+        
+        if (UsePreExistedCollider)
+        {
+//            if (!_isPlacement)
+//            {
+//                
+//            }
+            _collider.isTrigger = false;
+        }
+        else
+        {
+            
+        }
     }
     
     private void OnEnable()
     {
+        GetRenderer();
+        _renderer.enabled = false;
+        
         if (IsCollisionSafe)
         {
             _isCollided = false;
@@ -119,7 +145,12 @@ public class Spawnable : MonoBehaviour
             SetCollisionInfrastructure();
         }
         
-        GetRenderer();
+//        GetRenderer();
+//
+//
+//        _renderer.enabled = false;
+        
+        
         onEnableEvent?.Invoke();
     }
 

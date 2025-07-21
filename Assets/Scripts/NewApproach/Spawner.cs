@@ -160,6 +160,13 @@ public class Spawner : MonoBehaviour
     private Spawnable InstantiateSpawnable(Spawnable spawnable)
     {
         var newSpawnable = Instantiate(spawnable);
+
+        newSpawnable.enabled = false;
+
+        newSpawnable.IsCollisionSafe = _isCollisionSafe;
+
+        newSpawnable.enabled = true;
+        
         return newSpawnable;
     }
 

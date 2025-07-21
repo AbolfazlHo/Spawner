@@ -7,11 +7,17 @@ using UnityEngine;
 public class CollisionSafety
 {
     [SerializeField] private bool _isPlacement;
+    // Placement settings . . .
+
+    [SerializeField] private bool _usePreExistedCollider;
+    
     [SerializeField] private bool _isGridPlacement;
     
     public async UniTask<bool> PlaceSpawnable(Spawnable spawnable, Action<Spawnable> basePlaceSpawnable)
     {
         spawnable.IsCollisionSafe = true;
+        spawnable.UsePreExistedCollider = _usePreExistedCollider;
+        
         var cancellationTokenSource = new CancellationTokenSource();
         
         try
