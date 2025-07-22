@@ -137,23 +137,47 @@ public class Spawner : MonoBehaviour
     {
         var newSpawnable = InstantiateSpawnable(spawnable);
 
-        if (_isCollisionSafe)
+        if (_isCollisionSafe && !_collisionSafetySettings.IsGridPlacement)
         {
-            var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(spawnable, (UniTask) =>
+//            var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(spawnable, (UniTask) =>
+            var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(newSpawnable, (UniTask) =>
             {
-                PlaceSpawnable(spawnable);
+//                PlaceSpawnable(spawnable);
+                PlaceSpawnable(newSpawnable);
             });
 
             if (!hasPlaced)
             {
-                _allSpwnedObjects.Remove(spawnable);
-                Destroy(spawnable.gameObject);
+//                _allSpwnedObjects.Remove(spawnable);
+                _allSpwnedObjects.Remove(newSpawnable);
+//                Destroy(spawnable.gameObject);
+                Destroy(newSpawnable.gameObject);
             }
         }
         else
         {
-            await PlaceSpawnable(newSpawnable);
+
+
+            if (_collisionSafetySettings.IsGridPlacement)
+            {
+                _collisionSafetySettings.GridPlacementSettings.CalculateCellSizeWithPadding();
+//                _collisionSafetySettings.GridPlacementSettings.PlaceSpawnableGridly(spawnable, _allSpwnedObjects.Count);
+                _collisionSafetySettings.GridPlacementSettings.PlaceSpawnableGridly(newSpawnable, _allSpwnedObjects.Count);
+                
+                Debug.Log("spawnable.transform.position     :::::    "+newSpawnable.transform.position);
+                
+            }
+            else
+            {
+                await PlaceSpawnable(newSpawnable);
+            }
+            
+            Debug.Log("spawnable.transform.position     :::::    "+newSpawnable.transform.position);
+            
+//            await PlaceSpawnable(newSpawnable);
         }
+        
+        Debug.Log("newSpawnable.transform.position     ::::::      "+newSpawnable.transform.position);
         
         ReleaseSpawnable(newSpawnable);
     }
@@ -164,7 +188,14 @@ public class Spawner : MonoBehaviour
         newSpawnable.enabled = false;
         newSpawnable.IsCollisionSafe = _isCollisionSafe;
         newSpawnable.IsPlacement = _collisionSafetySettings.IsPlacement;
-        if (_isCollisionSafe) spawnable.ColliderRequired = true;
+//        if (_isCollisionSafe) spawnable.ColliderRequired = true;
+        if (_isCollisionSafe) newSpawnable.ColliderRequired = true;
+
+        if (_collisionSafetySettings.IsGridPlacement)
+        {
+            newSpawnable.ApplySize(_collisionSafetySettings.GridPlacementSettings.SpawnableSize);
+        }
+        
         newSpawnable.enabled = true;
         return newSpawnable;
     }
@@ -183,14 +214,28 @@ public class Spawner : MonoBehaviour
     private async void ReleaseSpawnable(Spawnable spawnable)
     {
         var _hasPlaced = true;
+
+
+
+//        if (_collisionSafetySettings.IsGridPlacement)
+//        {
+//            
+//        }
         
-        if (_isCollisionSafe)
+
+
+        Debug.Log("spawnable.transform.position      ::::::       "+spawnable.transform.position);
+        
+        if (_isCollisionSafe && !_collisionSafetySettings.IsGridPlacement)
         {
+//            _hasPlaced = await  _collisionSafetySettings.ReleaseSpawnable(spawnable, (UniTask) => PlaceSpawnable(spawnable));
+//            _hasPlaced = await  _collisionSafetySettings.ReleaseSpawnable(spawnable, (UniTask) => PlaceSpawnable(spawnable), _allSpwnedObjects.Count);
             _hasPlaced = await  _collisionSafetySettings.ReleaseSpawnable(spawnable, (UniTask) => PlaceSpawnable(spawnable));
         }
 
         if (_hasPlaced)
         {
+            Debug.Log("spawnable.transform.position      ::::::       "+spawnable.transform.position);
             spawnable.Release();
             _allSpwnedObjects.Add(spawnable);
         }

@@ -1,5 +1,5 @@
 using System.Linq;
-using UnityEditorInternal;
+//using UnityEditorInternal;
 using UnityEngine;
 
 public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
@@ -14,11 +14,12 @@ public abstract class CollisionSafeSpawnable2D : BasicSpawnable2D
     {
               
 #if UNITY_EDITOR
-        var tags = InternalEditorUtility.tags;
+//        var tags = InternalEditorUtility.tags;
+        var tags = UnityEditorInternal.InternalEditorUtility.tags;
         
         if (!tags.ToList().Contains("SoorSpawnable"))
         {
-            InternalEditorUtility.AddTag("SoorSpawnable");
+            UnityEditorInternal.InternalEditorUtility.AddTag("SoorSpawnable");
         }
 #endif
 

@@ -1,5 +1,5 @@
 using System.Linq;
-using UnityEditorInternal;
+//using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,13 +27,18 @@ public class Spawnable : MonoBehaviour
     
     protected void SetTag()
     {
+        
+//        #if UNITY_EDITOR_OSX
+//        #endif
               
-#if UNITY_EDITOR
-        var tags = InternalEditorUtility.tags;
+#if UNITY_EDITOR || UNITY_EDITOR_OSX
+//        var tags = InternalEditorUtility.tags;
+        var tags = UnityEditorInternal.InternalEditorUtility.tags;
         
         if (!tags.ToList().Contains("SoorSpawnable"))
         {
-            InternalEditorUtility.AddTag("SoorSpawnable");
+//            InternalEditorUtility.AddTag("SoorSpawnable");
+            UnityEditorInternal.InternalEditorUtility.AddTag("SoorSpawnable");
         }
 #endif
 
@@ -136,6 +141,9 @@ public class Spawnable : MonoBehaviour
 
     public virtual void Release()
     {
+        
+        Debug.Log("transform.position     :::::::     " + transform.position);
+        
         if (IsCollisionSafe)
         {
             ReturnCollisionPropertiesToDefault();
@@ -159,5 +167,10 @@ public class Spawnable : MonoBehaviour
         }
         
         _renderer.enabled = false;
+    }
+
+    public void ApplySize(Vector2 size)
+    {
+        (_renderer as SpriteRenderer).size = size;
     }
 }
