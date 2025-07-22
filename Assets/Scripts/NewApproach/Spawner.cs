@@ -20,8 +20,7 @@ public class Spawner : MonoBehaviour
     private Vector4 _spawnArea;
     private bool _spawnAreaHasSet = false;
     private Coroutine _autoSpawnRoutine = null;
-    
-    protected List<Spawnable> _allSpwnedObjects = new List<Spawnable>();
+    private List<Spawnable> _allSpwnedObjects = new List<Spawnable>();
     
     void Start()
     {
@@ -162,17 +161,11 @@ public class Spawner : MonoBehaviour
     private Spawnable InstantiateSpawnable(Spawnable spawnable)
     {
         var newSpawnable = Instantiate(spawnable);
-
         newSpawnable.enabled = false;
-
         newSpawnable.IsCollisionSafe = _isCollisionSafe;
-
         newSpawnable.IsPlacement = _collisionSafetySettings.IsPlacement;
-
-        spawnable.UsePreExistedCollider = _collisionSafetySettings.UsePreExistedCollider;
-
+        if (_isCollisionSafe) spawnable.ColliderRequired = true;
         newSpawnable.enabled = true;
-        
         return newSpawnable;
     }
 
@@ -189,9 +182,6 @@ public class Spawner : MonoBehaviour
 
     private async void ReleaseSpawnable(Spawnable spawnable)
     {
-//        spawnable.Release();
-//        _allSpwnedObjects.Add(spawnable);
-
         var _hasPlaced = true;
         
         if (_isCollisionSafe)
@@ -208,7 +198,6 @@ public class Spawner : MonoBehaviour
         {
             Destroy(spawnable.gameObject);
         }
-        
     }
 
     public void OnSpawnableSpawned()

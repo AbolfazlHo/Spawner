@@ -13,7 +13,7 @@ public class Spawnable : MonoBehaviour
     protected Renderer _renderer;
     
     public bool IsCollisionSafe { get; set; }
-    public bool UsePreExistedCollider { get; set; }
+    public bool ColliderRequired { get; set; }
     public bool IsPlacement { get; set; }
     
     public bool IsCollided => _isCollided;
@@ -21,6 +21,9 @@ public class Spawnable : MonoBehaviour
 
     private Rigidbody2D _rigidbody2D;
     private bool _isCollided = false;
+    
+    private RigidbodyConstraints2D _defaultConstainers;
+    private bool _defaultIsTrigger;
     
     protected void SetTag()
     {
@@ -37,8 +40,6 @@ public class Spawnable : MonoBehaviour
         gameObject.tag = "SoorSpawnable";
     }
 
-    // ToDo: Remove the following method.
-    // ToDo: Change the following method for generative collider.
     private void GetCollider()
     {
         if (_collider == null)
@@ -94,14 +95,6 @@ public class Spawnable : MonoBehaviour
         }
     }
 
-
-
-
-
-    private RigidbodyConstraints2D _defaultConstainers;
-    private bool _defaultIsTrigger;
-    
-    
     private void SetCollisionInfrastructure()
     {
         _defaultIsTrigger = _collider.isTrigger;
@@ -112,49 +105,17 @@ public class Spawnable : MonoBehaviour
             _defaultConstainers = _rigidbody2D.constraints;
             _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-        
-        if (UsePreExistedCollider)
-        {
-            
-        }
-        else
-        {
-            
-        }
     }
 
     private void ReturnCollisionPropertiesToDefault()
     {
-
         _collider.isTrigger = _defaultIsTrigger;
         
         if (IsPlacement)
         {
             _rigidbody2D.constraints = _defaultConstainers;
         }
-//        
-//        // ToDo: Fix the following
-//        _collider.isTrigger = false;
-//        
-//        if (UsePreExistedCollider)
-//        {
-////            if (!_isPlacement)
-////            {
-////                
-////            }
-//            _collider.isTrigger = false;
-//        }
-//        else
-//        {
-//            
-//        }
     }
-    
-    
-    
-    
-    
-    
     
     private void OnEnable()
     {
