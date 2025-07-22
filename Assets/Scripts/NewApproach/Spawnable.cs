@@ -14,6 +14,7 @@ public class Spawnable : MonoBehaviour
     
     public bool IsCollisionSafe { get; set; }
     public bool UsePreExistedCollider { get; set; }
+    public bool IsPlacement { get; set; }
     
     public bool IsCollided => _isCollided;
     private Collider2D _collider;
@@ -71,8 +72,6 @@ public class Spawnable : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("protected void OnTriggerEnter2D(Collider2D other)");
-        
         if (other.CompareTag("SoorSpawnable"))
         {
             _isCollided = true;
@@ -81,8 +80,6 @@ public class Spawnable : MonoBehaviour
     
     protected void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("protected void OnTriggerExit2D(Collider2D other)");
-
         if (other.CompareTag("SoorSpawnable"))
         {
             _isCollided = false;
@@ -91,16 +88,31 @@ public class Spawnable : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log(" private void OnTriggerStay2D(Collider2D other)");
-   
         if (other.CompareTag("SoorSpawnable"))
         {
             _isCollided = true;
         }
     }
 
+
+
+
+
+    private RigidbodyConstraints2D _defaultConstainers;
+    private bool _defaultIsTrigger;
+    
+    
     private void SetCollisionInfrastructure()
     {
+        _defaultIsTrigger = _collider.isTrigger;
+        _collider.isTrigger = true;
+        
+        if (IsPlacement)
+        {
+            _defaultConstainers = _rigidbody2D.constraints;
+            _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        
         if (UsePreExistedCollider)
         {
             
@@ -113,23 +125,36 @@ public class Spawnable : MonoBehaviour
 
     private void ReturnCollisionPropertiesToDefault()
     {
-        Debug.Log("++++++++++++++++++         private void ReturnCollisionPropertiesToDefault()            ++++++++++++++++");
+
+        _collider.isTrigger = _defaultIsTrigger;
         
-        _collider.isTrigger = false;
-        
-        if (UsePreExistedCollider)
+        if (IsPlacement)
         {
-//            if (!_isPlacement)
-//            {
-//                
-//            }
-            _collider.isTrigger = false;
+            _rigidbody2D.constraints = _defaultConstainers;
         }
-        else
-        {
-            
-        }
+//        
+//        // ToDo: Fix the following
+//        _collider.isTrigger = false;
+//        
+//        if (UsePreExistedCollider)
+//        {
+////            if (!_isPlacement)
+////            {
+////                
+////            }
+//            _collider.isTrigger = false;
+//        }
+//        else
+//        {
+//            
+//        }
     }
+    
+    
+    
+    
+    
+    
     
     private void OnEnable()
     {
@@ -144,12 +169,6 @@ public class Spawnable : MonoBehaviour
             SetRigidbody2DSleepMode();
             SetCollisionInfrastructure();
         }
-        
-//        GetRenderer();
-//
-//
-//        _renderer.enabled = false;
-        
         
         onEnableEvent?.Invoke();
     }

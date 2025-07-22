@@ -7,22 +7,37 @@ using UnityEngine;
 public class CollisionSafety
 {
     [SerializeField] private bool _isPlacement;
+    
+    public bool IsPlacement
+    {
+        get => _isPlacement;
+    }
+
+
     // Placement settings . . .
 
     [SerializeField] private bool _usePreExistedCollider;
+
+
+    public bool UsePreExistedCollider => _usePreExistedCollider;
     
+        
+        
+        
+        
     [SerializeField] private bool _isGridPlacement;
     
     public async UniTask<bool> PlaceSpawnable(Spawnable spawnable, Action<Spawnable> basePlaceSpawnable)
     {
         spawnable.IsCollisionSafe = true;
         spawnable.UsePreExistedCollider = _usePreExistedCollider;
+        spawnable.IsPlacement = _isPlacement;
         
         var cancellationTokenSource = new CancellationTokenSource();
         
         try
         {
-            cancellationTokenSource.CancelAfter(500);
+            cancellationTokenSource.CancelAfter(200);
             await TryPlaceCollisionSafeSpawnable2DInAFreeSpace(spawnable, cancellationTokenSource.Token, basePlaceSpawnable);
             return true;
         }
@@ -39,19 +54,30 @@ public class CollisionSafety
 
     private async UniTask TryPlaceCollisionSafeSpawnable2DInAFreeSpace(Spawnable collisionSafeSpawnable, CancellationToken cancellationToken, Action<Spawnable> basePlaceSpawnable)
     {
-        do
+        if (!_isPlacement)
         {
-            cancellationToken.ThrowIfCancellationRequested();
             basePlaceSpawnable(collisionSafeSpawnable);
-            await UniTask.Delay(100);
-        } while (collisionSafeSpawnable.IsCollided);
+        }
+        else
+        {
+            do
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                basePlaceSpawnable(collisionSafeSpawnable);
+                await UniTask.Delay(100);
+            } while (collisionSafeSpawnable.IsCollided);
+        }
+        
     }
 
-    public async void ReleaseSpawnable(Spawnable spawnable, Action<Spawnable> basePlaceSpawnable)
+//    public async void ReleaseSpawnable(Spawnable spawnable, Action<Spawnable> basePlaceSpawnable)
+    public async UniTask<bool> ReleaseSpawnable(Spawnable spawnable, Action<Spawnable> basePlaceSpawnable)
     {
-        if  (spawnable.IsCollided)
+        if  (spawnable.IsCollided && IsPlacement)
         {
-            await PlaceSpawnable(spawnable, basePlaceSpawnable);
+            return await PlaceSpawnable(spawnable, basePlaceSpawnable);
         }
+
+        return true;
     }
 }

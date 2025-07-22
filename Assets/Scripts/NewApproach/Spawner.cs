@@ -150,10 +150,12 @@ public class Spawner : MonoBehaviour
                 _allSpwnedObjects.Remove(spawnable);
                 Destroy(spawnable.gameObject);
             }
-            
+        }
+        else
+        {
+            await PlaceSpawnable(newSpawnable);
         }
         
-        await PlaceSpawnable(newSpawnable);
         ReleaseSpawnable(newSpawnable);
     }
     
@@ -164,6 +166,10 @@ public class Spawner : MonoBehaviour
         newSpawnable.enabled = false;
 
         newSpawnable.IsCollisionSafe = _isCollisionSafe;
+
+        newSpawnable.IsPlacement = _collisionSafetySettings.IsPlacement;
+
+        spawnable.UsePreExistedCollider = _collisionSafetySettings.UsePreExistedCollider;
 
         newSpawnable.enabled = true;
         
@@ -181,15 +187,28 @@ public class Spawner : MonoBehaviour
         spawnable.transform.position = new Vector3(randomX, randomY, 0);
     }
 
-    protected virtual void ReleaseSpawnable(Spawnable spawnable)
+    private async void ReleaseSpawnable(Spawnable spawnable)
     {
-        spawnable.Release();
-        _allSpwnedObjects.Add(spawnable);
+//        spawnable.Release();
+//        _allSpwnedObjects.Add(spawnable);
 
+        var _hasPlaced = true;
+        
         if (_isCollisionSafe)
         {
-            _collisionSafetySettings.ReleaseSpawnable(spawnable, (UniTask) => PlaceSpawnable(spawnable));
+            _hasPlaced = await  _collisionSafetySettings.ReleaseSpawnable(spawnable, (UniTask) => PlaceSpawnable(spawnable));
         }
+
+        if (_hasPlaced)
+        {
+            spawnable.Release();
+            _allSpwnedObjects.Add(spawnable);
+        }
+        else
+        {
+            Destroy(spawnable.gameObject);
+        }
+        
     }
 
     public void OnSpawnableSpawned()
