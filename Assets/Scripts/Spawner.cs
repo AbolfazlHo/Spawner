@@ -52,7 +52,8 @@ public class Spawner : MonoBehaviour
     private void SpawnRandomSpawnable()
     {
         var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
-        SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
+//        SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
+        SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
     }
     
     private IEnumerator HandleAutomaticSpawning()
@@ -133,7 +134,8 @@ public class Spawner : MonoBehaviour
         _spawnAreaHasSet = true;
     }
 
-    protected virtual async UniTask SpawnASpawnableOf(Spawnable spawnable)
+//    protected virtual async UniTask SpawnASpawnableOf(Spawnable spawnable)
+    private  async void SpawnASpawnableOf(Spawnable spawnable)
     {
         var newSpawnable = InstantiateSpawnable(spawnable);
 
@@ -159,7 +161,8 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                await PlaceSpawnable(newSpawnable);
+//                await PlaceSpawnable(newSpawnable);
+                PlaceSpawnable(newSpawnable);
             }
         }
         
@@ -183,7 +186,8 @@ public class Spawner : MonoBehaviour
         return newSpawnable;
     }
 
-    protected virtual async UniTask PlaceSpawnable(Spawnable spawnable)
+//    protected virtual async UniTask PlaceSpawnable(Spawnable spawnable)
+    private void PlaceSpawnable(Spawnable spawnable)
     {
         var randomX = 0.0f;
         var randomY = 0.0f;

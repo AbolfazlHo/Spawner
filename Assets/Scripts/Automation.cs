@@ -18,11 +18,11 @@ public class Automation
     public bool StopSpawningAutomatically => _stopSpawningAutomatically;
     public float PerSpawnInterval => _perSpawnInterval;
 
-    private Coroutine _spawnRoutine = null;
+//    private Coroutine _spawnRoutine = null;
 
     public void OnSpawnStart()
     {
-        Debug.Log("public void OnSpawnStart()");
+//        Debug.Log("public void OnSpawnStart()");
         
         _onSpawnStartEvent?.Invoke();
         
