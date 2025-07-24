@@ -12,8 +12,6 @@ public class Limitation
     }
 
     [SerializeField] private LimitationType _limitationType;
-    
-    // ToDo: Handle appearance of the following fields using custom inspector (editor)
     [SerializeField] private float _limitTimeBy = 0;
     [SerializeField] private int _limitCountBy = 0;
     [SerializeField] private UnityEvent _onSpawnStartEvent;

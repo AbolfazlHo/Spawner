@@ -9,18 +9,16 @@ public class Spawnable : MonoBehaviour
     public UnityEvent onDisableEvent;
 
     [SerializeField]
-    protected Renderer _renderer;
+    private Renderer _renderer;
     
     public bool IsCollisionSafe { get; set; }
     public bool ColliderRequired { get; set; }
     public bool IsPlacement { get; set; }
-    
     public bool IsCollided => _isCollided;
+    
     private Collider2D _collider;
-
     private Rigidbody2D _rigidbody2D;
     private bool _isCollided = false;
-    
     private RigidbodyConstraints2D _defaultConstainers;
     private bool _defaultIsTrigger;
     

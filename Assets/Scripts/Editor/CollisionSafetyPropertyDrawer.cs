@@ -1,25 +1,12 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
 [CustomPropertyDrawer(typeof(CollisionSafety))]
-//[CustomEditor(typeof(CollisionSafety))]
 public class CollisionSafetyPropertyDrawer : PropertyDrawer
 {
-//    #region  SERIZLIZED_PORPERTIESD
-//
-//    private SerializedProperty _isPlacement;
-//    private SerializedProperty _isGridPlacement;
-//    private SerializedProperty _gridPlacementSettings;
-//
-//    #endregion SERIZLIZED_PORPERTIESD
-
-
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-
         EditorGUI.BeginProperty(position, label, property);
-        
         Rect foldoutRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
         property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, label, true);
 
@@ -53,8 +40,6 @@ public class CollisionSafetyPropertyDrawer : PropertyDrawer
         }
      
         EditorGUI.EndProperty();
-        
-//        base.OnGUI(position, property, label);
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
@@ -75,35 +60,8 @@ public class CollisionSafetyPropertyDrawer : PropertyDrawer
                     height += EditorGUI.GetPropertyHeight(gridPlacementSettings, true);
                 }
             }
-
         }
 
         return height;
-        
-//        return base.GetPropertyHeight(property, label);
     }
-
-
-//
-//    private void OnEnable()
-//    {
-//        _isPlacement = serializedObject.FindProperty("_isPlacement");
-//        _isGridPlacement = serializedObject.FindProperty("_isGridPlacement");
-//        _gridPlacementSettings = serializedObject.FindProperty("_gridPlacementSettings");
-//    }
-//
-//    public override void OnInspectorGUI()
-//    {
-//        serializedObject.Update();
-//
-//        EditorGUILayout.PropertyField(_isPlacement);
-//        EditorGUILayout.PropertyField(_isGridPlacement);
-//
-//        if (_isGridPlacement.boolValue)
-//        {
-//            EditorGUILayout.PropertyField(_gridPlacementSettings);
-//        }
-//        
-//        serializedObject.ApplyModifiedProperties();
-//    }
 }

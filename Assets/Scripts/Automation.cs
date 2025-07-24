@@ -9,7 +9,6 @@ public class Automation
     [SerializeField] private float _perSpawnInterval;
 
     [SerializeField] private bool _stopSpawningAutomatically;
-    // ToDo: Handle the appearance of the following field using custom inspector (editor)
     [SerializeField] public Limitation _limitationSettings;
     
     [SerializeField] private UnityEvent _onSpawnStartEvent;
@@ -18,12 +17,8 @@ public class Automation
     public bool StopSpawningAutomatically => _stopSpawningAutomatically;
     public float PerSpawnInterval => _perSpawnInterval;
 
-//    private Coroutine _spawnRoutine = null;
-
     public void OnSpawnStart()
     {
-//        Debug.Log("public void OnSpawnStart()");
-        
         _onSpawnStartEvent?.Invoke();
         
         if (_stopSpawningAutomatically)

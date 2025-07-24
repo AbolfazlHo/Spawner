@@ -1,6 +1,4 @@
-using System;
 using UnityEditor;
-using UnityEngine;
 
 [CustomEditor(typeof(Spawner))]
 public class SpawnerInspector : Editor
@@ -17,8 +15,6 @@ public class SpawnerInspector : Editor
 
     #endregion SERIZLIZED_PORPERTIESD
 
-//    private Editor _collisionSafetyEditor;
-    
     private void OnEnable()
     {
         _spawnAreaGameObject = serializedObject.FindProperty("_spawnAreaGameObject");
@@ -26,35 +22,9 @@ public class SpawnerInspector : Editor
         _spawnAutomaticaly = serializedObject.FindProperty("_spawnAutomaticaly");
         _spawnAutomationSettings = serializedObject.FindProperty("_spawnAutomationSettings");
         _isCollisionSafe = serializedObject.FindProperty("_isCollisionSafe");
-        
-        
         _collisionSafetySettings = serializedObject.FindProperty("_collisionSafetySettings");
-        
-        
-        
         _onSpawnableSpawnedEvent = serializedObject.FindProperty("_onSpawnableSpawnedEvent");
-
-
-
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.Copy(), typeof(CollisionSafetyPropertyDrawer));
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.objectReferenceValue, typeof(CollisionSafetyPropertyDrawer));
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings, typeof(CollisionSafety));
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.exposedReferenceValue, typeof(CollisionSafetyPropertyDrawer));
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.objectReferenceValue, typeof(CollisionSafetyPropertyDrawer));
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.objectReferenceValue, typeof(CollisionSafetyPropertyDrawer));
-//        _collisionSafetyEditor = Editor.CreateInstance<CollisionSafetyPropertyDrawer>();
-//        _collisionSafetyEditor = Editor.
-
-
     }
-
-//    private void OnDisable()
-//    {
-//        if (_collisionSafetyEditor != null)
-//        {
-//            DestroyImmediate(_collisionSafetyEditor);
-//        }
-//    }
 
     public override void OnInspectorGUI()
     {
@@ -78,18 +48,6 @@ public class SpawnerInspector : Editor
         if (_isCollisionSafe.boolValue)
         {
             EditorGUILayout.PropertyField(_collisionSafetySettings);
-
-//
-//            if (_collisionSafetyEditor != null)
-//            {
-//                _collisionSafetyEditor.OnInspectorGUI();
-//            }
-//            else
-//            {
-//                EditorGUILayout.HelpBox("CollisionSafety editor could not be created", MessageType.Error);
-//            }
-            
-            
         }
         
         EditorGUILayout.Space();

@@ -11,7 +11,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject _spawnAreaGameObject;
     [SerializeField] private List<Spawnable> _spawnables;
     [SerializeField] private bool _spawnAutomaticaly;
-    // ToDo: Handle appearance of the following fields using custom inspector (editor)
     [SerializeField] private Automation _spawnAutomationSettings;
     [SerializeField] private bool _isCollisionSafe = false;
     [SerializeField] private CollisionSafety _collisionSafetySettings;
@@ -52,7 +51,6 @@ public class Spawner : MonoBehaviour
     private void SpawnRandomSpawnable()
     {
         var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
-//        SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
         SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
     }
     
@@ -134,7 +132,6 @@ public class Spawner : MonoBehaviour
         _spawnAreaHasSet = true;
     }
 
-//    protected virtual async UniTask SpawnASpawnableOf(Spawnable spawnable)
     private  async void SpawnASpawnableOf(Spawnable spawnable)
     {
         var newSpawnable = InstantiateSpawnable(spawnable);
@@ -161,7 +158,6 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-//                await PlaceSpawnable(newSpawnable);
                 PlaceSpawnable(newSpawnable);
             }
         }
@@ -186,7 +182,6 @@ public class Spawner : MonoBehaviour
         return newSpawnable;
     }
 
-//    protected virtual async UniTask PlaceSpawnable(Spawnable spawnable)
     private void PlaceSpawnable(Spawnable spawnable)
     {
         var randomX = 0.0f;
