@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CustomPropertyDrawer(typeof(CollisionSafety))]
 //[CustomEditor(typeof(CollisionSafety))]
-public class CollisionSafetyDrawer : PropertyDrawer
+public class CollisionSafetyPropertyDrawer : PropertyDrawer
 {
 //    #region  SERIZLIZED_PORPERTIESD
 //

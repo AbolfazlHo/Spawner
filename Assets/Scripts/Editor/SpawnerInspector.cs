@@ -36,13 +36,13 @@ public class SpawnerInspector : Editor
 
 
 
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.Copy(), typeof(CollisionSafetyDrawer));
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.objectReferenceValue, typeof(CollisionSafetyDrawer));
+//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.Copy(), typeof(CollisionSafetyPropertyDrawer));
+//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.objectReferenceValue, typeof(CollisionSafetyPropertyDrawer));
 //        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings, typeof(CollisionSafety));
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.exposedReferenceValue, typeof(CollisionSafetyDrawer));
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.objectReferenceValue, typeof(CollisionSafetyDrawer));
-//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.objectReferenceValue, typeof(CollisionSafetyDrawer));
-//        _collisionSafetyEditor = Editor.CreateInstance<CollisionSafetyDrawer>();
+//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.exposedReferenceValue, typeof(CollisionSafetyPropertyDrawer));
+//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.objectReferenceValue, typeof(CollisionSafetyPropertyDrawer));
+//        _collisionSafetyEditor = Editor.CreateEditor(_collisionSafetySettings.objectReferenceValue, typeof(CollisionSafetyPropertyDrawer));
+//        _collisionSafetyEditor = Editor.CreateInstance<CollisionSafetyPropertyDrawer>();
 //        _collisionSafetyEditor = Editor.
 
 

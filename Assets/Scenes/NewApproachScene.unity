@@ -179,7 +179,7 @@ MonoBehaviour:
         m_Calls: []
   _isCollisionSafe: 1
   _collisionSafetySettings:
-    _isPlacement: 1
+    _isPlacement: 0
     _isGridPlacement: 0
     _gridPlacementSettings:
       _spawnableSize: {x: 0, y: 0}
@@ -372,7 +372,7 @@ MonoBehaviour:
   _spawnAutomaticaly: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0.3
-    _stopSpawningAutomatically: 1
+    _stopSpawningAutomatically: 0
     _limitationSettings:
       _limitationType: 1
       _limitTimeBy: 10
@@ -389,15 +389,15 @@ MonoBehaviour:
     _onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
-  _isCollisionSafe: 1
+  _isCollisionSafe: 0
   _collisionSafetySettings:
     _isPlacement: 1
     _isGridPlacement: 1
     _gridPlacementSettings:
-      _spawnableSize: {x: 10, y: 10}
-      _padding: {x: 1, y: 1}
+      _spawnableSize: {x: 0, y: 0}
+      _padding: {x: 0, y: 0}
       _rowsCount: -1
-      _columnsCount: 3
+      _columnsCount: -1
   _onSpawnableSpawnedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -608,13 +608,13 @@ MonoBehaviour:
         m_Calls: []
   _isCollisionSafe: 1
   _collisionSafetySettings:
-    _isPlacement: 1
-    _isGridPlacement: 1
+    _isPlacement: 0
+    _isGridPlacement: 0
     _gridPlacementSettings:
-      _spawnableSize: {x: 10, y: 10}
-      _padding: {x: 1, y: 1}
+      _spawnableSize: {x: 0, y: 0}
+      _padding: {x: 0, y: 0}
       _rowsCount: -1
-      _columnsCount: 3
+      _columnsCount: -1
   _onSpawnableSpawnedEvent:
     m_PersistentCalls:
       m_Calls: []
