@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class Spawner : MonoBehaviour
+namespace Soor.Spawner2d
+{
+    public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject _spawnAreaGameObject;
     [SerializeField] private List<Spawnable> _spawnables;
@@ -217,4 +218,5 @@ public class Spawner : MonoBehaviour
     {
         _onSpawnableSpawnedEvent?.Invoke();
     }
+}
 }

@@ -1,67 +1,70 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(CollisionSafety))]
-public class CollisionSafetyPropertyDrawer : PropertyDrawer
+namespace Soor.Spawner2d.Editor
 {
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(CollisionSafety))]
+    public class CollisionSafetyPropertyDrawer : PropertyDrawer
     {
-        EditorGUI.BeginProperty(position, label, property);
-        Rect foldoutRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-        property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, label, true);
-
-        if (property.isExpanded)
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EditorGUI.indentLevel++;
-            
-            Rect currentRect = new Rect(position.x,
-                                        position.y + EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing,
-                                        position.width,
-                                        EditorGUIUtility.singleLineHeight);
+            EditorGUI.BeginProperty(position, label, property);
+            Rect foldoutRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+            property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, label, true);
 
-            SerializedProperty isPlacement = property.FindPropertyRelative("_isPlacement");
-            SerializedProperty isGridPlacement = property.FindPropertyRelative("_isGridPlacement");
-            SerializedProperty gridPlacementSettings = property.FindPropertyRelative("_gridPlacementSettings");
-
-            EditorGUI.PropertyField(currentRect, isPlacement);
-            currentRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
-            
-            EditorGUI.PropertyField(currentRect, isGridPlacement);
-            currentRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
-
-            if (isGridPlacement.boolValue)
+            if (property.isExpanded)
             {
-                float gridPlacementHeight = EditorGUI.GetPropertyHeight(gridPlacementSettings, true);
-                currentRect.height = gridPlacementHeight; 
-                EditorGUI.PropertyField(currentRect, gridPlacementSettings, true);
-            }
+                EditorGUI.indentLevel++;
 
-            EditorGUI.indentLevel--;
-        }
-     
-        EditorGUI.EndProperty();
-    }
+                Rect currentRect = new Rect(position.x,
+                    position.y + EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing,
+                    position.width,
+                    EditorGUIUtility.singleLineHeight);
 
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        float height = EditorGUIUtility.singleLineHeight;
-
-        if (property.isExpanded)
-        {
-            height += (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 2;
-            SerializedProperty isGridPlacement = property.FindPropertyRelative("_isGridPlacement");
-
-            if (isGridPlacement != null && isGridPlacement.boolValue)
-            {
+                SerializedProperty isPlacement = property.FindPropertyRelative("_isPlacement");
+                SerializedProperty isGridPlacement = property.FindPropertyRelative("_isGridPlacement");
                 SerializedProperty gridPlacementSettings = property.FindPropertyRelative("_gridPlacementSettings");
 
-                if (gridPlacementSettings != null)
+                EditorGUI.PropertyField(currentRect, isPlacement);
+                currentRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+
+                EditorGUI.PropertyField(currentRect, isGridPlacement);
+                currentRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+
+                if (isGridPlacement.boolValue)
                 {
-                    height += EditorGUI.GetPropertyHeight(gridPlacementSettings, true);
+                    float gridPlacementHeight = EditorGUI.GetPropertyHeight(gridPlacementSettings, true);
+                    currentRect.height = gridPlacementHeight;
+                    EditorGUI.PropertyField(currentRect, gridPlacementSettings, true);
                 }
+
+                EditorGUI.indentLevel--;
             }
+
+            EditorGUI.EndProperty();
         }
 
-        return height;
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            float height = EditorGUIUtility.singleLineHeight;
+
+            if (property.isExpanded)
+            {
+                height += (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 2;
+                SerializedProperty isGridPlacement = property.FindPropertyRelative("_isGridPlacement");
+
+                if (isGridPlacement != null && isGridPlacement.boolValue)
+                {
+                    SerializedProperty gridPlacementSettings = property.FindPropertyRelative("_gridPlacementSettings");
+
+                    if (gridPlacementSettings != null)
+                    {
+                        height += EditorGUI.GetPropertyHeight(gridPlacementSettings, true);
+                    }
+                }
+            }
+
+            return height;
+        }
     }
 }

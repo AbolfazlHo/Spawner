@@ -2,33 +2,36 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
-public class Automation
+namespace Soor.Spawner2d
 {
-    [Tooltip("Delay between two consecutive spawns in milliseconds.")]
-    [SerializeField] private float _perSpawnInterval;
-
-    [SerializeField] private bool _stopSpawningAutomatically;
-    [SerializeField] public Limitation _limitationSettings;
-    
-    [SerializeField] private UnityEvent _onSpawnStartEvent;
-    [SerializeField] private UnityEvent _onSpawnEndEvent;
-
-    public bool StopSpawningAutomatically => _stopSpawningAutomatically;
-    public float PerSpawnInterval => _perSpawnInterval;
-
-    public void OnSpawnStart()
+    [Serializable]
+    public class Automation
     {
-        _onSpawnStartEvent?.Invoke();
-        
-        if (_stopSpawningAutomatically)
+        [Tooltip("Delay between two consecutive spawns in milliseconds.")]
+        [SerializeField] private float _perSpawnInterval;
+
+        [SerializeField] private bool _stopSpawningAutomatically;
+        [SerializeField] public Limitation _limitationSettings;
+    
+        [SerializeField] private UnityEvent _onSpawnStartEvent;
+        [SerializeField] private UnityEvent _onSpawnEndEvent;
+
+        public bool StopSpawningAutomatically => _stopSpawningAutomatically;
+        public float PerSpawnInterval => _perSpawnInterval;
+
+        public void OnSpawnStart()
         {
-            _limitationSettings.OnSpawnStart();
+            _onSpawnStartEvent?.Invoke();
+        
+            if (_stopSpawningAutomatically)
+            {
+                _limitationSettings.OnSpawnStart();
+            }
         }
-    }
     
-    public void OnSpawnEnd()
-    {
-        _onSpawnEndEvent?.Invoke();
+        public void OnSpawnEnd()
+        {
+            _onSpawnEndEvent?.Invoke();
+        }
     }
 }

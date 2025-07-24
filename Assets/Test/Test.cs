@@ -1,3 +1,4 @@
+using Soor.Spawner2d;
 using UnityEngine;
 
 public class Test : MonoBehaviour

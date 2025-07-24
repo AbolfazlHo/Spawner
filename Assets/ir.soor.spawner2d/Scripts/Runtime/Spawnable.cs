@@ -2,7 +2,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Spawnable : MonoBehaviour
+namespace Soor.Spawner2d
+{
+    public class Spawnable : MonoBehaviour
 {
     public UnityEvent onEnableEvent;
     public UnityEvent onRelaese;
@@ -162,4 +164,5 @@ public class Spawnable : MonoBehaviour
     {
         (_renderer as SpriteRenderer).size = size;
     }
+}
 }
