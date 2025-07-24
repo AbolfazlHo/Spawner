@@ -369,10 +369,10 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 1865368088099731149, guid: dbac77789060043ef9565641467c9c85, type: 3}
   - {fileID: 7760752207694757053, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
-  _spawnAutomaticaly: 0
+  _spawnAutomaticaly: 1
   _spawnAutomationSettings:
     _perSpawnInterval: 0.3
-    _stopSpawningAutomatically: 0
+    _stopSpawningAutomatically: 1
     _limitationSettings:
       _limitationType: 1
       _limitTimeBy: 10

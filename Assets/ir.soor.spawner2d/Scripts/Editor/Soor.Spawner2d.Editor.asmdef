@@ -1,0 +1,16 @@
+{
+    "name": "Soor.Spawner2d.Editor",
+    "rootNamespace": "Soor.Spawner2d.Editor",
+    "references": [
+        "GUID:e158e1e1709f54d13a7c696aa694b745"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
