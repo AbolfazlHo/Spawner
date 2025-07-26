@@ -14,7 +14,7 @@
   ],
   "licenseUrl": "https://raw.githubusercontent.com/AbolfazlHo/Spawner/refs/heads/main/LICENSE",
   "dependencies": {
-    "com.cysharp.unitask": "2.5.10"
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.5.10"
   },
   "samples": [{}],
   "relatedPackages": {},
