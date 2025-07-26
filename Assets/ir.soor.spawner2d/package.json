@@ -1,5 +1,4 @@
 {
-  
   "name": "ir.soor.spawner2d",
   "displayName": "2D Spawner",
   "version": "0.0.1",
@@ -13,14 +12,11 @@
     "spawnable"
   ],
   "licenseUrl": "https://raw.githubusercontent.com/AbolfazlHo/Spawner/refs/heads/main/LICENSE",
-  "dependencies": {
-    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask"
-  },
+  "dependencies": {},
   "samples": [{}],
   "relatedPackages": {},
   "repository": {
     "url": "https://github.com/AbolfazlHo/Spawner.git",
     "type": "github"
   }
-  
 }
