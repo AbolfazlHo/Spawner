@@ -13,7 +13,7 @@
     "spawnable"
   ],
   "dependencies": {
-    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#v2.1.0"
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#V2.1.0"
   },
   "samples": [{}],
   "relatedPackages": {},
