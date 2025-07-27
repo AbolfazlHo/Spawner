@@ -168,6 +168,9 @@ MonoBehaviour:
       _onSpawnStartEvent:
         m_PersistentCalls:
           m_Calls: []
+      _onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _onLimitationReachedEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -378,6 +381,9 @@ MonoBehaviour:
       _limitTimeBy: 10
       _limitCountBy: 10
       _onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      _onSpawnEndEvent:
         m_PersistentCalls:
           m_Calls: []
       _onLimitationReachedEvent:
@@ -597,6 +603,9 @@ MonoBehaviour:
       _onSpawnStartEvent:
         m_PersistentCalls:
           m_Calls: []
+      _onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _onLimitationReachedEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -675,6 +684,9 @@ MonoBehaviour:
       _limitTimeBy: 10
       _limitCountBy: 5
       _onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      _onSpawnEndEvent:
         m_PersistentCalls:
           m_Calls: []
       _onLimitationReachedEvent:
@@ -798,6 +810,9 @@ MonoBehaviour:
       _limitTimeBy: 0
       _limitCountBy: 0
       _onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      _onSpawnEndEvent:
         m_PersistentCalls:
           m_Calls: []
       _onLimitationReachedEvent:
@@ -999,6 +1014,9 @@ MonoBehaviour:
       _limitTimeBy: 10
       _limitCountBy: 5
       _onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      _onSpawnEndEvent:
         m_PersistentCalls:
           m_Calls: []
       _onLimitationReachedEvent:

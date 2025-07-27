@@ -82,6 +82,9 @@ namespace Soor.Spawner2d
         if (_spawnAutomaticaly && _autoSpawnRoutine != null)
         {
             StopCoroutine(_autoSpawnRoutine);
+            
+            
+            
             _spawnAutomationSettings.OnSpawnEnd();
         }
     }

@@ -13,6 +13,7 @@ namespace Soor.Spawner2d
         [SerializeField] private bool _stopSpawningAutomatically;
         [SerializeField] public Limitation _limitationSettings;
     
+        // ToDo: Hide the following events if limitation has set
         [SerializeField] private UnityEvent _onSpawnStartEvent;
         [SerializeField] private UnityEvent _onSpawnEndEvent;
 
