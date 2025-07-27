@@ -20,6 +20,7 @@ namespace Soor.Spawner2d
         [SerializeField] private UnityEvent _onSpawnEndEvent;
         
         
+        
         [SerializeField] private UnityEvent _onLimitationReachedEvent;
 
         private float _spawnStartTime = 0;

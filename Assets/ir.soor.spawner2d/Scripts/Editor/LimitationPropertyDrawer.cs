@@ -29,6 +29,13 @@ namespace Soor.Spawner2d.Editor
                 SerializedProperty onSpawnStartEventProp = property.FindPropertyRelative("_onSpawnStartEvent");
                 SerializedProperty onLimitationReachedEventProp =
                     property.FindPropertyRelative("_onLimitationReachedEvent");
+                
+                
+                
+                
+                SerializedProperty onSpawnEndEventProp = property.FindPropertyRelative("_onSpawnEndEvent");
+
+                
 
                 // Draw _limitationType
                 EditorGUI.PropertyField(currentRect, limitationTypeProp);
@@ -58,6 +65,19 @@ namespace Soor.Spawner2d.Editor
                 EditorGUI.PropertyField(currentRect, onLimitationReachedEventProp, true); // Use true for UnityEvents
                 currentRect.y += EditorGUI.GetPropertyHeight(onLimitationReachedEventProp, true) +
                                  EditorGUIUtility.standardVerticalSpacing;
+                
+                
+                
+                
+                
+                // onSpawnEndEventProp
+                // Draw _onSpawnEndEvent
+                EditorGUI.PropertyField(currentRect, onSpawnEndEventProp, true); // Use true for UnityEvents
+                currentRect.y += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) +
+                                 EditorGUIUtility.standardVerticalSpacing;
+                
+                
+                
 
                 EditorGUI.indentLevel--;
             }
@@ -81,6 +101,18 @@ namespace Soor.Spawner2d.Editor
                 SerializedProperty onSpawnStartEventProp = property.FindPropertyRelative("_onSpawnStartEvent");
                 SerializedProperty onLimitationReachedEventProp =
                     property.FindPropertyRelative("_onLimitationReachedEvent");
+                
+                
+                
+                
+                
+                
+                SerializedProperty onSpawnEndEventProp = property.FindPropertyRelative("_onSpawnEndEvent");
+
+                
+                
+                
+                
 
                 // Add height for _limitationType
                 if (limitationTypeProp != null)
@@ -111,11 +143,31 @@ namespace Soor.Spawner2d.Editor
                 }
 
                 // Add height for _onSpawnStartEvent
+                if (onSpawnEndEventProp != null)
+                {
+                    totalHeight += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) +
+                                   EditorGUIUtility.standardVerticalSpacing;
+                }
+                
+                
+                
+                
+                
+                
+                
+                // Add height for _onSpawnStartEvent
                 if (onSpawnStartEventProp != null)
                 {
                     totalHeight += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) +
                                    EditorGUIUtility.standardVerticalSpacing;
                 }
+                
+                
+                
+                
+                
+                
+                
 
                 // Add height for _onLimitationReachedEvent
                 if (onLimitationReachedEventProp != null)
