@@ -595,7 +595,7 @@ MonoBehaviour:
   _spawnAutomaticaly: 1
   _spawnAutomationSettings:
     _perSpawnInterval: 0.3
-    _stopSpawningAutomatically: 1
+    _stopSpawningAutomatically: 0
     _limitationSettings:
       _limitationType: 1
       _limitTimeBy: 10

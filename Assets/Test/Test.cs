@@ -22,5 +22,10 @@ public class Test : MonoBehaviour
         {
             _spawner.Spawn();
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            _spawner.StopSpawning();
+        }
     }
 }

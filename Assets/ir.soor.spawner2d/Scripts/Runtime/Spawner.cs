@@ -21,6 +21,9 @@ namespace Soor.Spawner2d
     private bool _spawnAreaHasSet = false;
     private Coroutine _autoSpawnRoutine = null;
     private List<Spawnable> _allSpwnedObjects = new List<Spawnable>();
+
+
+    private bool _spawnerStopped = false;
     
     void Start()
     {
@@ -30,6 +33,13 @@ namespace Soor.Spawner2d
     public void Spawn()
     {
         DoSpawnPrerequisite();
+
+        
+        
+        _spawnerStopped = false;
+        
+        
+        
         
         if (_spawnAutomaticaly)
         {
@@ -57,21 +67,47 @@ namespace Soor.Spawner2d
     
     private IEnumerator HandleAutomaticSpawning()
     {
+        
+        
+        // Here's the problem
+        
         if (_spawnAutomationSettings.StopSpawningAutomatically)
         {
-            _spawnAutomationSettings.OnSpawnStart();
-            
-            while (!_spawnAutomationSettings._limitationSettings.LimitationReached(_allSpwnedObjects.Count))
+            if (_spawnAutomaticaly)
             {
+                _spawnAutomationSettings.OnSpawnStart();
+            }
+            else
+            {
+                _spawnAutomationSettings.OnSpawnStart();
+            }
+            
+//            while (!_spawnAutomationSettings._limitationSettings.LimitationReached(_allSpwnedObjects.Count))
+            while (!_spawnAutomationSettings._limitationSettings.LimitationReached(_allSpwnedObjects.Count) && !_spawnerStopped)
+            {
+                //////????????????????????????
                 SpawnRandomSpawnable();
                 yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
             }
         }
         else
         {
-            while (true)
+            
+            
+            
+            
+            
+            
+            
+            
+//            while (true)
+            while (!_spawnerStopped)
             {
-                Spawn();
+                //////????????????????????????
+//                Spawn();
+                SpawnRandomSpawnable();
+
+//                yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
                 yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
             }
         }
@@ -79,6 +115,11 @@ namespace Soor.Spawner2d
     
     public void StopSpawning()
     {
+
+
+        _spawnerStopped = true;
+        
+        
         if (_spawnAutomaticaly && _autoSpawnRoutine != null)
         {
             StopCoroutine(_autoSpawnRoutine);
