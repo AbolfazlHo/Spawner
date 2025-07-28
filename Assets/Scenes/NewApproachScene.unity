@@ -615,7 +615,7 @@ MonoBehaviour:
     _onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
-  _isCollisionSafe: 1
+  _isCollisionSafe: 0
   _collisionSafetySettings:
     _isPlacement: 0
     _isGridPlacement: 0

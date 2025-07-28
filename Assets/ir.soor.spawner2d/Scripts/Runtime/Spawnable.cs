@@ -121,10 +121,12 @@ namespace Soor.Spawner2d
         GetRenderer();
         _renderer.enabled = false;
         
+        SetTag();
+
         if (IsCollisionSafe)
         {
             _isCollided = false;
-            SetTag();
+//            SetTag();
             GetCollider();
             SetRigidbody2DSleepMode();
             SetCollisionInfrastructure();
