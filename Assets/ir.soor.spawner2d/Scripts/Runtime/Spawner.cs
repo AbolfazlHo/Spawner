@@ -147,30 +147,51 @@ namespace Soor.Spawner2d
         {
             var newSpawnable = InstantiateSpawnable(spawnable);
 
-            if (_isCollisionSafe && !_collisionSafetySettings.IsGridPlacement)
+            if (_isCollisionSafe)
             {
-                var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(newSpawnable,
-                    (UniTask) => { PlaceSpawnable(newSpawnable); });
 
-                if (!hasPlaced)
+                if (!_collisionSafetySettings.IsGridPlacement)
                 {
-                    _allSpwnedObjects.Remove(newSpawnable);
-                    Destroy(newSpawnable.gameObject);
-                }
-            }
-            else
-            {
-                if (_collisionSafetySettings.IsGridPlacement)
-                {
-                    _collisionSafetySettings.GridPlacementSettings.CalculateCellSizeWithPadding();
-                    _collisionSafetySettings.GridPlacementSettings.SetSpawnableSize(newSpawnable);
-                    _collisionSafetySettings.GridPlacementSettings.PlaceSpawnableGridly(newSpawnable,
-                        _allSpwnedObjects.Count);
+                    var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(newSpawnable,
+                        (UniTask) => { PlaceSpawnable(newSpawnable); });
+
+                    if (!hasPlaced)
+                    {
+                        _allSpwnedObjects.Remove(newSpawnable);
+                        Destroy(newSpawnable.gameObject);
+                    }
                 }
                 else
                 {
-                    PlaceSpawnable(newSpawnable);
+                    _collisionSafetySettings.GridPlacementSettings.CalculateCellSizeWithPadding();
+                    _collisionSafetySettings.GridPlacementSettings.SetSpawnableSize(newSpawnable);
+                    _collisionSafetySettings.GridPlacementSettings.PlaceSpawnableGridly(newSpawnable, _allSpwnedObjects.Count);
                 }
+                
+//                var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(newSpawnable,
+//                    (UniTask) => { PlaceSpawnable(newSpawnable); });
+//
+//                if (!hasPlaced)
+//                {
+//                    _allSpwnedObjects.Remove(newSpawnable);
+//                    Destroy(newSpawnable.gameObject);
+//                }
+            }
+            else
+            {
+                PlaceSpawnable(newSpawnable);
+//
+//                if (_collisionSafetySettings.IsGridPlacement)
+//                {
+////                    _collisionSafetySettings.GridPlacementSettings.CalculateCellSizeWithPadding();
+////                    _collisionSafetySettings.GridPlacementSettings.SetSpawnableSize(newSpawnable);
+////                    _collisionSafetySettings.GridPlacementSettings.PlaceSpawnableGridly(newSpawnable,
+////                        _allSpwnedObjects.Count);
+//                }
+//                else
+//                {
+//                    PlaceSpawnable(newSpawnable);
+//                }
             }
 
             ReleaseSpawnable(newSpawnable);
