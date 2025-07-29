@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Soor.Spawner2d.Editor
 {
     [CustomPropertyDrawer(typeof(Automation))]
-    public class AutomationPropertyDrawer : PropertyDrawer // Corrected typo in class name: PropertyDrawer
+    public class AutomationPropertyDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -59,35 +59,12 @@ namespace Soor.Spawner2d.Editor
                     EditorGUI.PropertyField(currentRect, onSpawnStartEventProp, true); // Use 'true' for UnityEvent
                     currentRect.y += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) +
                                      EditorGUIUtility.standardVerticalSpacing;
-                    
-                    
+
                     // Draw _onSpawnEndEvent
                     EditorGUI.PropertyField(currentRect, onSpawnEndEventProp, true); // Use 'true' for UnityEvent
                     currentRect.y += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) +
                                      EditorGUIUtility.standardVerticalSpacing;
                 }
-                
-//                
-//                // Draw _onSpawnStartEvent
-//                EditorGUI.PropertyField(currentRect, onSpawnStartEventProp, true); // Use 'true' for UnityEvent
-//                currentRect.y += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) +
-//                                 EditorGUIUtility.standardVerticalSpacing;
-                
-                
-                
-                
-                
-                
-                
-//
-//                // Draw _onSpawnEndEvent
-//                EditorGUI.PropertyField(currentRect, onSpawnEndEventProp, true); // Use 'true' for UnityEvent
-//                currentRect.y += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) +
-//                                 EditorGUIUtility.standardVerticalSpacing;
-
-                
-                
-                
                 
                 EditorGUI.indentLevel--;
             }
@@ -106,8 +83,7 @@ namespace Soor.Spawner2d.Editor
                 // Find properties for height calculation.
                 // These should match the ones drawn in OnGUI.
                 SerializedProperty perSpawnIntervalProp = property.FindPropertyRelative("_perSpawnInterval");
-                SerializedProperty stopSpawningAutomaticallyProp =
-                    property.FindPropertyRelative("_stopSpawningAutomatically");
+                SerializedProperty stopSpawningAutomaticallyProp = property.FindPropertyRelative("_stopSpawningAutomatically");
                 SerializedProperty limitationSettingsProp = property.FindPropertyRelative("_limitationSettings");
 
                 if (stopSpawningAutomaticallyProp != null &&!stopSpawningAutomaticallyProp.boolValue)
@@ -117,8 +93,7 @@ namespace Soor.Spawner2d.Editor
                     // Add height for _onSpawnStartEvent
                     if (onSpawnStartEventProp != null)
                     {
-                        totalHeight += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) +
-                                       EditorGUIUtility.standardVerticalSpacing;
+                        totalHeight += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
                     }
                     
                     SerializedProperty onSpawnEndEventProp = property.FindPropertyRelative("_onSpawnEndEvent");
@@ -126,25 +101,19 @@ namespace Soor.Spawner2d.Editor
                     // Add height for _onSpawnEndEvent
                     if (onSpawnEndEventProp != null)
                     {
-                        totalHeight += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) +
-                                       EditorGUIUtility.standardVerticalSpacing;
+                        totalHeight += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
                     }
                 }
-
-
-//                SerializedProperty onSpawnEndEventProp = property.FindPropertyRelative("_onSpawnEndEvent");
 
                 // Add height for each property that is consistently drawn
                 if (perSpawnIntervalProp != null)
                 {
-                    totalHeight += EditorGUI.GetPropertyHeight(perSpawnIntervalProp, true) +
-                                   EditorGUIUtility.standardVerticalSpacing;
+                    totalHeight += EditorGUI.GetPropertyHeight(perSpawnIntervalProp, true) + EditorGUIUtility.standardVerticalSpacing;
                 }
 
                 if (stopSpawningAutomaticallyProp != null)
                 {
-                    totalHeight += EditorGUI.GetPropertyHeight(stopSpawningAutomaticallyProp, true) +
-                                   EditorGUIUtility.standardVerticalSpacing;
+                    totalHeight += EditorGUI.GetPropertyHeight(stopSpawningAutomaticallyProp, true) + EditorGUIUtility.standardVerticalSpacing;
                 }
 
                 // Conditionally add height for _limitationSettings
@@ -153,27 +122,10 @@ namespace Soor.Spawner2d.Editor
                     if (limitationSettingsProp != null)
                     {
                         totalHeight += EditorGUIUtility.singleLineHeight;
-
-                        totalHeight += EditorGUI.GetPropertyHeight(limitationSettingsProp, true) +
-                                       EditorGUIUtility.standardVerticalSpacing;
-
+                        totalHeight += EditorGUI.GetPropertyHeight(limitationSettingsProp, true) + EditorGUIUtility.standardVerticalSpacing;
                         totalHeight += EditorGUIUtility.singleLineHeight;
                     }
                 }
-
-//                // Add height for _onSpawnStartEvent
-//                if (onSpawnStartEventProp != null)
-//                {
-//                    totalHeight += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) +
-//                                   EditorGUIUtility.standardVerticalSpacing;
-//                }
-
-//                // Add height for _onSpawnEndEvent
-//                if (onSpawnEndEventProp != null)
-//                {
-//                    totalHeight += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) +
-//                                   EditorGUIUtility.standardVerticalSpacing;
-//                }
             }
 
             return totalHeight;

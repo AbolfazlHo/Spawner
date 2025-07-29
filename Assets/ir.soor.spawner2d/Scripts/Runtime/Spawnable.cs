@@ -12,9 +12,8 @@ namespace Soor.Spawner2d
 
         [SerializeField] private Renderer _renderer;
 
-//        [SerializeField] private string _tag = "SoorSpawnable"; 
-        private string _tag = "SoorSpawnable"; 
-
+        private string _tag = "SoorSpawnable";
+        
         public bool IsCollisionSafe { get; set; }
         public bool ColliderRequired { get; set; }
         public bool IsPlacement { get; set; }
@@ -28,22 +27,17 @@ namespace Soor.Spawner2d
 
         public void SetTag(string tag)
         {
-
             _tag = tag;
-            
             
 #if UNITY_EDITOR || UNITY_EDITOR_OSX
             var tags = UnityEditorInternal.InternalEditorUtility.tags;
 
-//            if (!tags.ToList().Contains("SoorSpawnable"))
             if (!tags.ToList().Contains(_tag))
             {
-//                UnityEditorInternal.InternalEditorUtility.AddTag("SoorSpawnable");
                 UnityEditorInternal.InternalEditorUtility.AddTag(_tag);
             }
 #endif
 
-//            gameObject.tag = "SoorSpawnable";
             gameObject.tag = _tag;
         }
 
@@ -80,29 +74,17 @@ namespace Soor.Spawner2d
 
         protected void OnTriggerEnter2D(Collider2D other)
         {
-//            if (other.CompareTag("SoorSpawnable"))
-            if (other.CompareTag(_tag))
-            {
-                _isCollided = true;
-            }
+            if (other.CompareTag(_tag)) _isCollided = true;
         }
 
         protected void OnTriggerExit2D(Collider2D other)
         {
-//            if (other.CompareTag("SoorSpawnable"))
-            if (other.CompareTag(_tag))
-            {
-                _isCollided = false;
-            }
+            if (other.CompareTag(_tag)) _isCollided = false;
         }
 
         private void OnTriggerStay2D(Collider2D other)
         {
-//            if (other.CompareTag("SoorSpawnable"))
-            if (other.CompareTag(_tag))
-            {
-                _isCollided = true;
-            }
+            if (other.CompareTag(_tag)) _isCollided = true;
         }
 
         private void SetCollisionInfrastructure()
@@ -120,11 +102,7 @@ namespace Soor.Spawner2d
         private void ReturnCollisionPropertiesToDefault()
         {
             _collider.isTrigger = _defaultIsTrigger;
-
-            if (IsPlacement)
-            {
-                _rigidbody2D.constraints = _defaultConstainers;
-            }
+            if (IsPlacement) _rigidbody2D.constraints = _defaultConstainers;
         }
 
         private void OnEnable()
@@ -132,12 +110,9 @@ namespace Soor.Spawner2d
             GetRenderer();
             _renderer.enabled = false;
 
-//            SetTag();
-
             if (IsCollisionSafe)
             {
                 _isCollided = false;
-//            SetTag();
                 GetCollider();
                 SetRigidbody2DSleepMode();
                 SetCollisionInfrastructure();
@@ -148,11 +123,7 @@ namespace Soor.Spawner2d
 
         public virtual void Release()
         {
-            if (IsCollisionSafe)
-            {
-                ReturnCollisionPropertiesToDefault();
-            }
-
+            if (IsCollisionSafe) ReturnCollisionPropertiesToDefault();
             _renderer.enabled = true;
             onRelaese?.Invoke();
         }
@@ -165,11 +136,7 @@ namespace Soor.Spawner2d
 
         private void GetRenderer()
         {
-            if (_renderer == null)
-            {
-                _renderer = GetComponent<Renderer>();
-            }
-
+            if (_renderer == null) _renderer = GetComponent<Renderer>();
             _renderer.enabled = false;
         }
 

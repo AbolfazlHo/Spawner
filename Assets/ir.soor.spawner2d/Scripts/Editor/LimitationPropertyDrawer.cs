@@ -27,57 +27,36 @@ namespace Soor.Spawner2d.Editor
                 SerializedProperty limitTimeByProp = property.FindPropertyRelative("_limitTimeBy");
                 SerializedProperty limitCountByProp = property.FindPropertyRelative("_limitCountBy");
                 SerializedProperty onSpawnStartEventProp = property.FindPropertyRelative("_onSpawnStartEvent");
-                SerializedProperty onLimitationReachedEventProp =
-                    property.FindPropertyRelative("_onLimitationReachedEvent");
-                
-                
-                
-                
+                SerializedProperty onLimitationReachedEventProp = property.FindPropertyRelative("_onLimitationReachedEvent");
                 SerializedProperty onSpawnEndEventProp = property.FindPropertyRelative("_onSpawnEndEvent");
-
-                
 
                 // Draw _limitationType
                 EditorGUI.PropertyField(currentRect, limitationTypeProp);
-                currentRect.y += EditorGUI.GetPropertyHeight(limitationTypeProp, true) +
-                                 EditorGUIUtility.standardVerticalSpacing; // Use true for safety
+                currentRect.y += EditorGUI.GetPropertyHeight(limitationTypeProp, true) + EditorGUIUtility.standardVerticalSpacing; // Use true for safety
 
                 // Conditionally draw _limitTimeBy or _limitCountBy
                 if (limitationTypeProp.intValue == (int) Limitation.LimitationType.Time)
                 {
                     EditorGUI.PropertyField(currentRect, limitTimeByProp);
-                    currentRect.y += EditorGUI.GetPropertyHeight(limitTimeByProp, true) +
-                                     EditorGUIUtility.standardVerticalSpacing; // Use true
+                    currentRect.y += EditorGUI.GetPropertyHeight(limitTimeByProp, true) + EditorGUIUtility.standardVerticalSpacing; // Use true
                 }
                 else // LimitationType.Count
                 {
                     EditorGUI.PropertyField(currentRect, limitCountByProp);
-                    currentRect.y += EditorGUI.GetPropertyHeight(limitCountByProp, true) +
-                                     EditorGUIUtility.standardVerticalSpacing; // Use true
+                    currentRect.y += EditorGUI.GetPropertyHeight(limitCountByProp, true) + EditorGUIUtility.standardVerticalSpacing; // Use true
                 }
 
                 // Draw _onSpawnStartEvent
                 EditorGUI.PropertyField(currentRect, onSpawnStartEventProp, true); // Use true for UnityEvents
-                currentRect.y += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) +
-                                 EditorGUIUtility.standardVerticalSpacing;
+                currentRect.y += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
 
                 // Draw _onLimitationReachedEvent
                 EditorGUI.PropertyField(currentRect, onLimitationReachedEventProp, true); // Use true for UnityEvents
-                currentRect.y += EditorGUI.GetPropertyHeight(onLimitationReachedEventProp, true) +
-                                 EditorGUIUtility.standardVerticalSpacing;
+                currentRect.y += EditorGUI.GetPropertyHeight(onLimitationReachedEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
                 
-                
-                
-                
-                
-                // onSpawnEndEventProp
                 // Draw _onSpawnEndEvent
                 EditorGUI.PropertyField(currentRect, onSpawnEndEventProp, true); // Use true for UnityEvents
-                currentRect.y += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) +
-                                 EditorGUIUtility.standardVerticalSpacing;
-                
-                
-                
+                currentRect.y += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
 
                 EditorGUI.indentLevel--;
             }
@@ -99,45 +78,29 @@ namespace Soor.Spawner2d.Editor
                 SerializedProperty limitTimeByProp = property.FindPropertyRelative("_limitTimeBy");
                 SerializedProperty limitCountByProp = property.FindPropertyRelative("_limitCountBy");
                 SerializedProperty onSpawnStartEventProp = property.FindPropertyRelative("_onSpawnStartEvent");
-                SerializedProperty onLimitationReachedEventProp =
-                    property.FindPropertyRelative("_onLimitationReachedEvent");
-                
-                
-                
-                
-                
-                
+                SerializedProperty onLimitationReachedEventProp = property.FindPropertyRelative("_onLimitationReachedEvent");
                 SerializedProperty onSpawnEndEventProp = property.FindPropertyRelative("_onSpawnEndEvent");
-
-                
-                
-                
-                
 
                 // Add height for _limitationType
                 if (limitationTypeProp != null)
                 {
-                    totalHeight += EditorGUI.GetPropertyHeight(limitationTypeProp, true) +
-                                   EditorGUIUtility.standardVerticalSpacing;
+                    totalHeight += EditorGUI.GetPropertyHeight(limitationTypeProp, true) + EditorGUIUtility.standardVerticalSpacing;
                 }
 
-                // Conditionally add height for _limitTimeBy or _limitCountBy
                 if (limitationTypeProp != null) // Ensure limitationTypeProp is found before checking its value
                 {
                     if (limitationTypeProp.intValue == (int) Limitation.LimitationType.Time)
                     {
                         if (limitTimeByProp != null)
                         {
-                            totalHeight += EditorGUI.GetPropertyHeight(limitTimeByProp, true) +
-                                           EditorGUIUtility.standardVerticalSpacing;
+                            totalHeight += EditorGUI.GetPropertyHeight(limitTimeByProp, true) + EditorGUIUtility.standardVerticalSpacing;
                         }
                     }
                     else // LimitationType.Count
                     {
                         if (limitCountByProp != null)
                         {
-                            totalHeight += EditorGUI.GetPropertyHeight(limitCountByProp, true) +
-                                           EditorGUIUtility.standardVerticalSpacing;
+                            totalHeight += EditorGUI.GetPropertyHeight(limitCountByProp, true) + EditorGUIUtility.standardVerticalSpacing;
                         }
                     }
                 }
@@ -145,35 +108,19 @@ namespace Soor.Spawner2d.Editor
                 // Add height for _onSpawnStartEvent
                 if (onSpawnEndEventProp != null)
                 {
-                    totalHeight += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) +
-                                   EditorGUIUtility.standardVerticalSpacing;
+                    totalHeight += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
                 }
-                
-                
-                
-                
-                
-                
                 
                 // Add height for _onSpawnStartEvent
                 if (onSpawnStartEventProp != null)
                 {
-                    totalHeight += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) +
-                                   EditorGUIUtility.standardVerticalSpacing;
+                    totalHeight += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
                 }
                 
-                
-                
-                
-                
-                
-                
-
                 // Add height for _onLimitationReachedEvent
                 if (onLimitationReachedEventProp != null)
                 {
-                    totalHeight += EditorGUI.GetPropertyHeight(onLimitationReachedEventProp, true) +
-                                   EditorGUIUtility.standardVerticalSpacing;
+                    totalHeight += EditorGUI.GetPropertyHeight(onLimitationReachedEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
                 }
             }
 

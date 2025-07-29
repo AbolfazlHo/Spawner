@@ -54,10 +54,8 @@ namespace Soor.Spawner2d.Editor
                 EditorGUILayout.PropertyField(_collisionSafetySettings);
             }
 
-            
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(_spawnableTag);
-
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Events");

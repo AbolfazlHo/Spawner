@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Soor.Spawner2d
 {
-    
     [Serializable]
     public class CollisionSafety
     {

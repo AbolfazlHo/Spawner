@@ -18,9 +18,6 @@ namespace Soor.Spawner2d
         [SerializeField] private int _limitCountBy = 0;
         [SerializeField] private UnityEvent _onSpawnStartEvent;
         [SerializeField] private UnityEvent _onSpawnEndEvent;
-        
-        
-        
         [SerializeField] private UnityEvent _onLimitationReachedEvent;
 
         private float _spawnStartTime = 0;

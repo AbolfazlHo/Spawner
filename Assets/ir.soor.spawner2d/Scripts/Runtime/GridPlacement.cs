@@ -12,7 +12,6 @@ namespace Soor.Spawner2d
         [SerializeField] private int _columnsCount = -1;
 
         public Vector2 SpawnableSize => _spawnableSize;
-    
         private Vector2 _cellSizeWithPadding = Vector2.zero;
 
         public void CalculateCellSizeWithPadding()
@@ -21,9 +20,7 @@ namespace Soor.Spawner2d
         }
 
         public void SetSpawnableSize(Spawnable spawnable)
-//        public void SetSpawnableSize(SpriteRenderer _renderer)
         {
-//            _renderer.size = _spawnableSize;
             spawnable.SetSize(_spawnableSize);
         }
 
