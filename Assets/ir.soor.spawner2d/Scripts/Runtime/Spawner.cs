@@ -16,6 +16,7 @@ namespace Soor.Spawner2d
     [SerializeField] private bool _isCollisionSafe = false;
     [SerializeField] private CollisionSafety _collisionSafetySettings;
     [SerializeField] private UnityEvent _onSpawnableSpawnedEvent;
+    [SerializeField] private string _spawnableTag = "SoorSpawnable";
 
     private Vector4 _spawnArea;
     private bool _spawnAreaHasSet = false;
@@ -218,11 +219,17 @@ namespace Soor.Spawner2d
     private Spawnable InstantiateSpawnable(Spawnable spawnable)
     {
         var newSpawnable = Instantiate(spawnable);
+        
+        newSpawnable.SetTag(_spawnableTag);
+
         newSpawnable.enabled = false;
         newSpawnable.IsCollisionSafe = _isCollisionSafe;
         newSpawnable.IsPlacement = _collisionSafetySettings.IsPlacement;
         if (_isCollisionSafe) newSpawnable.ColliderRequired = true;
 
+        
+//        newSpawnable.SetTag(_spawnableTag);
+        
 //        
 //        if (_collisionSafetySettings.IsGridPlacement)
 //        {

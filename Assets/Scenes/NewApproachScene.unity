@@ -192,6 +192,7 @@ MonoBehaviour:
   _onSpawnableSpawnedEvent:
     m_PersistentCalls:
       m_Calls: []
+  _spawnableTag: SoorSpawnable
 --- !u!4 &345874496
 Transform:
   m_ObjectHideFlags: 0
@@ -285,7 +286,7 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 1865368088099731149, guid: dbac77789060043ef9565641467c9c85, type: 3}
   - {fileID: 7760752207694757053, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
-  _spawnAutomaticaly: 0
+  _spawnAutomaticaly: 1
   _spawnAutomationSettings:
     _perSpawnInterval: 0.3
     _stopSpawningAutomatically: 1
@@ -320,6 +321,7 @@ MonoBehaviour:
   _onSpawnableSpawnedEvent:
     m_PersistentCalls:
       m_Calls: []
+  _spawnableTag: SpawnableTag_1
 --- !u!4 &1163210828
 Transform:
   m_ObjectHideFlags: 0
@@ -490,6 +492,7 @@ MonoBehaviour:
   _onSpawnableSpawnedEvent:
     m_PersistentCalls:
       m_Calls: []
+  _spawnableTag: SoorSpawnable
 --- !u!4 &1227153871
 Transform:
   m_ObjectHideFlags: 0
@@ -710,6 +713,7 @@ MonoBehaviour:
   _onSpawnableSpawnedEvent:
     m_PersistentCalls:
       m_Calls: []
+  _spawnableTag: SoorSpawnable
 --- !u!4 &1448667958
 Transform:
   m_ObjectHideFlags: 0
@@ -793,6 +797,7 @@ MonoBehaviour:
   _onSpawnableSpawnedEvent:
     m_PersistentCalls:
       m_Calls: []
+  _spawnableTag: SoorSpawnable
 --- !u!4 &1559122092
 Transform:
   m_ObjectHideFlags: 0
@@ -919,6 +924,7 @@ MonoBehaviour:
   _onSpawnableSpawnedEvent:
     m_PersistentCalls:
       m_Calls: []
+  _spawnableTag: SoorSpawnable
 --- !u!4 &1696440427
 Transform:
   m_ObjectHideFlags: 0
@@ -1123,6 +1129,7 @@ MonoBehaviour:
   _onSpawnableSpawnedEvent:
     m_PersistentCalls:
       m_Calls: []
+  _spawnableTag: SoorSpawnable
 --- !u!4 &1862526467
 Transform:
   m_ObjectHideFlags: 0
