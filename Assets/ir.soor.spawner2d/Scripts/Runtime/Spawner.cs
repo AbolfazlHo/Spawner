@@ -167,31 +167,10 @@ namespace Soor.Spawner2d
                     _collisionSafetySettings.GridPlacementSettings.SetSpawnableSize(newSpawnable);
                     _collisionSafetySettings.GridPlacementSettings.PlaceSpawnableGridly(newSpawnable, _allSpwnedObjects.Count);
                 }
-                
-//                var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(newSpawnable,
-//                    (UniTask) => { PlaceSpawnable(newSpawnable); });
-//
-//                if (!hasPlaced)
-//                {
-//                    _allSpwnedObjects.Remove(newSpawnable);
-//                    Destroy(newSpawnable.gameObject);
-//                }
             }
             else
             {
                 PlaceSpawnable(newSpawnable);
-//
-//                if (_collisionSafetySettings.IsGridPlacement)
-//                {
-////                    _collisionSafetySettings.GridPlacementSettings.CalculateCellSizeWithPadding();
-////                    _collisionSafetySettings.GridPlacementSettings.SetSpawnableSize(newSpawnable);
-////                    _collisionSafetySettings.GridPlacementSettings.PlaceSpawnableGridly(newSpawnable,
-////                        _allSpwnedObjects.Count);
-//                }
-//                else
-//                {
-//                    PlaceSpawnable(newSpawnable);
-//                }
             }
 
             ReleaseSpawnable(newSpawnable);

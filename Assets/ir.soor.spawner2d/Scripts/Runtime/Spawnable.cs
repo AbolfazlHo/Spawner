@@ -140,11 +140,6 @@ namespace Soor.Spawner2d
             _renderer.enabled = false;
         }
 
-        public void ApplySize(Vector2 size)
-        {
-            (_renderer as SpriteRenderer).size = size;
-        }
-
         public void SetSize(Vector2 size)
         {
             if ((_renderer as SpriteRenderer).drawMode != SpriteDrawMode.Sliced)
