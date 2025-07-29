@@ -199,6 +199,11 @@ namespace Soor.Spawner2d
             if (_collisionSafetySettings.IsGridPlacement)
             {
                 _collisionSafetySettings.GridPlacementSettings.CalculateCellSizeWithPadding();
+
+
+                _collisionSafetySettings.GridPlacementSettings.SetSpawnableSize(newSpawnable);
+                
+                
                 _collisionSafetySettings.GridPlacementSettings.PlaceSpawnableGridly(newSpawnable, _allSpwnedObjects.Count);
             }
             else
@@ -218,11 +223,13 @@ namespace Soor.Spawner2d
         newSpawnable.IsPlacement = _collisionSafetySettings.IsPlacement;
         if (_isCollisionSafe) newSpawnable.ColliderRequired = true;
 
-        if (_collisionSafetySettings.IsGridPlacement)
-        {
-            newSpawnable.ApplySize(_collisionSafetySettings.GridPlacementSettings.SpawnableSize);
-        }
-        
+//        
+//        if (_collisionSafetySettings.IsGridPlacement)
+//        {
+//            newSpawnable.ApplySize(_collisionSafetySettings.GridPlacementSettings.SpawnableSize);
+//        }
+//        
+
         newSpawnable.enabled = true;
         return newSpawnable;
     }

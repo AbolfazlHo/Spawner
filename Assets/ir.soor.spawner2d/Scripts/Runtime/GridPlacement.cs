@@ -20,6 +20,13 @@ namespace Soor.Spawner2d
             _cellSizeWithPadding = _padding + _spawnableSize;
         }
 
+        public void SetSpawnableSize(Spawnable spawnable)
+//        public void SetSpawnableSize(SpriteRenderer _renderer)
+        {
+//            _renderer.size = _spawnableSize;
+            spawnable.SetSize(_spawnableSize);
+        }
+
         public void PlaceSpawnableGridly(Spawnable spawnable, int index)
         {
             var row = 1;

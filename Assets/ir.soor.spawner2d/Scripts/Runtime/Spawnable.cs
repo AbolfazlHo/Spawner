@@ -5,166 +5,181 @@ using UnityEngine.Events;
 namespace Soor.Spawner2d
 {
     public class Spawnable : MonoBehaviour
-{
-    public UnityEvent onEnableEvent;
-    public UnityEvent onRelaese;
-    public UnityEvent onDisableEvent;
-
-    [SerializeField]
-    private Renderer _renderer;
-    
-    public bool IsCollisionSafe { get; set; }
-    public bool ColliderRequired { get; set; }
-    public bool IsPlacement { get; set; }
-    public bool IsCollided => _isCollided;
-    
-    private Collider2D _collider;
-    private Rigidbody2D _rigidbody2D;
-    private bool _isCollided = false;
-    private RigidbodyConstraints2D _defaultConstainers;
-    private bool _defaultIsTrigger;
-    
-    protected void SetTag()
     {
-        
-#if UNITY_EDITOR || UNITY_EDITOR_OSX
-        var tags = UnityEditorInternal.InternalEditorUtility.tags;
-        
-        if (!tags.ToList().Contains("SoorSpawnable"))
+        public UnityEvent onEnableEvent;
+        public UnityEvent onRelaese;
+        public UnityEvent onDisableEvent;
+
+        [SerializeField] private Renderer _renderer;
+
+        public bool IsCollisionSafe { get; set; }
+        public bool ColliderRequired { get; set; }
+        public bool IsPlacement { get; set; }
+        public bool IsCollided => _isCollided;
+
+        private Collider2D _collider;
+        private Rigidbody2D _rigidbody2D;
+        private bool _isCollided = false;
+        private RigidbodyConstraints2D _defaultConstainers;
+        private bool _defaultIsTrigger;
+
+        protected void SetTag()
         {
-            UnityEditorInternal.InternalEditorUtility.AddTag("SoorSpawnable");
-        }
+#if UNITY_EDITOR || UNITY_EDITOR_OSX
+            var tags = UnityEditorInternal.InternalEditorUtility.tags;
+
+            if (!tags.ToList().Contains("SoorSpawnable"))
+            {
+                UnityEditorInternal.InternalEditorUtility.AddTag("SoorSpawnable");
+            }
 #endif
 
-        gameObject.tag = "SoorSpawnable";
-    }
-
-    private void GetCollider()
-    {
-        if (_collider == null)
-        {
-            _collider = GetComponent<Collider2D>();
+            gameObject.tag = "SoorSpawnable";
         }
 
-        if (_collider == null)
+        private void GetCollider()
         {
-            _collider = gameObject.AddComponent<BoxCollider2D>();
+            if (_collider == null)
+            {
+                _collider = GetComponent<Collider2D>();
+            }
+
+            if (_collider == null)
+            {
+                _collider = gameObject.AddComponent<BoxCollider2D>();
+            }
+
+            _collider.enabled = true;
         }
 
-        _collider.enabled = true;
-    }
-
-    private void SetRigidbody2DSleepMode()
-    {
-        if (_rigidbody2D == null)
+        private void SetRigidbody2DSleepMode()
         {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
+            if (_rigidbody2D == null)
+            {
+                _rigidbody2D = GetComponent<Rigidbody2D>();
+            }
+
+            if (_rigidbody2D == null)
+            {
+                _rigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+            }
+
+            _rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAwake;
+            _rigidbody2D.WakeUp();
         }
 
-        if (_rigidbody2D == null)
+        protected void OnTriggerEnter2D(Collider2D other)
         {
-            _rigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+            if (other.CompareTag("SoorSpawnable"))
+            {
+                _isCollided = true;
+            }
         }
 
-        _rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAwake;
-        _rigidbody2D.WakeUp();
-    }
-
-    protected void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("SoorSpawnable"))
+        protected void OnTriggerExit2D(Collider2D other)
         {
-            _isCollided = true;
+            if (other.CompareTag("SoorSpawnable"))
+            {
+                _isCollided = false;
+            }
         }
-    }
-    
-    protected void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("SoorSpawnable"))
-        {
-            _isCollided = false;
-        }
-    }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("SoorSpawnable"))
+        private void OnTriggerStay2D(Collider2D other)
         {
-            _isCollided = true;
+            if (other.CompareTag("SoorSpawnable"))
+            {
+                _isCollided = true;
+            }
         }
-    }
 
-    private void SetCollisionInfrastructure()
-    {
-        _defaultIsTrigger = _collider.isTrigger;
-        _collider.isTrigger = true;
-        
-        if (IsPlacement)
+        private void SetCollisionInfrastructure()
         {
-            _defaultConstainers = _rigidbody2D.constraints;
-            _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+            _defaultIsTrigger = _collider.isTrigger;
+            _collider.isTrigger = true;
+
+            if (IsPlacement)
+            {
+                _defaultConstainers = _rigidbody2D.constraints;
+                _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
         }
-    }
 
-    private void ReturnCollisionPropertiesToDefault()
-    {
-        _collider.isTrigger = _defaultIsTrigger;
-        
-        if (IsPlacement)
+        private void ReturnCollisionPropertiesToDefault()
         {
-            _rigidbody2D.constraints = _defaultConstainers;
+            _collider.isTrigger = _defaultIsTrigger;
+
+            if (IsPlacement)
+            {
+                _rigidbody2D.constraints = _defaultConstainers;
+            }
         }
-    }
-    
-    private void OnEnable()
-    {
-        GetRenderer();
-        _renderer.enabled = false;
-        
-        SetTag();
 
-        if (IsCollisionSafe)
+        private void OnEnable()
         {
-            _isCollided = false;
+            GetRenderer();
+            _renderer.enabled = false;
+
+            SetTag();
+
+            if (IsCollisionSafe)
+            {
+                _isCollided = false;
 //            SetTag();
-            GetCollider();
-            SetRigidbody2DSleepMode();
-            SetCollisionInfrastructure();
-        }
-        
-        onEnableEvent?.Invoke();
-    }
+                GetCollider();
+                SetRigidbody2DSleepMode();
+                SetCollisionInfrastructure();
+            }
 
-    public virtual void Release()
-    {
-        if (IsCollisionSafe)
+            onEnableEvent?.Invoke();
+        }
+
+        public virtual void Release()
         {
-            ReturnCollisionPropertiesToDefault();
+            if (IsCollisionSafe)
+            {
+                ReturnCollisionPropertiesToDefault();
+            }
+
+            _renderer.enabled = true;
+            onRelaese?.Invoke();
         }
-        
-        _renderer.enabled = true;
-        onRelaese?.Invoke();
-    }
 
-    protected virtual void OnDisable()
-    {
-        _renderer.enabled = false;
-        onDisableEvent?.Invoke();
-    }
-
-    private void GetRenderer()
-    {
-        if (_renderer == null)
+        protected virtual void OnDisable()
         {
-            _renderer = GetComponent<Renderer>();
+            _renderer.enabled = false;
+            onDisableEvent?.Invoke();
         }
-        
-        _renderer.enabled = false;
-    }
 
-    public void ApplySize(Vector2 size)
-    {
-        (_renderer as SpriteRenderer).size = size;
+        private void GetRenderer()
+        {
+            if (_renderer == null)
+            {
+                _renderer = GetComponent<Renderer>();
+            }
+
+            _renderer.enabled = false;
+        }
+
+        public void ApplySize(Vector2 size)
+        {
+            (_renderer as SpriteRenderer).size = size;
+        }
+
+        public void SetSize(Vector2 size)
+        {
+            if ((_renderer as SpriteRenderer).drawMode != SpriteDrawMode.Sliced)
+            {
+                Debug.LogWarning("You should select Sliced draw mode in SpriteRenderer while you want to spanwn the spawnables gridly.");
+            }
+
+            (_renderer as SpriteRenderer).size = size;
+
+            if (!(_collider is BoxCollider2D))
+            {
+                Debug.LogWarning("You should use BoxCollider2D while you want to spanwn the spawnables gridly.");
+            }
+            
+            (_collider as BoxCollider2D).size = size;
+        }
     }
-}
 }
