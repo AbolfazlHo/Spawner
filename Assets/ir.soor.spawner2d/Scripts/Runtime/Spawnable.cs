@@ -12,13 +12,12 @@ namespace Soor.Spawner2d
 
         [SerializeField] private Renderer _renderer;
 
-        private string _tag = "SoorSpawnable";
-        
         public bool IsCollisionSafe { get; set; }
         public bool ColliderRequired { get; set; }
         public bool IsPlacement { get; set; }
         public bool IsCollided => _isCollided;
 
+        private string _tag = "SoorSpawnable";
         private Collider2D _collider;
         private Rigidbody2D _rigidbody2D;
         private bool _isCollided = false;
