@@ -22,7 +22,6 @@ namespace Soor.Spawner2d
         private Collider2D _collider;
         private Rigidbody2D _rigidbody2D;
         private bool _isCollided = false;
-//        private RigidbodyConstraints2D _defaultConstainers;
         private bool _defaultIsTrigger;
 
         public void SetTag(string tag)
@@ -94,8 +93,6 @@ namespace Soor.Spawner2d
 
             if (IsPlacement)
             {
-//                _defaultConstainers = _rigidbody2D.constraints;
-//                _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
                 _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
         }
@@ -103,7 +100,6 @@ namespace Soor.Spawner2d
         private void ReturnCollisionPropertiesToDefault()
         {
             _collider.isTrigger = _defaultIsTrigger;
-//            if (IsPlacement) _rigidbody2D.constraints = _defaultConstainers;
         }
 
         private void OnEnable()
