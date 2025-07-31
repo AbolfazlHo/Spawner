@@ -2,6 +2,7 @@
 
 ![Unity](https://img.shields.io/badge/Unity-6000.0.30f1%2B-black?logo=unity)
 ![License](https://img.shields.io/github/license/AbolfazlHo/Spawner)
+![GitHub last commit](https://img.shields.io/github/last-commit/AbolfazlHo/Spawner).
 
 A powerful and flexible 2D Spawner package for Unity, designed to streamline the process of spawning 2D objects with advanced features like automated spawning, collision safety, and grid-based placement.
 
@@ -50,7 +51,7 @@ First, add UniTask to your project from its GitHub repository.
 #### Install via Git URL using Unity Package Manager
 To install `2D Spawner` via Git URL using Unity Package Manager, follow these steps:
  1. Open your Unity project
- 2. Go to `Windows > Package Manager`.
+ 2. Go to `Window > Package Manager`.
  3. Click the `+` icon in the top-left corner of the package manager window.
  4. Select `Add package from git URL ...`.
  5. Paste the following URL and click "Add":
