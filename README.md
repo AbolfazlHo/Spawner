@@ -6,13 +6,12 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
 * [Features](#-features)
 * [Quick Start](#-quick-start)
 * [Installation](#-installation)
+* [How to Use](#-how-to-use)
     * [Basic Setup](1.basic-setup)
     * [Automated Spawning](#2automated-spawning)
     * [Collision Safe Placement](#3collision-safe-placement)
     * [Grid-based Placement](#4grid-based-placement)
     * [Events](#5events)
-
-* [How to Use](#-how-to-use)
 
 * [API Reference](#-api-reference)
 
