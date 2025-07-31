@@ -304,5 +304,13 @@ void Update()
 
 Let me know if you'd like more details about any class or internal behavior (e.g., UniTask usage).
 
+## 🤝 Contributions
+
+Contributions are welcome! If you find a bug or have a feature request, please open an issue on the [GitHub repository](https://github.com/AbolfazlHo/Spawner/issues).
+
+## 📄 License
+
+This package is distributed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/AbolfazlHo/Spawner/refs/heads/main/LICENSE) file for more information.
+
 
 
