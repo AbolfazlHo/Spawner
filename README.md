@@ -7,7 +7,7 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
 * [Quick Start](#-quick-start)
 * [Installation](#-installation)
 * [How to Use](#-how-to-use)
-    * [Basic Setup](1.basic-setup)
+    * [Basic Setup](#1basic-setup)
     * [Automated Spawning](#2automated-spawning)
     * [Collision Safe Placement](#3collision-safe-placement)
     * [Grid-based Placement](#4grid-based-placement)
