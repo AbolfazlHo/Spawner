@@ -5,9 +5,9 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
 ## 📖 Table of Contents
 * [Features](#-features)
 * [Quick Start](#-quick-start)
-* [Installation](#-installation)
+* [Installation](#-installation)https://github.com/AbolfazlHo/Spawner/tree/develop?tab=readme-ov-file#-quick-start
 
-* [How to Use](#-how-to-use)
+* [How to Use](#-how-to-use)https://github.com/AbolfazlHo/Spawner/tree/develop?tab=readme-ov-file#%EF%B8%8F-how-to-use
 
 * [API Reference](#-api-reference)
 
@@ -50,7 +50,7 @@ https://github.com/AbolfazlHo/Spawner.git#main
  6. Add a spawn area GameObject (with a Collider2D) and assign it in the `Spawner` component.
  7. Enable `Spawn Automatically`, or call `Spawn()` manually from script.
  
-## 🛠️ How to Use
+## 🛠 How to Use
 
 ### 1.Basic Setup
 
