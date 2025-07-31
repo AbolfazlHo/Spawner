@@ -4,9 +4,12 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
 
 ## Table of Contents
 * [Features](#-features)
+* [Quick Start](#-#%EF%B8%8F-quick-start)
 * [Installation](#-installation)
 
 * [How to Use](#-#%EF%B8%8F-how-to-use)
+
+* [API Reference](#-#%EF%B8%8F-api-reference)
 
 ## Features
 
@@ -96,4 +99,210 @@ The `Spawner`, `Automation`, and `Limitation` components expose `UnityEvents` th
     * `On Spawn Start Event`: Invoked by `Automation` when its spawning starts (if automatic spawning is limited).
     * `On Limitation Reached Event`: Invoked when the defined spawn count or time limit is reached.
     * `On Spawn End Event`: Invoked by `Automation` when its spawning ends (if automatic spawning is limited).
+    
+## 🧩 API Reference
+
+This API Reference provides a complete overview of the structure, properties, and behavior of the Spawner2D package.
+
+---
+
+### `Spawner` (MonoBehaviour)
+
+Main class to control the spawning process of game objects in the scene.
+
+#### Public Methods
+
+##### `void Spawn()`
+
+- Immediately spawns an object based on the current settings.
+
+##### `void StopSpawning()`
+
+- Stops the automatic spawning process (if active).
+
+#### Inspector Properties
+
+- `GameObject _spawnAreaGameObject`
+
+  - GameObject that defines the spawn area. Typically contains a BoxCollider2D.
+
+- `Spawnable[] _spawnables`
+
+  - List of objects that can be spawned.
+
+- `bool _spawnAutomaticaly`
+
+  - Determines whether the spawn process starts automatically.
+
+- `Automation _spawnAutomationSettings`
+
+  - Settings related to automatic spawning.
+
+- `bool _isCollisionSafe`
+
+  - Enables collision safety checks during spawning.
+
+- `CollisionSafety _collisionSafetySettings`
+
+  - Settings related to collision safety (e.g., distance check or grid).
+
+- `string _spawnableTag`
+
+  - Custom tag for identifying spawnable objects.
+
+- `UnityEvent<GameObject> _onSpawnableSpawnedEvent`
+
+  - Event triggered after each object is spawned.
+
+---
+
+### `Spawnable`
+
+Marker script to indicate that an object is spawnable.
+
+---
+
+### `Automation`
+
+Controls the timing and conditions for starting/stopping automatic spawning.
+
+#### Properties
+
+- `float _perSpawnInterval`
+
+  - Time interval between each spawn.
+
+- `bool _stopSpawningAutomatically`
+
+  - Determines whether the spawn process stops automatically.
+
+- `Limitation _limitationSettings`
+
+  - Limitations that stop the spawn process (by count or time).
+
+- `UnityEvent _onSpawnStartEvent`
+
+  - Event triggered at the start of spawning.
+
+- `UnityEvent _onSpawnEndEvent`
+
+  - Event triggered at the end of spawning.
+
+> **Note**: Only one of `limitationSettings` or `onSpawnStart/EndEvent` is used depending on `stopSpawningAutomatically`.
+
+---
+
+### `Limitation`
+
+Manages constraints for stopping the automatic spawning process.
+
+#### Enum
+
+```csharp
+LimitationType { Time, Count }
+```
+
+#### Properties
+
+- `LimitationType _limitationType`
+
+  - Type of limitation (Time or Count).
+
+- `float _limitTimeBy`
+
+  - For Time: seconds after which spawning stops.
+
+- `int _limitCountBy`
+
+  - For Count: number of spawns after which spawning stops.
+
+- `UnityEvent _onSpawnStartEvent`
+
+- `UnityEvent _onLimitationReachedEvent`
+
+- `UnityEvent _onSpawnEndEvent`
+
+---
+
+### `CollisionSafety`
+
+Collision safety settings to prevent overlapping spawned objects.
+
+#### Properties
+
+- `bool _isPlacement`
+
+  - Enables basic distance-based collision safety.
+
+- `bool _isGridPlacement`
+
+  - Enables grid-based placement.
+
+- `GridPlacement _gridPlacementSettings`
+
+  - Settings for grid-based placement.
+
+---
+
+### `GridPlacement`
+
+Grid-based layout configuration.
+
+#### Properties
+
+- `Vector2 _cellSize`
+
+  - Size of each grid cell.
+
+- `Vector2Int _gridSize`
+
+  - Number of cells along the X and Y axes.
+
+- `Vector2 _gridOrigin`
+
+  - Origin of the grid in world space.
+
+---
+
+### Inspector Integration
+
+#### Custom Editors
+
+`PropertyDrawer` classes are implemented for `Automation`, `Limitation`, and `CollisionSafety` to enhance the user experience in the Inspector. Conditional display of properties is used based on settings.
+
+#### Main Editor: `SpawnerInspector`
+
+Custom Inspector renderer for `Spawner` with intuitive layout and grouped controls including:
+
+- Spawn Settings
+- Automation
+- Collision Safety
+- Events
+
+---
+
+### Example Usage
+
+```csharp
+[SerializeField] private Spawner _spawner;
+
+void Update()
+{
+    if (Input.GetKeyDown(KeyCode.Space))
+    {
+        _spawner.Spawn();
+    }
+
+    if (Input.GetKeyDown(KeyCode.LeftShift))
+    {
+        _spawner.StopSpawning();
+    }
+}
+```
+
+---
+
+Let me know if you'd like more details about any class or internal behavior (e.g., UniTask usage).
+
+
 
