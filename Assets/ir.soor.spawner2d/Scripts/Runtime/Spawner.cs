@@ -46,11 +46,6 @@ namespace Soor.Spawner2d
         /// </summary>
         [SerializeField] private CollisionSafety _collisionSafetySettings;
         
-//        /// <summary>
-//        /// An event that is invoked every time a new object is spawned.
-//        /// </summary>
-//        [SerializeField] private UnityEvent _onSpawnableSpawnedEvent;
-
         /// <summary>
         /// A custom tag that is assigned to all spawned objects.
         /// </summary>
@@ -265,10 +260,5 @@ namespace Soor.Spawner2d
                 Destroy(spawnable.gameObject);
             }
         }
-
-//        public void OnSpawnableSpawned()
-//        {
-//            _onSpawnableSpawnedEvent?.Invoke();
-//        }
     }
 }
