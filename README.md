@@ -2,6 +2,12 @@
 
 A powerful and flexible 2D Spawner package for Unity, designed to streamline the process of spawning 2D objects with advanced features like automated spawning, collision safety, and grid-based placement.
 
+## Table of Contents
+* [Features](#-features)
+* [Installation](#-installation)
+
+* [How to Use](#-#%EF%B8%8F-how-to-use)
+
 ## Features
 
 * **Automated Spawning**: Easily configure objects to spawn automatically with customizable intervals.
@@ -11,7 +17,7 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
 * **Event-Driven**: Utilize Unity Events for flexible callbacks on spawn start, spawn end, and limitation reached.
 * **Highly Customizable**: Exposes key parameters in the Inspector for easy setup without coding.
 
-## Installation
+## 📦 Installation
 
 ### Prerequisites
 
@@ -26,12 +32,22 @@ To install `2D Spawner` via git url using unity package manager follow these ste
  2. Go to `Windows > Package Manager`.
  3. Click the `+` icon in the top-left conner of the package manager window.
  4. Select `Add package from git URL ...`.
- 5. paste the following URL:
+ 5. Paste the following URL and click "Add":
  ```
 https://github.com/AbolfazlHo/Spawner.git#main
 ```
  
-## How to Use
+ ## ⚡ Quick Start
+ 
+ 1. Install `UniTask`.
+ 2. Install the `2D Spawner` package via Git URL.
+ 3. Create an empty GameObject (e.g., `MySpawner`) in your scene.
+ 4. Add the `Spawner` component to it.
+ 5. Assign the desired 2D prefabs to the `Spawnables` list.
+ 6. Add a spawn area GameObject (with a Collider2D) and assign it in the `Spawner` component.
+ 7. Enable `Spawn Automatically`, or call `Spawn()` manually from script.
+ 
+## 🛠️ How to Use
 
 ### 1.Basic Setup
 
