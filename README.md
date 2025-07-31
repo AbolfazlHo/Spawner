@@ -1,5 +1,8 @@
 # 2D Spawner Package
 
+![Unity](https://img.shields.io/badge/Unity-6000.0.30f1%2B-black?logo=unity)
+![License](https://img.shields.io/github/license/AbolfazlHo/Spawner)
+
 A powerful and flexible 2D Spawner package for Unity, designed to streamline the process of spawning 2D objects with advanced features like automated spawning, collision safety, and grid-based placement.
 
 ## 📖 Table of Contents
@@ -7,11 +10,11 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
 * [Quick Start](#-quick-start)
 * [Installation](#-installation)
 * [How to Use](#-how-to-use)
-    * [Basic Setup](#1basic-setup)
-    * [Automated Spawning](#2automated-spawning)
-    * [Collision Safe Placement](#3collision-safe-placement)
-    * [Grid-based Placement](#4grid-based-placement)
-    * [Events](#5events)
+    * [Basic Setup](#1-basic-setup)
+    * [Automated Spawning](#2-automated-spawning)
+    * [Collision Safe Placement](#3-collision-safe-placement)
+    * [Grid-based Placement](#4-grid-based-placement)
+    * [Events](#5-events)
 
 * [API Reference](#-api-reference)
     * [Spawner](#spawner-monobehaviour)    
@@ -40,15 +43,15 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
 ### Prerequisites
 
 This package relies on [UniTask](https://github.com/Cysharp/UniTask) for asynchronous operations. Please ensure UniTask is installed in your Unity project **before** installing this 2D Spawner package.
-First add UniTask into your project from its repository in github.
+First, add UniTask to your project from its GitHub repository.
 
 ### 2D Spawner installation
 
-#### Install via git url using unity package manager
+#### Install via Git URL using Unity Package Manager
 To install `2D Spawner` via git url using unity package manager follow these steps.
  1. Open your Unity project
  2. Go to `Windows > Package Manager`.
- 3. Click the `+` icon in the top-left conner of the package manager window.
+ 3. Click the `+` icon in the top-left corner of the package manager window.
  4. Select `Add package from git URL ...`.
  5. Paste the following URL and click "Add":
  ```
@@ -67,14 +70,14 @@ https://github.com/AbolfazlHo/Spawner.git#main
  
 ## 🛠 How to Use
 
-### 1.Basic Setup
+### 1. Basic Setup
 
 1. Create an empty GameObject in your scene (e.g., `MySpawner`).
 2. Add the `Spawner` component to it.
 3. Assign the 2D Prefabs you want to spawn to the `Spawnables` list.
 4. Define a `Spawn Area GameObject` (e.g., a Quad with a Collider2D) to control where objects can spawn.
 
-### 2.Automated Spawning
+### 2. Automated Spawning
 
 1. On the `Spawner` component, enable `Spawn Automatically`.
 2. Expand the `Spawn Automation Settings` foldout.
@@ -83,23 +86,23 @@ https://github.com/AbolfazlHo/Spawner.git#main
     * Choose `Limitation Type` (Count or Time).
     * Set `Limit Count By` (e.g., 10 objects) or `Limit Time By` (e.g., 60 seconds).
 
-### 3.Collision Safe Placement
+### 3. Collision Safe Placement
 
-1. Enable `Is Collision` Safe on the `Spawner` component.
+1. Enable `Is Collision Safe` on the `Spawner` component.
 2. Expand `Collision Safety Settings`.
 3. Ensure your `Spawnable` prefabs have appropriate `Collider2D` components. The system will try to find a free spot if the initial position is occupied.
 
-### 4.Grid-based Placement
+### 4. Grid-based Placement
 
-1. Within Collision Safety Settings, enable Is Grid Placement.
-2. Expand Grid Placement Settings.
-3. Set Spawnable Size (the base size of your spawned objects).
-4. Adjust Padding to add space between grid cells.
-5. Configure Rows Count or Columns Count to define your grid dimensions. The system will automatically calculate cell sizes.
-    * If Columns Count is greater than 0, row and column are calculated based on it.
+1. Within `Collision Safety Settings`, enable `Is Grid Placement`.
+2. Expand `Grid Placement Settings`.
+3. Set `Spawnable Size` (the base size of your spawned objects).
+4. Adjust `Padding` to add space between grid cells.
+5. Configure `Rows Count` or `Columns Count` to define your grid dimensions. The system will automatically calculate cell sizes.
+    * If `Columns Count` is greater than 0, row and column are calculated based on it.
     * Otherwise, row and column are calculated based on Rows Count.
 
-### 5.Events
+### 5. Events
 
 The `Spawner`, `Automation`, and `Limitation` components expose `UnityEvents` that you can hook into for custom logic:
 
@@ -145,7 +148,7 @@ Main class to control the spawning process of game objects in the scene.
 
   - List of objects that can be spawned.
 
-- `bool _spawnAutomaticaly`
+- `bool _spawnAutomatically`
 
   - Determines whether the spawn process starts automatically.
 
