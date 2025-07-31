@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 namespace Soor.Spawner2d
@@ -13,7 +12,6 @@ namespace Soor.Spawner2d
     /// </summary>
     public class Spawner : MonoBehaviour
     {
-
         #region SERIALIZED_FIELDS
 
         /// <summary>
@@ -53,6 +51,7 @@ namespace Soor.Spawner2d
         
         #endregion SERIALIZED_FIELDS
 
+        
         #region FIELDS
         
         /// <summary>
@@ -83,10 +82,17 @@ namespace Soor.Spawner2d
         #endregion FIELDS
 
         
-        void Start()
+        #region MONOBEHAVIOUR_METHODS
+
+        private void Start()
         {
             _allSpwnedObjects = new List<Spawnable>();
         }
+
+        #endregion MONOBEHAVIOUR_METHODS
+
+        
+        #region PUBLIC_METHODS
 
         /// <summary>
         /// Spawns one spawnable if the process is not automatic. Spawns a series of spawnables based on `Automation Settings` if the process is automatic.
@@ -108,51 +114,7 @@ namespace Soor.Spawner2d
                 SpawnRandomSpawnable();
             }
         }
-
-        /// <summary>
-        /// Performs spawning prerequisites, such as setting the spawn area on the first run.
-        /// </summary>
-        private void DoSpawnPrerequisite()
-        {
-            if (!_spawnAreaHasSet) SetSpawnArea();
-        }
-
-        /// <summary>
-        /// Spawns a random Spawnable object from the `_spawnables` list.
-        /// </summary>
-        private void SpawnRandomSpawnable()
-        {
-            var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
-            SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
-        }
-
-        /// <summary>
-        /// Coroutine that handles the automatic spawning process based on the `Automation` settings.
-        /// </summary>
-        /// <returns>Returned value of Coroutine in IEnumerator type.</returns>
-        private IEnumerator HandleAutomaticSpawning()
-        {
-            if (_spawnAutomationSettings.StopSpawningAutomatically)
-            {
-                if (_spawnAutomaticaly) _spawnAutomationSettings.OnSpawnStart();
-                else _spawnAutomationSettings.OnSpawnStart();
-
-                while (!_spawnAutomationSettings.LimitationSettings.LimitationReached(_allSpwnedObjects.Count) && !_spawnerStopped)
-                {
-                    SpawnRandomSpawnable();
-                    yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
-                }
-            }
-            else
-            {
-                while (!_spawnerStopped)
-                {
-                    SpawnRandomSpawnable();
-                    yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Stops the automatic spawning process.
         /// </summary>
@@ -176,6 +138,28 @@ namespace Soor.Spawner2d
             _spawnAreaHasSet = false;
             _spawnAreaGameObject = newSpawnArea;
             SetSpawnArea();
+        }
+        
+        #endregion PUBLIC_METHODS
+
+        
+        #region PRIVATE_METHODS
+        
+        /// <summary>
+        /// Performs spawning prerequisites, such as setting the spawn area on the first run.
+        /// </summary>
+        private void DoSpawnPrerequisite()
+        {
+            if (!_spawnAreaHasSet) SetSpawnArea();
+        }
+
+        /// <summary>
+        /// Spawns a random Spawnable object from the `_spawnables` list.
+        /// </summary>
+        private void SpawnRandomSpawnable()
+        {
+            var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
+            SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
         }
 
         /// <summary>
@@ -319,5 +303,39 @@ namespace Soor.Spawner2d
                 Destroy(spawnable.gameObject);
             }
         }
+        
+        #endregion PRIVATE_METHODS
+
+        
+        #region COROUTINES
+        
+        /// <summary>
+        /// Coroutine that handles the automatic spawning process based on the `Automation` settings.
+        /// </summary>
+        /// <returns>Returned value of Coroutine in IEnumerator type.</returns>
+        private IEnumerator HandleAutomaticSpawning()
+        {
+            if (_spawnAutomationSettings.StopSpawningAutomatically)
+            {
+                if (_spawnAutomaticaly) _spawnAutomationSettings.OnSpawnStart();
+                else _spawnAutomationSettings.OnSpawnStart();
+
+                while (!_spawnAutomationSettings.LimitationSettings.LimitationReached(_allSpwnedObjects.Count) && !_spawnerStopped)
+                {
+                    SpawnRandomSpawnable();
+                    yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
+                }
+            }
+            else
+            {
+                while (!_spawnerStopped)
+                {
+                    SpawnRandomSpawnable();
+                    yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
+                }
+            }
+        }
+
+        #endregion COROUTINES
     }
 }
