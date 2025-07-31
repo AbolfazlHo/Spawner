@@ -2,16 +2,16 @@
 
 A powerful and flexible 2D Spawner package for Unity, designed to streamline the process of spawning 2D objects with advanced features like automated spawning, collision safety, and grid-based placement.
 
-## Table of Contents
+## 📖 Table of Contents
 * [Features](#-features)
-* [Quick Start](#-#%EF%B8%8F-quick-start)
+* [Quick Start](#-quick-start)
 * [Installation](#-installation)
 
-* [How to Use](#-#%EF%B8%8F-how-to-use)
+* [How to Use](#-how-to-use)
 
-* [API Reference](#-#%EF%B8%8F-api-reference)
+* [API Reference](#-api-reference)
 
-## Features
+## 🚀 Features
 
 * **Automated Spawning**: Easily configure objects to spawn automatically with customizable intervals.
 * **Limitation Controls**: Set limitations based on time or count for automatic spawning.
