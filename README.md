@@ -5,9 +5,9 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
 ## 📖 Table of Contents
 * [Features](#-features)
 * [Quick Start](#-quick-start)
-* [Installation](#-installation)https://github.com/AbolfazlHo/Spawner/tree/develop?tab=readme-ov-file#-quick-start
+* [Installation](#-installation)
 
-* [How to Use](#-how-to-use)https://github.com/AbolfazlHo/Spawner/tree/develop?tab=readme-ov-file#%EF%B8%8F-how-to-use
+* [How to Use](#-how-to-use)
 
 * [API Reference](#-api-reference)
 
