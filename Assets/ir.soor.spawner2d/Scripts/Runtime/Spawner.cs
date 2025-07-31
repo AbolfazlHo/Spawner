@@ -7,16 +7,56 @@ using Random = UnityEngine.Random;
 
 namespace Soor.Spawner2d
 {
+    /// <summary>
+    /// The main class for controlling the spawning process of 2D objects in the scene.
+    /// This component enables features like automatic spawning, collision safety, and grid-based placement.
+    /// </summary>
     public class Spawner : MonoBehaviour
     {
+
+        #region SERIALIZED_FIELDS
+
+        /// <summary>
+        /// The GameObject that defines the spawning area. It should have a Collider2D or Renderer component.
+        /// </summary>
         [SerializeField] private GameObject _spawnAreaGameObject;
+        
+        /// <summary>
+        /// A list of Spawnable prefabs that this spawner can create.
+        /// </summary>
         [SerializeField] private List<Spawnable> _spawnables;
+        
+        /// <summary>
+        /// Determines whether the spawning process should continue automatically after it started.
+        /// </summary>
         [SerializeField] private bool _spawnAutomaticaly;
+        
+        /// <summary>
+        /// Settings for the automatic spawning mode. This is used only when `_spawnAutomaticaly` is enabled.
+        /// </summary>
         [SerializeField] private Automation _spawnAutomationSettings;
+        
+        /// <summary>
+        /// Determines whether collision safety checks for spawned objects are active.
+        /// </summary>
         [SerializeField] private bool _isCollisionSafe = false;
+        
+        /// <summary>
+        /// Settings for collision safety, including simple placement and grid-based placement.
+        /// </summary>
         [SerializeField] private CollisionSafety _collisionSafetySettings;
-        [SerializeField] private UnityEvent _onSpawnableSpawnedEvent;
+        
+//        /// <summary>
+//        /// An event that is invoked every time a new object is spawned.
+//        /// </summary>
+//        [SerializeField] private UnityEvent _onSpawnableSpawnedEvent;
+
+        /// <summary>
+        /// A custom tag that is assigned to all spawned objects.
+        /// </summary>
         [SerializeField] private string _spawnableTag = "SoorSpawnable";
+        
+        #endregion SERIALIZED_FIELDS
 
         private Vector4 _spawnArea;
         private bool _spawnAreaHasSet = false;
@@ -31,6 +71,9 @@ namespace Soor.Spawner2d
             _allSpwnedObjects = new List<Spawnable>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Spawn()
         {
             DoSpawnPrerequisite();
@@ -223,9 +266,9 @@ namespace Soor.Spawner2d
             }
         }
 
-        public void OnSpawnableSpawned()
-        {
-            _onSpawnableSpawnedEvent?.Invoke();
-        }
+//        public void OnSpawnableSpawned()
+//        {
+//            _onSpawnableSpawnedEvent?.Invoke();
+//        }
     }
 }

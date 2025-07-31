@@ -26,7 +26,7 @@ namespace Soor.Spawner2d.Editor
             _spawnAutomationSettings = serializedObject.FindProperty("_spawnAutomationSettings");
             _isCollisionSafe = serializedObject.FindProperty("_isCollisionSafe");
             _collisionSafetySettings = serializedObject.FindProperty("_collisionSafetySettings");
-            _onSpawnableSpawnedEvent = serializedObject.FindProperty("_onSpawnableSpawnedEvent");
+//            _onSpawnableSpawnedEvent = serializedObject.FindProperty("_onSpawnableSpawnedEvent");
             _spawnableTag = serializedObject.FindProperty("_spawnableTag");
         }
 
@@ -58,8 +58,8 @@ namespace Soor.Spawner2d.Editor
             EditorGUILayout.PropertyField(_spawnableTag);
 
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Events");
-            EditorGUILayout.PropertyField(_onSpawnableSpawnedEvent);
+//            EditorGUILayout.LabelField("Events");
+//            EditorGUILayout.PropertyField(_onSpawnableSpawnedEvent);
 
             serializedObject.ApplyModifiedProperties();
         }
