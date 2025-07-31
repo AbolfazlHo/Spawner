@@ -4,7 +4,7 @@
   "version": "0.0.6",
   "unity": "6000.0",
   "unityRelease": "0a8",
-  "description": "Use this package to generate customizable 3D ropes.",
+  "description": "Use this package to spawn 2D objects with customizable automation, collision safety, and grid-based placement.",
   "keywords": [
     "spawn",
     "2D",
@@ -14,10 +14,12 @@
   ],
   "dependencies": {},
   "samples": [{}],
-  "relatedPackages": {},
+  "relatedPackages": {
+    "com.cysharp.unitask": "2.5.10"
+  },
   "upmCi": {},
   "repository": {
-    "url": "https://github.com/AbolfazlHo/Spawner/raw/refs/heads/main/Assets/ir.soor.spawner2d/package.json",
+    "url": "https://github.com/AbolfazlHo/Spawner.git",
     "type": "github"
   }
 }
