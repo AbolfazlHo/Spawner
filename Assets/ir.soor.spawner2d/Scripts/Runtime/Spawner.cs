@@ -67,8 +67,7 @@ namespace Soor.Spawner2d
                 if (_spawnAutomaticaly) _spawnAutomationSettings.OnSpawnStart();
                 else _spawnAutomationSettings.OnSpawnStart();
 
-                while (!_spawnAutomationSettings._limitationSettings.LimitationReached(_allSpwnedObjects.Count) &&
-                       !_spawnerStopped)
+                while (!_spawnAutomationSettings.LimitationSettings.LimitationReached(_allSpwnedObjects.Count) && !_spawnerStopped)
                 {
                     SpawnRandomSpawnable();
                     yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);

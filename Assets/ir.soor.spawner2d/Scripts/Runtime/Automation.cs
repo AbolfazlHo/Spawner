@@ -10,12 +10,13 @@ namespace Soor.Spawner2d
         [Tooltip("Delay between two consecutive spawns in milliseconds.")]
         [SerializeField] private float _perSpawnInterval;
         [SerializeField] private bool _stopSpawningAutomatically;
-        [SerializeField] public Limitation _limitationSettings;
-        [SerializeField] private UnityEvent _onSpawnStartEvent;
-        [SerializeField] private UnityEvent _onSpawnEndEvent;
+        [SerializeField] private Limitation _limitationSettings;
+        [SerializeField] private UnityEvent _onSpawnStartEvent = new UnityEvent();
+        [SerializeField] private UnityEvent _onSpawnEndEvent = new UnityEvent();
 
         public bool StopSpawningAutomatically => _stopSpawningAutomatically;
         public float PerSpawnInterval => _perSpawnInterval;
+        public Limitation LimitationSettings => _limitationSettings;
 
         public void OnSpawnStart()
         {

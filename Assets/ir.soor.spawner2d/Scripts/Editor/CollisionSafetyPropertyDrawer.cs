@@ -59,7 +59,7 @@ namespace Soor.Spawner2d.Editor
 
                     if (gridPlacementSettings != null)
                     {
-                        height += EditorGUI.GetPropertyHeight(gridPlacementSettings, true);
+                        height += EditorGUI.GetPropertyHeight(gridPlacementSettings, true) + EditorGUIUtility.standardVerticalSpacing;
                     }
                 }
             }

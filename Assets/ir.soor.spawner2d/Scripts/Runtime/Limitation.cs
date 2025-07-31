@@ -13,12 +13,12 @@ namespace Soor.Spawner2d
             Time = 1
         }
 
-        [SerializeField] private LimitationType _limitationType;
+        [SerializeField] private LimitationType _limitationType = LimitationType.Count;
         [SerializeField] private float _limitTimeBy = 0;
         [SerializeField] private int _limitCountBy = 0;
-        [SerializeField] private UnityEvent _onSpawnStartEvent;
-        [SerializeField] private UnityEvent _onSpawnEndEvent;
-        [SerializeField] private UnityEvent _onLimitationReachedEvent;
+        [SerializeField] private UnityEvent _onSpawnStartEvent = new UnityEvent();
+        [SerializeField] private UnityEvent _onSpawnEndEvent = new UnityEvent();
+        [SerializeField] private UnityEvent _onLimitationReachedEvent = new UnityEvent();
 
         private float _spawnStartTime = 0;
 

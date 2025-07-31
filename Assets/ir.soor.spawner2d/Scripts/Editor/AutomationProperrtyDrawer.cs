@@ -44,14 +44,12 @@ namespace Soor.Spawner2d.Editor
                 // Conditionally draw _limitationSettings
                 if (stopSpawningAutomaticallyProp.boolValue)
                 {
-                    currentRect.y += EditorGUIUtility.singleLineHeight;
-                    EditorGUI.PropertyField(currentRect, limitationSettingsProp,
-                        true); // Use 'true' for complex properties/nested drawers
+                    currentRect.y += EditorGUIUtility.singleLineHeight / 2;
+                    EditorGUI.PropertyField(currentRect, limitationSettingsProp, true);
                     currentRect.y += EditorGUI.GetPropertyHeight(limitationSettingsProp, true) +
                                      EditorGUIUtility.standardVerticalSpacing;
                     currentRect.y += EditorGUIUtility.singleLineHeight;
                 }
-
 
                 if (!stopSpawningAutomaticallyProp.boolValue)
                 {
@@ -66,6 +64,8 @@ namespace Soor.Spawner2d.Editor
                                      EditorGUIUtility.standardVerticalSpacing;
                 }
                 
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
                 EditorGUI.indentLevel--;
             }
 
@@ -80,9 +80,6 @@ namespace Soor.Spawner2d.Editor
             // If the foldout is expanded, add the height of its contents
             if (property.isExpanded)
             {
-                // Find properties for height calculation.
-                // These should match the ones drawn in OnGUI.
-                SerializedProperty perSpawnIntervalProp = property.FindPropertyRelative("_perSpawnInterval");
                 SerializedProperty stopSpawningAutomaticallyProp = property.FindPropertyRelative("_stopSpawningAutomatically");
                 SerializedProperty limitationSettingsProp = property.FindPropertyRelative("_limitationSettings");
 
@@ -103,17 +100,6 @@ namespace Soor.Spawner2d.Editor
                     {
                         totalHeight += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
                     }
-                }
-
-                // Add height for each property that is consistently drawn
-                if (perSpawnIntervalProp != null)
-                {
-                    totalHeight += EditorGUI.GetPropertyHeight(perSpawnIntervalProp, true) + EditorGUIUtility.standardVerticalSpacing;
-                }
-
-                if (stopSpawningAutomaticallyProp != null)
-                {
-                    totalHeight += EditorGUI.GetPropertyHeight(stopSpawningAutomaticallyProp, true) + EditorGUIUtility.standardVerticalSpacing;
                 }
 
                 // Conditionally add height for _limitationSettings
