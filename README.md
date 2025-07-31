@@ -48,7 +48,7 @@ First, add UniTask to your project from its GitHub repository.
 ### 2D Spawner installation
 
 #### Install via Git URL using Unity Package Manager
-To install `2D Spawner` via git url using unity package manager follow these steps.
+To install `2D Spawner` via Git URL using Unity Package Manager, follow these steps:
  1. Open your Unity project
  2. Go to `Windows > Package Manager`.
  3. Click the `+` icon in the top-left corner of the package manager window.
