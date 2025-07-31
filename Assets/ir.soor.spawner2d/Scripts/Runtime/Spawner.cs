@@ -53,21 +53,43 @@ namespace Soor.Spawner2d
         
         #endregion SERIALIZED_FIELDS
 
+        #region FIELDS
+        
+        /// <summary>
+        /// The spawning area stored as a Vector4 (xMin, yMin, xMax, yMax).
+        /// </summary>
         private Vector4 _spawnArea;
+        
+        /// <summary>
+        /// A flag to indicate if the spawn area has been set at least once.
+        /// </summary>
         private bool _spawnAreaHasSet = false;
+        
+        /// <summary>
+        /// A reference to the Coroutine that manages automatic spawning.
+        /// </summary>
         private Coroutine _autoSpawnRoutine = null;
+        
+        /// <summary>
+        /// A list of all Spawnable objects currently spawned by this Spawner.
+        /// </summary>
         private List<Spawnable> _allSpwnedObjects = new List<Spawnable>();
 
-
+        /// <summary>
+        /// A flag to manually stop the spawning process.
+        /// </summary>
         private bool _spawnerStopped = false;
+        
+        #endregion FIELDS
 
+        
         void Start()
         {
             _allSpwnedObjects = new List<Spawnable>();
         }
 
         /// <summary>
-        /// 
+        /// Spawns one spawnable if the process is not automatic. Spawns a series of spawnables based on `Automation Settings` if the process is automatic.
         /// </summary>
         public void Spawn()
         {
@@ -87,17 +109,27 @@ namespace Soor.Spawner2d
             }
         }
 
+        /// <summary>
+        /// Performs spawning prerequisites, such as setting the spawn area on the first run.
+        /// </summary>
         private void DoSpawnPrerequisite()
         {
             if (!_spawnAreaHasSet) SetSpawnArea();
         }
 
+        /// <summary>
+        /// Spawns a random Spawnable object from the `_spawnables` list.
+        /// </summary>
         private void SpawnRandomSpawnable()
         {
             var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
             SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
         }
 
+        /// <summary>
+        /// Coroutine that handles the automatic spawning process based on the `Automation` settings.
+        /// </summary>
+        /// <returns>Returned value of Coroutine in IEnumerator type.</returns>
         private IEnumerator HandleAutomaticSpawning()
         {
             if (_spawnAutomationSettings.StopSpawningAutomatically)
@@ -121,6 +153,9 @@ namespace Soor.Spawner2d
             }
         }
 
+        /// <summary>
+        /// Stops the automatic spawning process.
+        /// </summary>
         public void StopSpawning()
         {
             _spawnerStopped = true;
@@ -132,6 +167,10 @@ namespace Soor.Spawner2d
             }
         }
 
+        /// <summary>
+        /// Changes the spawn area GameObject and sets the new area.
+        /// </summary>
+        /// <param name="newSpawnArea">The new GameObject to be used as the spawn area.</param>
         public void ChangeSpawnAreaGameObject(GameObject newSpawnArea)
         {
             _spawnAreaHasSet = false;
@@ -139,6 +178,9 @@ namespace Soor.Spawner2d
             SetSpawnArea();
         }
 
+        /// <summary>
+        /// Sets the spawn area based on the Renderer or Collider component of `_spawnAreaGameObject`.
+        /// </summary>
         private void SetSpawnArea()
         {
             var horizontalBoundSize = 0.0f;
@@ -180,6 +222,10 @@ namespace Soor.Spawner2d
             _spawnAreaHasSet = true;
         }
 
+        /// <summary>
+        /// Spawns a Spawnable object and places it in the scene based on collision safety settings.
+        /// </summary>
+        /// <param name="spawnable">The spawnable to be spaened.</param>
         private async void SpawnASpawnableOf(Spawnable spawnable)
         {
             var newSpawnable = InstantiateSpawnable(spawnable);
@@ -213,6 +259,11 @@ namespace Soor.Spawner2d
             ReleaseSpawnable(newSpawnable);
         }
 
+        /// <summary>
+        /// Instantiates a new instance of the given Spawnable and applies initial settings.
+        /// </summary>
+        /// <param name="spawnable">The spawnable to instantiate.</param>
+        /// <returns>The instantiated spawnable.</returns>
         private Spawnable InstantiateSpawnable(Spawnable spawnable)
         {
             var newSpawnable = Instantiate(spawnable);
@@ -225,6 +276,10 @@ namespace Soor.Spawner2d
             return newSpawnable;
         }
 
+        /// <summary>
+        /// Places the Spawnable object at a random position within the spawning area.
+        /// </summary>
+        /// <param name="spawnable">The spawnable to be placed.</param>
         private void PlaceSpawnable(Spawnable spawnable)
         {
             var randomX = 0.0f;
@@ -240,6 +295,10 @@ namespace Soor.Spawner2d
             spawnable.transform.position = new Vector3(randomX, randomY, 0);
         }
 
+        /// <summary>
+        /// Performs the final placement of the Spawnable object and adds it to the list of spawned objects.
+        /// </summary>
+        /// <param name="spawnable">The spawnable to be released.</param>
         private async void ReleaseSpawnable(Spawnable spawnable)
         {
             var _hasPlaced = true;
