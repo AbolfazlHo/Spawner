@@ -4,6 +4,8 @@
 ![License](https://img.shields.io/github/license/AbolfazlHo/Spawner)
 ![GitHub last commit](https://img.shields.io/github/last-commit/AbolfazlHo/Spawner)
 
+[Read in Persian/پارسی](./README-PERSIAN.md)
+
 A powerful and flexible 2D Spawner package for Unity, designed to streamline the process of spawning 2D objects with advanced features like automated spawning, collision safety, and grid-based placement.
 
 ## 📖 Table of Contents
