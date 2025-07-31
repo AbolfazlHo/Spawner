@@ -14,7 +14,18 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
     * [Events](#5events)
 
 * [API Reference](#-api-reference)
-
+    * [Spawner](#spawner-monobehaviour)    
+    * [Spawnable](#spawnable)
+    * [Automation](#automation)
+    * [Limitation](#limitation)
+    * [CollisionSafety](#collisionsafety)
+    * [GridPlacement](#gridplacement)
+    * [Inspector Integration](#inspector-integration)
+    * [Example Usage](#example-usage)
+    
+* [Contributions](#-contributions)
+* [License](#-license)
+    
 ## 🚀 Features
 
 * **Automated Spawning**: Easily configure objects to spawn automatically with customizable intervals.
