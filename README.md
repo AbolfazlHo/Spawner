@@ -108,11 +108,8 @@ https://github.com/AbolfazlHo/Spawner.git#main
 
 ### 5. Events
 
-The `Spawner`, `Automation`, and `Limitation` components expose `UnityEvents` that you can hook into for custom logic:
+The `Automation`, and `Limitation` expose `UnityEvents` that you can hook into for custom logic:
 
-* Spawner: 
-    * `On Spawnable Spawned Event`: Invoked whenever a new object is spawned.
-    
 * Automation:
     * `On Spawn Start Event`: Invoked when automatic spawning begins.
     * `On Spawn End Event`: Invoked when automatic spawning finishes (either naturally or when stopped).
@@ -171,10 +168,6 @@ Main class to control the spawning process of game objects in the scene.
 - `string _spawnableTag`
 
   - Custom tag for identifying spawnable objects.
-
-- `UnityEvent<GameObject> _onSpawnableSpawnedEvent`
-
-  - Event triggered after each object is spawned.
 
 ---
 

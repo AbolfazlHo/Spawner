@@ -109,10 +109,7 @@ https://github.com/AbolfazlHo/Spawner.git#main
 
 ### 5. رویدادها
 
-کامپوننت‌های `Spawner`، `Automation` و `Limitation`، `UnityEvents` را نمایش می‌دهند که می‌توانید برای منطق سفارشی خود به آن‌ها متصل شوید:
-
-* **Spawner**: 
-    * `On Spawnable Spawned Event`: هر زمان که یک آبجکت جدید Spawn می‌شود، فراخوانی می‌شود.
+ `Automation` و `Limitation`، `UnityEvents` را نمایش می‌دهند که می‌توانید برای منطق سفارشی خود به آن‌ها متصل شوید:
     
 * **Automation**:
     * `On Spawn Start Event`: هنگام شروع Spawning خودکار فراخوانی می‌شود.
@@ -142,7 +139,6 @@ https://github.com/AbolfazlHo/Spawner.git#main
 -   **Is Collision Safe**: بررسی‌های ایمنی در برابر برخورد را در طول Spawning فعال می‌کند.
 -   **Collision Safety Settings**: تنظیمات مربوط به ایمنی در برابر برخورد (مانند بررسی فاصله یا گرید).
 -   **Spawnable Tag**: یک Tag سفارشی برای شناسایی آبجکت‌های قابل Spawn.
--   **On Spawnable Spawned Event**: رویدادی که پس از Spawn شدن هر آبجکت، تریگر می‌شود.
 
 
 ### `Spawnable`
