@@ -7,45 +7,50 @@ using Random = UnityEngine.Random;
 namespace Soor.Spawner2d
 {
     /// <summary>
-    /// The main class for controlling the spawning process of 2D objects in the scene.
-    /// This component enables features like automatic spawning, collision safety, and grid-based placement.
+    /// Main controller for spawning 2D objects in the scene.
+    /// It manages features such as automated spawning, collision-safe placement, and grid-based object arrangement.
     /// </summary>
     public class Spawner : MonoBehaviour
     {
         #region SERIALIZED_FIELDS
 
         /// <summary>
-        /// The GameObject that defines the spawning area. It should have a Collider2D or Renderer component.
+        /// GameObject that defines the spawn area. Must have either a Collider2D or Renderer component to determine bounds.
         /// </summary>
         [SerializeField] private GameObject _spawnAreaGameObject;
         
         /// <summary>
-        /// A list of Spawnable prefabs that this spawner can create.
+        /// List of spawnable prefabs eligible for instantiation.
         /// </summary>
         [SerializeField] private List<Spawnable> _spawnables;
         
         /// <summary>
-        /// Determines whether the spawning process should continue automatically after it started.
+        /// A list of Prefab objects that the Spawner can instantiate and place in the scene.
+        /// Each item in this list must have a <see cref="Spawnable"/> component.
         /// </summary>
-        [SerializeField] private bool _spawnAutomaticaly;
+        [SerializeField] private bool _spawnAutomatically;
         
         /// <summary>
-        /// Settings for the automatic spawning mode. This is used only when `_spawnAutomaticaly` is enabled.
+        /// Settings for the automated spawning behavior, including intervals and limitations.
+        /// This field is only used when the <see cref="_spawnAutomaticaly"/> flag is enabled.
         /// </summary>
         [SerializeField] private Automation _spawnAutomationSettings;
         
         /// <summary>
-        /// Determines whether collision safety checks for spawned objects are active.
+        /// If enabled, the spawner will find a non-overlapping position for each object.
+        /// See <see cref="CollisionSafety"/> for related settings.
         /// </summary>
         [SerializeField] private bool _isCollisionSafe = false;
         
         /// <summary>
-        /// Settings for collision safety, including simple placement and grid-based placement.
+        /// Additional settings for collision safety, including distance-based checks or grid-based placement.
+        /// This field is only relevant when <see cref="_isCollisionSafe"/> is enabled.
         /// </summary>
         [SerializeField] private CollisionSafety _collisionSafetySettings;
         
         /// <summary>
-        /// A custom tag that is assigned to all spawned objects.
+        /// Tag assigned to the GameObject of each spawned object.
+        /// Primarily used for collision detection in placement mode.
         /// </summary>
         [SerializeField] private string _spawnableTag = "SoorSpawnable";
         
@@ -55,7 +60,7 @@ namespace Soor.Spawner2d
         #region FIELDS
         
         /// <summary>
-        /// The spawning area stored as a Vector4 (xMin, yMin, xMax, yMax).
+        /// Spawn area defined as (xMin, yMin, xMax, yMax) in world coordinates.
         /// </summary>
         private Vector4 _spawnArea;
         
@@ -65,12 +70,12 @@ namespace Soor.Spawner2d
         private bool _spawnAreaHasSet = false;
         
         /// <summary>
-        /// A reference to the Coroutine that manages automatic spawning.
+        /// Coroutine handle for managing automated spawning.
         /// </summary>
         private Coroutine _autoSpawnRoutine = null;
         
         /// <summary>
-        /// A list of all Spawnable objects currently spawned by this Spawner.
+        /// Tracks all currently spawned objects by this spawner.
         /// </summary>
         private List<Spawnable> _allSpwnedObjects = new List<Spawnable>();
 
@@ -102,7 +107,7 @@ namespace Soor.Spawner2d
             DoSpawnPrerequisite();
             _spawnerStopped = false;
 
-            if (_spawnAutomaticaly)
+            if (_spawnAutomatically)
             {
                 if (_autoSpawnRoutine == null)
                 {
@@ -122,7 +127,7 @@ namespace Soor.Spawner2d
         {
             _spawnerStopped = true;
 
-            if (_spawnAutomaticaly && _autoSpawnRoutine != null)
+            if (_spawnAutomatically && _autoSpawnRoutine != null)
             {
                 StopCoroutine(_autoSpawnRoutine);
                 _spawnAutomationSettings.OnSpawnEnd();
@@ -310,14 +315,15 @@ namespace Soor.Spawner2d
         #region COROUTINES
         
         /// <summary>
-        /// Coroutine that handles the automatic spawning process based on the `Automation` settings.
+        /// Coroutine that handles the continuous automatic spawning process based on the `Automation` settings.
+        /// Spawns objects at regular intervals until a limitation is reached or the process is manually stopped.
         /// </summary>
-        /// <returns>Returned value of Coroutine in IEnumerator type.</returns>
+        /// <returns>An IEnumerator to be used with StartCoroutine.</returns>
         private IEnumerator HandleAutomaticSpawning()
         {
             if (_spawnAutomationSettings.StopSpawningAutomatically)
             {
-                if (_spawnAutomaticaly) _spawnAutomationSettings.OnSpawnStart();
+                if (_spawnAutomatically) _spawnAutomationSettings.OnSpawnStart();
                 else _spawnAutomationSettings.OnSpawnStart();
 
                 while (!_spawnAutomationSettings.LimitationSettings.LimitationReached(_allSpwnedObjects.Count) && !_spawnerStopped)
