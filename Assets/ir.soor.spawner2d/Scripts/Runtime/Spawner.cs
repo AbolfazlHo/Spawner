@@ -156,7 +156,8 @@ namespace Soor.Spawner2d
         #region PRIVATE_METHODS
         
         /// <summary>
-        /// Performs spawning prerequisites, such as setting the spawn area on the first run.
+        /// Ensures all necessary spawning conditions are met before an object is spawned.
+        /// It primarily calls <see cref="SetSpawnArea"/> if the <see cref="_spawnAreaHasSet"/> flag is false.
         /// </summary>
         private void DoSpawnPrerequisite()
         {
@@ -164,7 +165,8 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// Spawns a random Spawnable object from the `_spawnables` list.
+        /// Selects a random <see cref="Spawnable"/> from the list and passes it to the
+        /// <see cref="SpawnASpawnableOf"/> method for instantiation and placement.
         /// </summary>
         private void SpawnRandomSpawnable()
         {
@@ -173,7 +175,7 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// Sets the spawn area based on the Renderer or Collider component of `_spawnAreaGameObject`.
+        /// Calculates the spawning bounds from the assigned GameObject's Renderer or Collider.
         /// </summary>
         private void SetSpawnArea()
         {
@@ -217,9 +219,10 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// Spawns a Spawnable object and places it in the scene based on collision safety settings.
+        /// Instantiates and places a new object from the provided prefab,
+        /// handling collision safety and grid placement.
         /// </summary>
-        /// <param name="spawnable">The spawnable to be spaened.</param>
+        /// <param name="spawnable">The spawnable prefab to be instantiated.</param>
         private async void SpawnASpawnableOf(Spawnable spawnable)
         {
             var newSpawnable = InstantiateSpawnable(spawnable);
@@ -254,10 +257,10 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// Instantiates a new instance of the given Spawnable and applies initial settings.
+        /// Instantiates a new object from the provided prefab and applies initial settings before returning it.
         /// </summary>
-        /// <param name="spawnable">The spawnable to instantiate.</param>
-        /// <returns>The instantiated spawnable.</returns>
+        /// <param name="spawnable">The prefab to instantiate.</param>
+        /// <returns>The instantiated and configured object.</returns>
         private Spawnable InstantiateSpawnable(Spawnable spawnable)
         {
             var newSpawnable = Instantiate(spawnable);
@@ -290,9 +293,10 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// Performs the final placement of the Spawnable object and adds it to the list of spawned objects.
+        /// Finalizes the object placement and adds it to the list of spawned objects.
+        /// If collision-safe placement fails, the object is destroyed.
         /// </summary>
-        /// <param name="spawnable">The spawnable to be released.</param>
+        /// <param name="spawnable">The spawnable object to be finalized.</param>
         private async void ReleaseSpawnable(Spawnable spawnable)
         {
             var _hasPlaced = true;
@@ -320,10 +324,10 @@ namespace Soor.Spawner2d
         #region COROUTINES
         
         /// <summary>
-        /// Coroutine that handles the continuous automatic spawning process based on the `Automation` settings.
-        /// Spawns objects at regular intervals until a limitation is reached or the process is manually stopped.
+        /// Manages the continuous spawning of objects at a set interval.
+        /// The coroutine stops when a limitation is reached or when manually stopped.
         /// </summary>
-        /// <returns>An IEnumerator to be used with StartCoroutine.</returns>
+        /// <returns>An IEnumerator for use with StartCoroutine.</returns>
         private IEnumerator HandleAutomaticSpawning()
         {
             if (_spawnAutomationSettings.StopSpawningAutomatically)
