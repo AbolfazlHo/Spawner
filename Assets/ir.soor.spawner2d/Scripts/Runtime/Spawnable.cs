@@ -140,14 +140,14 @@ namespace Soor.Spawner2d
         {
             if ((_renderer as SpriteRenderer).drawMode != SpriteDrawMode.Sliced)
             {
-                Debug.LogWarning("You should select Sliced draw mode in SpriteRenderer while you want to spanwn the spawnables gridly.");
+                Debug.LogWarning("Grid-based spawning requires the SpriteRenderer's 'Draw Mode' to be 'Sliced' for correct sizing and alignment.");
             }
 
             (_renderer as SpriteRenderer).size = size;
 
             if (!(_collider is BoxCollider2D))
             {
-                Debug.LogWarning("You should use BoxCollider2D while you want to spanwn the spawnables gridly.");
+                Debug.LogWarning("The Spawner requires a BoxCollider2D component on the spawnable object to correctly handle grid-based sizing.");
             }
             
             (_collider as BoxCollider2D).size = size;
