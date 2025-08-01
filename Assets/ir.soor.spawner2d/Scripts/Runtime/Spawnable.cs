@@ -20,7 +20,7 @@ namespace Soor.Spawner2d
         /// <summary>
         /// Event triggered when the object is released and fully placed in the scene.
         /// </summary>
-        public UnityEvent onRelaese;
+        public UnityEvent onRelease;
         
         /// <summary>
         /// Event triggered when the object is disabled.
@@ -67,7 +67,8 @@ namespace Soor.Spawner2d
         #region FIELDS
 
         /// <summary>
-        /// The tag used for collision detection, ensuring it only detects other spawnable objects that spawned with a common `Spawner`.
+        /// The tag used for collision detection during the placement process.
+        /// It ensures an object only detects collisions with other objects that share the same tag.
         /// </summary>
         private string _tag = "SoorSpawnable";
         
@@ -123,7 +124,7 @@ namespace Soor.Spawner2d
         {
             if (IsCollisionSafe) ReturnCollisionPropertiesToDefault();
             _renderer.enabled = true;
-            onRelaese?.Invoke();
+            onRelease?.Invoke();
         }
         
         /// <summary>
