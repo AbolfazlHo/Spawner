@@ -4,24 +4,95 @@ using UnityEngine.Events;
 
 namespace Soor.Spawner2d
 {
+    /// <summary>
+    /// Represents an object that can be spawned in the game.
+    /// This component handles initial setup, collision detection for placement, and event management.
+    /// </summary>
     public class Spawnable : MonoBehaviour
     {
-        public UnityEvent onEnableEvent;
-        public UnityEvent onRelaese;
-        public UnityEvent onDisableEvent;
+        #region EVENTS
 
+        /// <summary>
+        /// Event triggered when the object is enabled.
+        /// </summary>
+        public UnityEvent onEnableEvent;
+        
+        /// <summary>
+        /// Event triggered when the object is released and fully placed in the scene.
+        /// </summary>
+        public UnityEvent onRelaese;
+        
+        /// <summary>
+        /// Event triggered when the object is disabled.
+        /// </summary>
+        public UnityEvent onDisableEvent;
+        
+        #endregion EVENTS
+
+
+        #region SERIALIZED_FIELDS
+
+        /// <summary>
+        /// The renderer component of the spawnable object.
+        /// </summary>
         [SerializeField] private Renderer _renderer;
 
+        #endregion SERIALIZED_FIELDS
+
+        #region PROPERTIES
+
+        /// <summary>
+        /// Gets or sets a value indicating whether collision-safe placement is enabled for this object.
+        /// </summary>
         public bool IsCollisionSafe { get; set; }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether a collider component is required.
+        /// </summary>
         public bool ColliderRequired { get; set; }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether this object is in placement mode.
+        /// </summary>
         public bool IsPlacement { get; set; }
+        
+        /// <summary>
+        /// Returns true if the object is currently colliding with another object with the same tag.
+        /// </summary>
         public bool IsCollided => _isCollided;
 
+        #endregion PROPERTIES
+
+
+        #region FIELDS
+
+        /// <summary>
+        /// The tag used for collision detection, ensuring it only detects other spawnable objects that spawned with a common `Spawner`.
+        /// </summary>
         private string _tag = "SoorSpawnable";
+        
+        /// <summary>
+        /// The collider component of the object.
+        /// </summary>
         private Collider2D _collider;
+        
+        /// <summary>
+        /// The Rigidbody2D component of the object.
+        /// </summary>
         private Rigidbody2D _rigidbody2D;
+        
+        /// <summary>
+        /// A flag to track if the object is currently in a collision state.
+        /// </summary>
         private bool _isCollided = false;
+        
+        /// <summary>
+        /// The default 'isTrigger' state of the collider, saved for restoration.
+        /// </summary>
         private bool _defaultIsTrigger;
+
+        #endregion FIELDS
+
 
         public void SetTag(string tag)
         {
