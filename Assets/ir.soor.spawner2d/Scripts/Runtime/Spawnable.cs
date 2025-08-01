@@ -35,7 +35,7 @@ namespace Soor.Spawner2d
         /// <summary>
         /// The renderer component of the spawnable object.
         /// </summary>
-        [SerializeField] private Renderer _renderer;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
 
         #endregion SERIALIZED_FIELDS
 
@@ -100,8 +100,8 @@ namespace Soor.Spawner2d
         /// <summary>
         /// Sets a new tag for the object and ensures it exists in Unity's tag manager.
         /// </summary>
-        /// <param name="tag">The new tag to be assigned.</param>
-        public void SetTag(string tag)
+        /// <param name="intendedTag">The new tag to be assigned.</param>
+        public void SetTag(string intendedTag)
         {
             _tag = tag;
             
@@ -123,7 +123,7 @@ namespace Soor.Spawner2d
         public void Release()
         {
             if (IsCollisionSafe) ReturnCollisionPropertiesToDefault();
-            _renderer.enabled = true;
+            _spriteRenderer.enabled = true;
             onRelease?.Invoke();
         }
         
@@ -133,12 +133,12 @@ namespace Soor.Spawner2d
         /// <param name="size">The target size for the object.</param>
         public void SetSize(Vector2 size)
         {
-            if ((_renderer as SpriteRenderer).drawMode != SpriteDrawMode.Sliced)
+            if (_spriteRenderer.drawMode != SpriteDrawMode.Sliced)
             {
                 Debug.LogWarning("Grid-based spawning requires the SpriteRenderer's 'Draw Mode' to be 'Sliced' for correct sizing and alignment.");
             }
 
-            (_renderer as SpriteRenderer).size = size;
+            _spriteRenderer.size = size;
 
             if (!(_collider is BoxCollider2D))
             {
@@ -217,8 +217,8 @@ namespace Soor.Spawner2d
         /// </summary>
         private void GetRenderer()
         {
-            if (_renderer == null) _renderer = GetComponent<Renderer>();
-            _renderer.enabled = false;
+            if (_spriteRenderer == null) _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer.enabled = false;
         }
 
         #endregion PRIVATE_METHODS
@@ -229,7 +229,7 @@ namespace Soor.Spawner2d
         private void OnEnable()
         {
             GetRenderer();
-            _renderer.enabled = false;
+            _spriteRenderer.enabled = false;
 
             if (IsCollisionSafe)
             {
@@ -244,7 +244,7 @@ namespace Soor.Spawner2d
 
         private void OnDisable()
         {
-            _renderer.enabled = false;
+            _spriteRenderer.enabled = false;
             onDisableEvent?.Invoke();
         }
         
