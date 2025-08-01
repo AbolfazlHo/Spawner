@@ -65,22 +65,23 @@ namespace Soor.Spawner2d
         private Vector4 _spawnArea;
         
         /// <summary>
-        /// A flag to indicate if the spawn area has been set at least once.
+        /// A flag to ensure that the spawn area is calculated only once,
+        /// improving performance by preventing redundant calls to <see cref="SetSpawnArea"/>.
         /// </summary>
         private bool _spawnAreaHasSet = false;
         
         /// <summary>
-        /// Coroutine handle for managing automated spawning.
+        /// A reference to the active Coroutine for automated spawning, allowing it to be stopped.
         /// </summary>
         private Coroutine _autoSpawnRoutine = null;
         
         /// <summary>
-        /// Tracks all currently spawned objects by this spawner.
+        /// A list of all objects currently spawned, used for tracking and applying limitations.
         /// </summary>
         private List<Spawnable> _allSpwnedObjects = new List<Spawnable>();
 
         /// <summary>
-        /// A flag to manually stop the spawning process.
+        /// A flag used to signal a manual stop for the spawning process, typically set by calling <see cref="StopSpawning"/>.
         /// </summary>
         private bool _spawnerStopped = false;
         
@@ -100,8 +101,12 @@ namespace Soor.Spawner2d
         #region PUBLIC_METHODS
 
         /// <summary>
-        /// Spawns one spawnable if the process is not automatic. Spawns a series of spawnables based on `Automation Settings` if the process is automatic.
+        /// Initiates the spawning process based on the configured automation settings.
         /// </summary>
+        /// <remarks>
+        /// If <see cref="_spawnAutomaticaly"/> is true, this method starts a continuous spawning loop.
+        /// If false, it spawns a single random object.
+        /// </remarks>
         public void Spawn()
         {
             DoSpawnPrerequisite();
@@ -121,7 +126,7 @@ namespace Soor.Spawner2d
         }
         
         /// <summary>
-        /// Stops the automatic spawning process.
+        /// Stops the active automatic spawning loop and invokes the `OnSpawnEnd` event.
         /// </summary>
         public void StopSpawning()
         {
