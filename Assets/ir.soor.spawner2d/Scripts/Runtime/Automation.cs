@@ -16,7 +16,7 @@ namespace Soor.Spawner2d
         /// <summary>
         /// The delay in seconds between two consecutive spawns.
         /// </summary>
-        [Tooltip("Delay between two consecutive spawns in milliseconds.")]
+        [Tooltip("Delay between two consecutive spawns in seconds.")]
         [SerializeField] private float _perSpawnInterval;
         
         /// <summary>
