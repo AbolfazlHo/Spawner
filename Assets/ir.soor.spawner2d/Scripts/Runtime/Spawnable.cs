@@ -94,6 +94,12 @@ namespace Soor.Spawner2d
         #endregion FIELDS
 
 
+        #region PUBLIC_METHODS
+
+        /// <summary>
+        /// Sets a new tag for the object and ensures it exists in Unity's tag manager.
+        /// </summary>
+        /// <param name="tag">The new tag to be assigned.</param>
         public void SetTag(string tag)
         {
             _tag = tag;
@@ -109,7 +115,46 @@ namespace Soor.Spawner2d
 
             gameObject.tag = _tag;
         }
+        
+        /// <summary>
+        /// Finalizes the object's placement and makes it interactive in the scene.
+        /// </summary>
+        public void Release()
+        {
+            if (IsCollisionSafe) ReturnCollisionPropertiesToDefault();
+            _renderer.enabled = true;
+            onRelaese?.Invoke();
+        }
+        
+        /// <summary>
+        /// Sets the size of the object's sprite and collider for grid-based placement.
+        /// </summary>
+        /// <param name="size">The target size for the object.</param>
+        public void SetSize(Vector2 size)
+        {
+            if ((_renderer as SpriteRenderer).drawMode != SpriteDrawMode.Sliced)
+            {
+                Debug.LogWarning("Grid-based spawning requires the SpriteRenderer's 'Draw Mode' to be 'Sliced' for correct sizing and alignment.");
+            }
 
+            (_renderer as SpriteRenderer).size = size;
+
+            if (!(_collider is BoxCollider2D))
+            {
+                Debug.LogWarning("The Spawner requires a BoxCollider2D component on the spawnable object to correctly handle grid-based sizing.");
+            }
+            
+            (_collider as BoxCollider2D).size = size;
+        }
+
+        #endregion PUBLIC_METHODS
+
+
+        #region PRIVATE_METHODS
+
+        /// <summary>
+        /// Retrieves the collider component, adding a BoxCollider2D if one does not exist.
+        /// </summary>
         private void GetCollider()
         {
             if (_collider == null)
@@ -125,6 +170,9 @@ namespace Soor.Spawner2d
             _collider.enabled = true;
         }
 
+        /// <summary>
+        /// Ensures the object has a Rigidbody2D component and sets its sleep mode.
+        /// </summary>
         private void SetRigidbody2DSleepMode()
         {
             if (_rigidbody2D == null)
@@ -141,21 +189,9 @@ namespace Soor.Spawner2d
             _rigidbody2D.WakeUp();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag(_tag)) _isCollided = true;
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag(_tag)) _isCollided = false;
-        }
-
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            if (other.CompareTag(_tag)) _isCollided = true;
-        }
-
+        /// <summary>
+        /// Handles the physics infrastructure needed for collision detection during placement.
+        /// </summary>
         private void SetCollisionInfrastructure()
         {
             _defaultIsTrigger = _collider.isTrigger;
@@ -167,10 +203,27 @@ namespace Soor.Spawner2d
             }
         }
 
+        /// <summary>
+        /// Restores the collider's properties to their default state after placement.
+        /// </summary>
         private void ReturnCollisionPropertiesToDefault()
         {
             _collider.isTrigger = _defaultIsTrigger;
         }
+
+        /// <summary>
+        /// Retrieves the renderer component, disabling it by default.
+        /// </summary>
+        private void GetRenderer()
+        {
+            if (_renderer == null) _renderer = GetComponent<Renderer>();
+            _renderer.enabled = false;
+        }
+
+        #endregion PRIVATE_METHODS
+
+
+        #region MONOBEHAVIOUR_METHODS
 
         private void OnEnable()
         {
@@ -188,40 +241,27 @@ namespace Soor.Spawner2d
             onEnableEvent?.Invoke();
         }
 
-        public void Release()
-        {
-            if (IsCollisionSafe) ReturnCollisionPropertiesToDefault();
-            _renderer.enabled = true;
-            onRelaese?.Invoke();
-        }
-
         private void OnDisable()
         {
             _renderer.enabled = false;
             onDisableEvent?.Invoke();
         }
-
-        private void GetRenderer()
+        
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_renderer == null) _renderer = GetComponent<Renderer>();
-            _renderer.enabled = false;
+            if (other.CompareTag(_tag)) _isCollided = true;
         }
 
-        public void SetSize(Vector2 size)
+        private void OnTriggerExit2D(Collider2D other)
         {
-            if ((_renderer as SpriteRenderer).drawMode != SpriteDrawMode.Sliced)
-            {
-                Debug.LogWarning("Grid-based spawning requires the SpriteRenderer's 'Draw Mode' to be 'Sliced' for correct sizing and alignment.");
-            }
-
-            (_renderer as SpriteRenderer).size = size;
-
-            if (!(_collider is BoxCollider2D))
-            {
-                Debug.LogWarning("The Spawner requires a BoxCollider2D component on the spawnable object to correctly handle grid-based sizing.");
-            }
-            
-            (_collider as BoxCollider2D).size = size;
+            if (other.CompareTag(_tag)) _isCollided = false;
         }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.CompareTag(_tag)) _isCollided = true;
+        }
+
+        #endregion MONOBEHAVIOUR_METHODS
     }
 }
