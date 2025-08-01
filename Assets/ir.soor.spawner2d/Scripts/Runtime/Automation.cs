@@ -11,8 +11,15 @@ namespace Soor.Spawner2d
         [SerializeField] private float _perSpawnInterval;
         [SerializeField] private bool _stopSpawningAutomatically;
         [SerializeField] private Limitation _limitationSettings;
-        [SerializeField] private UnityEvent _onSpawnStartEvent = new UnityEvent();
-        [SerializeField] private UnityEvent _onSpawnEndEvent = new UnityEvent();
+
+        #region EVENTS
+
+        public UnityEvent onSpawnStartEvent = new UnityEvent();
+        public UnityEvent onSpawnEndEvent = new UnityEvent();
+
+        #endregion EVENTS
+        
+        
 
         public bool StopSpawningAutomatically => _stopSpawningAutomatically;
         public float PerSpawnInterval => _perSpawnInterval;
@@ -20,7 +27,7 @@ namespace Soor.Spawner2d
 
         public void OnSpawnStart()
         {
-            _onSpawnStartEvent?.Invoke();
+            onSpawnStartEvent?.Invoke();
         
             if (_stopSpawningAutomatically)
             {
@@ -36,7 +43,7 @@ namespace Soor.Spawner2d
             }
             else
             {
-                _onSpawnEndEvent?.Invoke();
+                onSpawnEndEvent?.Invoke();
             }
         }
     }

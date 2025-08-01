@@ -31,6 +31,26 @@ namespace Soor.Spawner2d
         
         #endregion ENUMS
 
+
+        #region EVENTS
+
+        /// <summary>
+        /// Event triggered at the beginning of the spawning process.
+        /// </summary>
+        public UnityEvent onSpawnStartEvent = new UnityEvent();
+        
+        /// <summary>
+        /// Event triggered when the spawning process ends for any reason.
+        /// </summary>
+        public UnityEvent onSpawnEndEvent = new UnityEvent();
+        
+        /// <summary>
+        /// Event triggered when the defined limitation (count or time) is reached.
+        /// </summary>
+        public UnityEvent onLimitationReachedEvent = new UnityEvent();
+
+        #endregion EVENTS
+
         
         #region SERIALIZED_FIELDS
         
@@ -51,20 +71,7 @@ namespace Soor.Spawner2d
         /// </summary>
         [SerializeField] private int _limitCountBy = 0;
         
-        /// <summary>
-        /// Event triggered at the beginning of the spawning process.
-        /// </summary>
-        [SerializeField] private UnityEvent _onSpawnStartEvent = new UnityEvent();
         
-        /// <summary>
-        /// Event triggered when the spawning process ends for any reason.
-        /// </summary>
-        [SerializeField] private UnityEvent _onSpawnEndEvent = new UnityEvent();
-        
-        /// <summary>
-        /// Event triggered when the defined limitation (count or time) is reached.
-        /// </summary>
-        [SerializeField] private UnityEvent _onLimitationReachedEvent = new UnityEvent();
 
         #endregion SERIALIZED_FIELDS
 
@@ -117,7 +124,7 @@ namespace Soor.Spawner2d
                 _spawnStartTime = Time.time;
             }
         
-            _onSpawnStartEvent?.Invoke();
+            onSpawnStartEvent?.Invoke();
         }
 
         /// <summary>
@@ -125,7 +132,7 @@ namespace Soor.Spawner2d
         /// </summary>
         public void OnLimitationReached()
         {
-            _onLimitationReachedEvent?.Invoke();
+            onLimitationReachedEvent?.Invoke();
             OnSpawnEnd();
         }
 
@@ -134,7 +141,7 @@ namespace Soor.Spawner2d
         /// </summary>
         public void OnSpawnEnd()
         {
-            _onSpawnEndEvent?.Invoke();
+            onSpawnEndEvent?.Invoke();
         }
         
         #endregion METHODS

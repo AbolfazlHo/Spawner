@@ -28,8 +28,8 @@ namespace Soor.Spawner2d.Editor
                 SerializedProperty stopSpawningAutomaticallyProp =
                     property.FindPropertyRelative("_stopSpawningAutomatically");
                 SerializedProperty limitationSettingsProp = property.FindPropertyRelative("_limitationSettings");
-                SerializedProperty onSpawnStartEventProp = property.FindPropertyRelative("_onSpawnStartEvent");
-                SerializedProperty onSpawnEndEventProp = property.FindPropertyRelative("_onSpawnEndEvent");
+                SerializedProperty onSpawnStartEventProp = property.FindPropertyRelative("onSpawnStartEvent");
+                SerializedProperty onSpawnEndEventProp = property.FindPropertyRelative("onSpawnEndEvent");
 
                 // Draw _perSpawnInterval
                 EditorGUI.PropertyField(currentRect, perSpawnIntervalProp);
@@ -53,12 +53,12 @@ namespace Soor.Spawner2d.Editor
 
                 if (!stopSpawningAutomaticallyProp.boolValue)
                 {
-                    // Draw _onSpawnStartEvent
+                    // Draw onSpawnStartEvent
                     EditorGUI.PropertyField(currentRect, onSpawnStartEventProp, true); // Use 'true' for UnityEvent
                     currentRect.y += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) +
                                      EditorGUIUtility.standardVerticalSpacing;
 
-                    // Draw _onSpawnEndEvent
+                    // Draw onSpawnEndEvent
                     EditorGUI.PropertyField(currentRect, onSpawnEndEventProp, true); // Use 'true' for UnityEvent
                     currentRect.y += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) +
                                      EditorGUIUtility.standardVerticalSpacing;
@@ -85,17 +85,17 @@ namespace Soor.Spawner2d.Editor
 
                 if (stopSpawningAutomaticallyProp != null &&!stopSpawningAutomaticallyProp.boolValue)
                 {
-                    SerializedProperty onSpawnStartEventProp = property.FindPropertyRelative("_onSpawnStartEvent");
+                    SerializedProperty onSpawnStartEventProp = property.FindPropertyRelative("onSpawnStartEvent");
                     
-                    // Add height for _onSpawnStartEvent
+                    // Add height for onSpawnStartEvent
                     if (onSpawnStartEventProp != null)
                     {
                         totalHeight += EditorGUI.GetPropertyHeight(onSpawnStartEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
                     }
                     
-                    SerializedProperty onSpawnEndEventProp = property.FindPropertyRelative("_onSpawnEndEvent");
+                    SerializedProperty onSpawnEndEventProp = property.FindPropertyRelative("onSpawnEndEvent");
                     
-                    // Add height for _onSpawnEndEvent
+                    // Add height for onSpawnEndEvent
                     if (onSpawnEndEventProp != null)
                     {
                         totalHeight += EditorGUI.GetPropertyHeight(onSpawnEndEventProp, true) + EditorGUIUtility.standardVerticalSpacing;
