@@ -141,12 +141,12 @@ namespace Soor.Spawner2d
             _rigidbody2D.WakeUp();
         }
 
-        protected void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag(_tag)) _isCollided = true;
         }
 
-        protected void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag(_tag)) _isCollided = false;
         }
@@ -188,14 +188,14 @@ namespace Soor.Spawner2d
             onEnableEvent?.Invoke();
         }
 
-        public virtual void Release()
+        public void Release()
         {
             if (IsCollisionSafe) ReturnCollisionPropertiesToDefault();
             _renderer.enabled = true;
             onRelaese?.Invoke();
         }
 
-        protected virtual void OnDisable()
+        private void OnDisable()
         {
             _renderer.enabled = false;
             onDisableEvent?.Invoke();
