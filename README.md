@@ -59,7 +59,7 @@ To install `2D Spawner` via Git URL using Unity Package Manager, follow these st
  4. Select `Add package from git URL ...`.
  5. Paste the following URL and click "Add":
  ```
-https://github.com/AbolfazlHo/Spawner.git#main
+https://github.com/AbolfazlHo/Spawner.git?path=Assets/ir.soor.spawner2d
 ```
  
  ## ⚡ Quick Start

@@ -59,7 +59,7 @@
  4. `Add package from git URL ...` را انتخاب کنید.
  5. URL زیر را Paste کرده و روی "Add" کلیک کنید:
  ```
-https://github.com/AbolfazlHo/Spawner.git#main
+https://github.com/AbolfazlHo/Spawner.git?path=Assets/ir.soor.spawner2d
 ```
  
  ## ⚡ شروع سریع
