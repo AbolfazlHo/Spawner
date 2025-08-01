@@ -15,7 +15,8 @@ namespace Soor.Spawner2d
         #region SERIALIZED_FIELDS
 
         /// <summary>
-        /// When true, avoids rotation while placing a new spawnable.
+        /// When true, enables a collision-safe placement method that avoids forcibly displacing
+        /// or rotating other objects to make room for a new spawnable.
         /// </summary>
         [SerializeField] private bool _isPlacement;
         
@@ -56,11 +57,11 @@ namespace Soor.Spawner2d
         #region METHODS
         
         /// <summary>
-        /// Attempts to place a spawnable object in a safe, non-colliding position.
+        /// Attempts to find a safe, non-colliding position for a new object within a timeout period.
         /// </summary>
         /// <param name="spawnable">The object to be placed.</param>
-        /// <param name="basePlaceSpawnable">A delegate to the base placement method, which sets the object's position.</param>
-        /// <returns>Returns true if a valid position is found within the timeout period, otherwise returns false.</returns>
+        /// <param name="basePlaceSpawnable">A delegate that sets the object's position.</param>
+        /// <returns>True if a position is found, otherwise false.</returns>
         public async UniTask<bool> PlaceSpawnable(Spawnable spawnable, Action<Spawnable> basePlaceSpawnable)
         {
             var cancellationTokenSource = new CancellationTokenSource();
@@ -83,13 +84,12 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// An asynchronous loop that attempts to find a valid, non-colliding position for an object.
+        /// An asynchronous loop that repeatedly tries to place an object until a free, non-colliding space is found.
         /// </summary>
         /// <remarks>
-        /// This method repeatedly calls the base placement function and checks for collisions.
-        /// It will continue to try until a free spot is found or the cancellation token is triggered.
+        /// This method continues until a free spot is found or the operation is canceled.
         /// </remarks>
-        /// <param name="collisionSafeSpawnable">The object to be placed safely.</param>
+        /// <param name="collisionSafeSpawnable">The object to place.</param>
         /// <param name="cancellationToken">A token to manage the cancellation of the placement attempt.</param>
         /// <param name="basePlaceSpawnable">The delegate that places the object at a new random position.</param>
         private async UniTask TryPlaceCollisionSafeSpawnable2DInAFreeSpace(Spawnable collisionSafeSpawnable, CancellationToken cancellationToken, Action<Spawnable> basePlaceSpawnable)
@@ -111,11 +111,11 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// Finalizes the placement process for a spawned object.
+        /// Finalizes the placement of a spawned object. Re-attempts placement if the object is still colliding.
         /// </summary>
-        /// <param name="spawnable">The object that has been placed.</param>
+        /// <param name="spawnable">The object to be placed.</param>
         /// <param name="basePlaceSpawnable">A delegate to the base placement method.</param>
-        /// <returns>Returns true if the object is successfully placed or does not require a collision check, otherwise returns false.</returns>
+        /// <returns>True if placement is successful, otherwise false.</returns>
         public async UniTask<bool> ReleaseSpawnable(Spawnable spawnable, Action<Spawnable> basePlaceSpawnable)
         {
             if  (spawnable.IsCollided && IsPlacement)
