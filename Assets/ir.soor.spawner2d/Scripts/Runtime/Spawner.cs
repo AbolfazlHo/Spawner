@@ -172,7 +172,6 @@ namespace Soor.Spawner2d
         private void SpawnRandomSpawnable()
         {
             var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
-//            SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
             SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
         }
 
@@ -226,7 +225,6 @@ namespace Soor.Spawner2d
         /// </summary>
         /// <param name="spawnable">The spawnable prefab to be instantiated.</param>
         private async Task SpawnASpawnableOf(Spawnable spawnable)
-//        private async void SpawnASpawnableOf(Spawnable spawnable)
         {
             var newSpawnable = InstantiateSpawnable(spawnable);
 
@@ -302,7 +300,6 @@ namespace Soor.Spawner2d
         /// </summary>
         /// <param name="spawnable">The spawnable object to be finalized.</param>
         private async Task ReleaseSpawnable(Spawnable spawnable)
-//        private async void ReleaseSpawnable(Spawnable spawnable)
         {
             var _hasPlaced = true;
 
@@ -338,9 +335,6 @@ namespace Soor.Spawner2d
             if (_spawnAutomationSettings.StopSpawningAutomatically)
             {
                 _spawnAutomationSettings.OnSpawnStart();
-                
-//                if (_spawnAutomatically) _spawnAutomationSettings.OnSpawnStart();
-//                else _spawnAutomationSettings.OnSpawnStart();
 
                 while (!_spawnAutomationSettings.LimitationSettings.LimitationReached(_allSpawnedObjects.Count) && !_spawnerStopped)
                 {
