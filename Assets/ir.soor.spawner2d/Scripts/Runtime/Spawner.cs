@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -32,7 +33,7 @@ namespace Soor.Spawner2d
         
         /// <summary>
         /// Settings for the automated spawning behavior, including intervals and limitations.
-        /// This field is only used when the <see cref="_spawnAutomaticaly"/> flag is enabled.
+        /// This field is only used when the <see cref="_spawnAutomatically"/> flag is enabled.
         /// </summary>
         [SerializeField] private Automation _spawnAutomationSettings;
         
@@ -78,7 +79,7 @@ namespace Soor.Spawner2d
         /// <summary>
         /// A list of all objects currently spawned, used for tracking and applying limitations.
         /// </summary>
-        private List<Spawnable> _allSpwnedObjects = new List<Spawnable>();
+        private List<Spawnable> _allSpawnedObjects = new List<Spawnable>();
 
         /// <summary>
         /// A flag used to signal a manual stop for the spawning process, typically set by calling <see cref="StopSpawning"/>.
@@ -92,7 +93,7 @@ namespace Soor.Spawner2d
 
         private void Start()
         {
-            _allSpwnedObjects = new List<Spawnable>();
+            _allSpawnedObjects = new List<Spawnable>();
         }
 
         #endregion MONOBEHAVIOUR_METHODS
@@ -171,7 +172,8 @@ namespace Soor.Spawner2d
         private void SpawnRandomSpawnable()
         {
             var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
-            SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
+//            SpawnASpawnableOf(_spawnables[randomSpawnableIndex]);
+            SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
         }
 
         /// <summary>
@@ -223,7 +225,8 @@ namespace Soor.Spawner2d
         /// handling collision safety and grid placement.
         /// </summary>
         /// <param name="spawnable">The spawnable prefab to be instantiated.</param>
-        private async void SpawnASpawnableOf(Spawnable spawnable)
+        private async Task SpawnASpawnableOf(Spawnable spawnable)
+//        private async void SpawnASpawnableOf(Spawnable spawnable)
         {
             var newSpawnable = InstantiateSpawnable(spawnable);
 
@@ -237,7 +240,7 @@ namespace Soor.Spawner2d
 
                     if (!hasPlaced)
                     {
-                        _allSpwnedObjects.Remove(newSpawnable);
+                        _allSpawnedObjects.Remove(newSpawnable);
                         Destroy(newSpawnable.gameObject);
                     }
                 }
@@ -245,7 +248,7 @@ namespace Soor.Spawner2d
                 {
                     _collisionSafetySettings.GridPlacementSettings.CalculateCellSizeWithPadding();
                     _collisionSafetySettings.GridPlacementSettings.SetSpawnableSize(newSpawnable);
-                    _collisionSafetySettings.GridPlacementSettings.PlaceSpawnableGridly(newSpawnable, _allSpwnedObjects.Count);
+                    _collisionSafetySettings.GridPlacementSettings.PlaceSpawnableGridly(newSpawnable, _allSpawnedObjects.Count);
                 }
             }
             else
@@ -253,7 +256,8 @@ namespace Soor.Spawner2d
                 PlaceSpawnable(newSpawnable);
             }
 
-            ReleaseSpawnable(newSpawnable);
+//            ReleaseSpawnable(newSpawnable);
+            await ReleaseSpawnable(newSpawnable);
         }
 
         /// <summary>
@@ -297,7 +301,8 @@ namespace Soor.Spawner2d
         /// If collision-safe placement fails, the object is destroyed.
         /// </summary>
         /// <param name="spawnable">The spawnable object to be finalized.</param>
-        private async void ReleaseSpawnable(Spawnable spawnable)
+        private async Task ReleaseSpawnable(Spawnable spawnable)
+//        private async void ReleaseSpawnable(Spawnable spawnable)
         {
             var _hasPlaced = true;
 
@@ -310,7 +315,7 @@ namespace Soor.Spawner2d
             if (_hasPlaced)
             {
                 spawnable.Release();
-                _allSpwnedObjects.Add(spawnable);
+                _allSpawnedObjects.Add(spawnable);
             }
             else
             {
@@ -332,10 +337,12 @@ namespace Soor.Spawner2d
         {
             if (_spawnAutomationSettings.StopSpawningAutomatically)
             {
-                if (_spawnAutomatically) _spawnAutomationSettings.OnSpawnStart();
-                else _spawnAutomationSettings.OnSpawnStart();
+                _spawnAutomationSettings.OnSpawnStart();
+                
+//                if (_spawnAutomatically) _spawnAutomationSettings.OnSpawnStart();
+//                else _spawnAutomationSettings.OnSpawnStart();
 
-                while (!_spawnAutomationSettings.LimitationSettings.LimitationReached(_allSpwnedObjects.Count) && !_spawnerStopped)
+                while (!_spawnAutomationSettings.LimitationSettings.LimitationReached(_allSpawnedObjects.Count) && !_spawnerStopped)
                 {
                     SpawnRandomSpawnable();
                     yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
