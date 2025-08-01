@@ -14,7 +14,6 @@ namespace Soor.Spawner2d
 
         /// <summary>
         /// The base size of each spawnable object to be used for grid calculations.
-        /// Also this size will apply to each spawnable.
         /// </summary>
         [SerializeField] private Vector2 _spawnableSize = Vector2.zero;
         
@@ -56,7 +55,7 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// Sets the size of a given spawnable object based on the configured size.
+        /// Sets the size of a given spawnable object to the configured <see cref="_spawnableSize"/>.
         /// </summary>
         /// <param name="spawnable">The spawnable object whose size will be set.</param>
         public void SetSpawnableSize(Spawnable spawnable)
@@ -65,7 +64,7 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// Places a spawnable object at the correct position within the grid based on its index.
+        /// Places a spawnable object at the correct grid position based on its index.
         /// </summary>
         /// <param name="spawnable">The object to be placed.</param>
         /// <param name="index">The index of the object in the spawn queue.</param>
