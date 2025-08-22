@@ -212,17 +212,6 @@ namespace Soor.Spawner2d
         /// </summary>
         private void SpawnRandomSpawnable()
         {
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
             SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
         }
@@ -318,16 +307,13 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// Instantiates a new object from the provided prefab and applies initial settings before returning it.
+        /// Instantiates or retrieves a new object from the pool, applies initial settings, and returns it.
         /// </summary>
-        /// <param name="spawnable">The prefab to instantiate.</param>
-        /// <returns>The instantiated and configured object.</returns>
+        /// <param name="spawnable">The prefab to instantiate or the object to retrieve from the pool.</param>
+        /// <returns>The prepared and configured object.</returns>
         private Spawnable InstantiateSpawnable(Spawnable spawnable)
         {
-//            var newSpawnable = Instantiate(spawnable);
-
             Spawnable newSpawnable = null;
-
 
             if (_useObjectPool)
             {
@@ -338,32 +324,13 @@ namespace Soor.Spawner2d
                 }
 
                 var newPoolable = _objectPool.Get();
-//                var newSpawnable = newPoolable.gameObject.GetComponent<Spawnable>();
                 newSpawnable = newPoolable.gameObject.GetComponent<Spawnable>();
             }
             else
             {
-//                var newSpawnable = Instantiate(spawnable);
                 newSpawnable = Instantiate(spawnable);
             }
 
-
-
-//            if (_objectPool == null)
-//            {
-//                _poolerSettings.GenerateObjectPool();
-//                _objectPool = _poolerSettings.ObjectPool;
-//            }
-//
-//
-//
-//
-//            var newPoolable = _objectPool.Get();
-//            var newSpawnable = newPoolable.gameObject.GetComponent<Spawnable>();
-            
-            
-            
-            
             newSpawnable.SetTag(_spawnableTag);
             newSpawnable.enabled = false;
             newSpawnable.IsCollisionSafe = _isCollisionSafe;
