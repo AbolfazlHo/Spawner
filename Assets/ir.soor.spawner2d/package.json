@@ -1,7 +1,7 @@
 {
   "name": "ir.soor.spawner2d",
   "displayName": "2D Spawner",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "unity": "6000.0",
   "description": "Use this package to spawn 2D objects with customizable automation, collision safety, and grid-based placement.",
   "keywords": [
@@ -14,7 +14,8 @@
   "dependencies": {},
   "samples": [{}],
   "relatedPackages": {
-    "com.cysharp.unitask": "2.5.10"
+    "com.cysharp.unitask": "2.5.10",
+    "ir.soor.pooler": "1.0.1"
   },
   "upmCi": {},
   "repository": {
