@@ -18,7 +18,8 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
     * [Automated Spawning](#2-automated-spawning)
     * [Collision Safe Placement](#3-collision-safe-placement)
     * [Grid-based Placement](#4-grid-based-placement)
-    * [Events](#5-events)
+    * [Object Pooling](#5-object-pooling)
+    * [Events](#6-events)
 
 * [API Reference](#-api-reference)
     * [Spawner](#spawner-monobehaviour)    
@@ -41,6 +42,7 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
 * **Grid-based Placement**: Effortlessly place objects in a predefined grid structure.
 * **Event-Driven**: Utilize Unity Events for flexible callbacks on spawn start, spawn end, and limitation reached.
 * **Highly Customizable**: Exposes key parameters in the Inspector for easy setup without coding.
+* **Object Pooling**: Utilize a highly efficient object pool to reuse spawned objects, drastically reducing instantiation overhead and improving performance.
 
 ## 📦 Installation
 
@@ -106,7 +108,14 @@ https://github.com/AbolfazlHo/Spawner.git?path=Assets/ir.soor.spawner2d
     * If `Columns Count` is greater than 0, row and column are calculated based on it.
     * Otherwise, row and column are calculated based on Rows Count.
 
-### 5. Events
+### 5. Object Pooling
+
+1. In the `Spawner` component, enable `Use Object Pool`.
+2. Expand `Pooler Settings`.
+3. Don't Populate the `Objects to Pool` list. The component will handles it automatically.
+
+
+### 6. Events
 
 The `Automation`, and `Limitation` expose `UnityEvents` that you can hook into for custom logic:
 
@@ -168,6 +177,14 @@ Main class to control the spawning process of game objects in the scene.
 - `string _spawnableTag`
 
   - Custom tag for identifying spawnable objects.
+
+- `bool _useObjectPool`
+
+  - Determines whether the spawner will use an object pool for efficient object management.
+
+- `Pooler.Pooler _poolerSettings`
+
+  - Configuration settings for the object pool, including the prefabs to be pooled.
 
 ---
 
