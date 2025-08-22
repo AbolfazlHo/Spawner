@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2513792350855910882}
   - component: {fileID: -6887819312370778947}
   - component: {fileID: -1700011556943604417}
+  - component: {fileID: 7480886254646249242}
   m_Layer: 0
   m_Name: 2 1
   m_TagString: Untagged
@@ -209,10 +210,46 @@ MonoBehaviour:
       m_Calls: []
   onReleaseEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7480886254646249242}
+        m_TargetAssemblyTypeName: PoolableTest, Assembly-CSharp
+        m_MethodName: OnPoolableReleased
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDisableEvent:
     m_PersistentCalls:
       m_Calls: []
   onDestroyEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7480886254646249242}
+        m_TargetAssemblyTypeName: PoolableTest, Assembly-CSharp
+        m_MethodName: OnPoolableDestroyed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7480886254646249242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393427161089791508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ab9bfc09cb84bb3b0df4ddc3f75cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
