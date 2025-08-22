@@ -99,15 +99,10 @@ namespace Soor.Spawner2d
         /// A flag used to signal a manual stop for the spawning process, typically set by calling <see cref="StopSpawning"/>.
         /// </summary>
         private bool _spawnerStopped = false;
-
-
-
-
-
-
         
-        
-        
+        /// <summary>
+        /// A reference to the active object pool instance, used to get and release objects efficiently.
+        /// </summary>
         private ObjectPool<Poolable> _objectPool;
         
         #endregion FIELDS
