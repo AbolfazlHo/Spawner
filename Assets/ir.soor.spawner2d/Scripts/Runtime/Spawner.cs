@@ -277,19 +277,13 @@ namespace Soor.Spawner2d
         }
 
         /// <summary>
-        /// Instantiates and places a new object from the provided prefab,
-        /// handling collision safety and grid placement.
+        /// Asynchronously instantiates and places a new object from the provided prefab.
+        /// This method handles collision-safe placement, grid-based arrangement, and object pooling,
+        /// destroying the object if placement fails and the `_useObjectPool` is false.
         /// </summary>
         /// <param name="spawnable">The spawnable prefab to be instantiated.</param>
         private async Task SpawnASpawnableOf(Spawnable spawnable)
         {
-            
-            
-            
-            
-            
-            
-            
             var newSpawnable = InstantiateSpawnable(spawnable);
 
             if (_isCollisionSafe)
@@ -302,12 +296,6 @@ namespace Soor.Spawner2d
                     if (!hasPlaced)
                     {
                         _allSpawnedObjects.Remove(newSpawnable);
-                        
-                        
-                        
-                        
-//                        Destroy(newSpawnable.gameObject);
-
 
                         if (_useObjectPool)
                         {
@@ -317,10 +305,6 @@ namespace Soor.Spawner2d
                         {
                             Destroy(newSpawnable.gameObject);
                         }
-                        
-                        
-                        
-                        
                     }
                 }
                 else
@@ -335,7 +319,6 @@ namespace Soor.Spawner2d
                 PlaceSpawnable(newSpawnable);
             }
 
-//            ReleaseSpawnable(newSpawnable);
             await ReleaseSpawnable(newSpawnable);
         }
 
