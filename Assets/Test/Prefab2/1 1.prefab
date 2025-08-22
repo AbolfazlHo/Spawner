@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1865368088099731149}
   - component: {fileID: -4291378074664254650}
   - component: {fileID: -3947742552290153919}
+  - component: {fileID: -9152385520126835810}
   m_Layer: 0
   m_Name: 1 1
   m_TagString: Untagged
@@ -105,13 +106,13 @@ MonoBehaviour:
   onEnableEvent:
     m_PersistentCalls:
       m_Calls: []
-  onRelaese:
+  onRelease:
     m_PersistentCalls:
       m_Calls: []
   onDisableEvent:
     m_PersistentCalls:
       m_Calls: []
-  _renderer: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
 --- !u!61 &-4291378074664254650
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185,3 +186,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-9152385520126835810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3915586913696188203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8024710078944f558dddf4c8fce588f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCreateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onGetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onReleaseEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDestroyEvent:
+    m_PersistentCalls:
+      m_Calls: []

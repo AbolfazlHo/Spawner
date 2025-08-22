@@ -2,7 +2,8 @@
     "name": "Soor.Spawner2d",
     "rootNamespace": "Soor.Spawner2d",
     "references": [
-        "UniTask"
+        "UniTask",
+        "Soor.Pooler"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

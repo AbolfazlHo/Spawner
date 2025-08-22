@@ -157,27 +157,27 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 1865368088099731149, guid: dbac77789060043ef9565641467c9c85, type: 3}
   - {fileID: 7760752207694757053, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
-  _spawnAutomaticaly: 0
+  _spawnAutomatically: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0.1
     _stopSpawningAutomatically: 1
     _limitationSettings:
+      onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onLimitationReachedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _limitationType: 1
       _limitTimeBy: 10
       _limitCountBy: 5
-      _onSpawnStartEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onSpawnEndEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onLimitationReachedEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    _onSpawnStartEvent:
+    onSpawnStartEvent:
       m_PersistentCalls:
         m_Calls: []
-    _onSpawnEndEvent:
+    onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
   _isCollisionSafe: 1
@@ -189,10 +189,19 @@ MonoBehaviour:
       _padding: {x: 0, y: 0}
       _rowsCount: -1
       _columnsCount: -1
-  _onSpawnableSpawnedEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _spawnableTag: SoorSpawnable
+  _useObjectPool: 0
+  _poolerSettings:
+    _poolName: 
+    _poolDefaultCapacity: 0
+    _poolMaxCapacity: 0
+    _objectsToPool: []
+    _onGenerateObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onDestroyObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &345874496
 Transform:
   m_ObjectHideFlags: 0
@@ -241,27 +250,27 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 1865368088099731149, guid: dbac77789060043ef9565641467c9c85, type: 3}
   - {fileID: 7760752207694757053, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
-  _spawnAutomaticaly: 1
+  _spawnAutomatically: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0.3
     _stopSpawningAutomatically: 1
     _limitationSettings:
+      onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onLimitationReachedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _limitationType: 1
       _limitTimeBy: 10
       _limitCountBy: 10
-      _onSpawnStartEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onSpawnEndEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onLimitationReachedEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    _onSpawnStartEvent:
+    onSpawnStartEvent:
       m_PersistentCalls:
         m_Calls: []
-    _onSpawnEndEvent:
+    onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
   _isCollisionSafe: 1
@@ -273,10 +282,21 @@ MonoBehaviour:
       _padding: {x: 0.1, y: 0.1}
       _rowsCount: -1
       _columnsCount: 5
-  _onSpawnableSpawnedEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _spawnableTag: SpawnableTag_1
+  _useObjectPool: 1
+  _poolerSettings:
+    _poolName: 
+    _poolDefaultCapacity: 10
+    _poolMaxCapacity: 100
+    _objectsToPool:
+    - {fileID: -9152385520126835810, guid: dbac77789060043ef9565641467c9c85, type: 3}
+    - {fileID: -1700011556943604417, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
+    _onGenerateObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onDestroyObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &421385690
 Transform:
   m_ObjectHideFlags: 0
@@ -370,27 +390,27 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 1865368088099731149, guid: dbac77789060043ef9565641467c9c85, type: 3}
   - {fileID: 7760752207694757053, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
-  _spawnAutomaticaly: 1
+  _spawnAutomatically: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0.3
     _stopSpawningAutomatically: 1
     _limitationSettings:
+      onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onLimitationReachedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _limitationType: 1
       _limitTimeBy: 10
       _limitCountBy: 10
-      _onSpawnStartEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onSpawnEndEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onLimitationReachedEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    _onSpawnStartEvent:
+    onSpawnStartEvent:
       m_PersistentCalls:
         m_Calls: []
-    _onSpawnEndEvent:
+    onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
   _isCollisionSafe: 1
@@ -402,10 +422,19 @@ MonoBehaviour:
       _padding: {x: 0.1, y: 0.1}
       _rowsCount: -1
       _columnsCount: 5
-  _onSpawnableSpawnedEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _spawnableTag: SpawnableTag_1
+  _useObjectPool: 0
+  _poolerSettings:
+    _poolName: 
+    _poolDefaultCapacity: 0
+    _poolMaxCapacity: 0
+    _objectsToPool: []
+    _onGenerateObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onDestroyObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &1163210828
 Transform:
   m_ObjectHideFlags: 0
@@ -541,27 +570,27 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 1865368088099731149, guid: dbac77789060043ef9565641467c9c85, type: 3}
   - {fileID: 7760752207694757053, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
-  _spawnAutomaticaly: 1
+  _spawnAutomatically: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0.3
     _stopSpawningAutomatically: 1
     _limitationSettings:
+      onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onLimitationReachedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _limitationType: 1
       _limitTimeBy: 10
       _limitCountBy: 10
-      _onSpawnStartEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onSpawnEndEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onLimitationReachedEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    _onSpawnStartEvent:
+    onSpawnStartEvent:
       m_PersistentCalls:
         m_Calls: []
-    _onSpawnEndEvent:
+    onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
   _isCollisionSafe: 0
@@ -573,10 +602,19 @@ MonoBehaviour:
       _padding: {x: 0, y: 0}
       _rowsCount: -1
       _columnsCount: -1
-  _onSpawnableSpawnedEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _spawnableTag: SoorSpawnable
+  _useObjectPool: 0
+  _poolerSettings:
+    _poolName: 
+    _poolDefaultCapacity: 0
+    _poolMaxCapacity: 0
+    _objectsToPool: []
+    _onGenerateObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onDestroyObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &1227153871
 Transform:
   m_ObjectHideFlags: 0
@@ -762,27 +800,27 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 1865368088099731149, guid: dbac77789060043ef9565641467c9c85, type: 3}
   - {fileID: 7760752207694757053, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
-  _spawnAutomaticaly: 0
+  _spawnAutomatically: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0.3
     _stopSpawningAutomatically: 0
     _limitationSettings:
+      onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onLimitationReachedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _limitationType: 1
       _limitTimeBy: 10
       _limitCountBy: 10
-      _onSpawnStartEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onSpawnEndEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onLimitationReachedEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    _onSpawnStartEvent:
+    onSpawnStartEvent:
       m_PersistentCalls:
         m_Calls: []
-    _onSpawnEndEvent:
+    onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
   _isCollisionSafe: 1
@@ -794,10 +832,19 @@ MonoBehaviour:
       _padding: {x: 0.1, y: 0.1}
       _rowsCount: -1
       _columnsCount: 4
-  _onSpawnableSpawnedEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _spawnableTag: SoorSpawnable
+  _useObjectPool: 0
+  _poolerSettings:
+    _poolName: 
+    _poolDefaultCapacity: 0
+    _poolMaxCapacity: 0
+    _objectsToPool: []
+    _onGenerateObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onDestroyObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &1448667958
 Transform:
   m_ObjectHideFlags: 0
@@ -846,27 +893,27 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 1865368088099731149, guid: 39a8571990cd54fadb962f7255cee780, type: 3}
   - {fileID: 7760752207694757053, guid: 963c4f76e13ec411e9f054f97d2f2789, type: 3}
-  _spawnAutomaticaly: 1
+  _spawnAutomatically: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0.1
     _stopSpawningAutomatically: 1
     _limitationSettings:
+      onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onLimitationReachedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _limitationType: 0
       _limitTimeBy: 10
       _limitCountBy: 5
-      _onSpawnStartEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onSpawnEndEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onLimitationReachedEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    _onSpawnStartEvent:
+    onSpawnStartEvent:
       m_PersistentCalls:
         m_Calls: []
-    _onSpawnEndEvent:
+    onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
   _isCollisionSafe: 0
@@ -878,10 +925,19 @@ MonoBehaviour:
       _padding: {x: 0, y: 0}
       _rowsCount: -1
       _columnsCount: -1
-  _onSpawnableSpawnedEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _spawnableTag: SoorSpawnable
+  _useObjectPool: 0
+  _poolerSettings:
+    _poolName: 
+    _poolDefaultCapacity: 0
+    _poolMaxCapacity: 0
+    _objectsToPool: []
+    _onGenerateObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onDestroyObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &1559122092
 Transform:
   m_ObjectHideFlags: 0
@@ -973,27 +1029,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnAreaGameObject: {fileID: 1206056517}
   _spawnables: []
-  _spawnAutomaticaly: 0
+  _spawnAutomatically: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0
     _stopSpawningAutomatically: 0
     _limitationSettings:
+      onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onLimitationReachedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _limitationType: 0
       _limitTimeBy: 0
       _limitCountBy: 0
-      _onSpawnStartEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onSpawnEndEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onLimitationReachedEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    _onSpawnStartEvent:
+    onSpawnStartEvent:
       m_PersistentCalls:
         m_Calls: []
-    _onSpawnEndEvent:
+    onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
   _isCollisionSafe: 0
@@ -1005,10 +1061,19 @@ MonoBehaviour:
       _padding: {x: 0, y: 0}
       _rowsCount: -1
       _columnsCount: -1
-  _onSpawnableSpawnedEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _spawnableTag: SoorSpawnable
+  _useObjectPool: 0
+  _poolerSettings:
+    _poolName: 
+    _poolDefaultCapacity: 0
+    _poolMaxCapacity: 0
+    _objectsToPool: []
+    _onGenerateObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onDestroyObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &1696440427
 Transform:
   m_ObjectHideFlags: 0
@@ -1057,27 +1122,27 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 1865368088099731149, guid: dbac77789060043ef9565641467c9c85, type: 3}
   - {fileID: 7760752207694757053, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
-  _spawnAutomaticaly: 1
+  _spawnAutomatically: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0.3
     _stopSpawningAutomatically: 1
     _limitationSettings:
+      onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onLimitationReachedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _limitationType: 1
       _limitTimeBy: 10
       _limitCountBy: 10
-      _onSpawnStartEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onSpawnEndEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onLimitationReachedEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    _onSpawnStartEvent:
+    onSpawnStartEvent:
       m_PersistentCalls:
         m_Calls: []
-    _onSpawnEndEvent:
+    onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
   _isCollisionSafe: 0
@@ -1089,10 +1154,19 @@ MonoBehaviour:
       _padding: {x: 0.1, y: 0.1}
       _rowsCount: -1
       _columnsCount: 5
-  _onSpawnableSpawnedEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _spawnableTag: SpawnableTag_1
+  _useObjectPool: 0
+  _poolerSettings:
+    _poolName: 
+    _poolDefaultCapacity: 0
+    _poolMaxCapacity: 0
+    _objectsToPool: []
+    _onGenerateObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onDestroyObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &1706014455
 Transform:
   m_ObjectHideFlags: 0
@@ -1262,27 +1336,27 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 1865368088099731149, guid: dbac77789060043ef9565641467c9c85, type: 3}
   - {fileID: 7760752207694757053, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
-  _spawnAutomaticaly: 0
+  _spawnAutomatically: 0
   _spawnAutomationSettings:
     _perSpawnInterval: 0.1
     _stopSpawningAutomatically: 1
     _limitationSettings:
+      onSpawnStartEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onSpawnEndEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      onLimitationReachedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _limitationType: 1
       _limitTimeBy: 10
       _limitCountBy: 5
-      _onSpawnStartEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onSpawnEndEvent:
-        m_PersistentCalls:
-          m_Calls: []
-      _onLimitationReachedEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    _onSpawnStartEvent:
+    onSpawnStartEvent:
       m_PersistentCalls:
         m_Calls: []
-    _onSpawnEndEvent:
+    onSpawnEndEvent:
       m_PersistentCalls:
         m_Calls: []
   _isCollisionSafe: 1
@@ -1294,10 +1368,19 @@ MonoBehaviour:
       _padding: {x: 0, y: 0}
       _rowsCount: -1
       _columnsCount: -1
-  _onSpawnableSpawnedEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _spawnableTag: SoorSpawnable
+  _useObjectPool: 0
+  _poolerSettings:
+    _poolName: 
+    _poolDefaultCapacity: 0
+    _poolMaxCapacity: 0
+    _objectsToPool: []
+    _onGenerateObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onDestroyObjectPoolEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &1862526467
 Transform:
   m_ObjectHideFlags: 0

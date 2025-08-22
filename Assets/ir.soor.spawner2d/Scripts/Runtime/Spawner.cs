@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Soor.Pooler;
 using UnityEngine;
+using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 namespace Soor.Spawner2d
@@ -11,6 +13,7 @@ namespace Soor.Spawner2d
     /// Main controller for spawning 2D objects in the scene.
     /// It manages features such as automated spawning, collision-safe placement, and grid-based object arrangement.
     /// </summary>
+    [ExecuteAlways]
     public class Spawner : MonoBehaviour
     {
         #region SERIALIZED_FIELDS
@@ -54,6 +57,17 @@ namespace Soor.Spawner2d
         /// Primarily used for collision detection in placement mode.
         /// </summary>
         [SerializeField] private string _spawnableTag = "SoorSpawnable";
+
+        /// <summary>
+        /// When true, the spawner will use an object pool to manage instantiated objects instead of a direct Instantiate/Destroy approach.
+        /// </summary>
+        [SerializeField] private bool _useObjectPool = false;
+
+        /// <summary>
+        /// The settings for the object pool, which defines the objects to be pooled.
+        /// This is only used when <see cref="_useObjectPool"/> is enabled.
+        /// </summary>
+        [SerializeField] private Pooler.Pooler _poolerSettings;
         
         #endregion SERIALIZED_FIELDS
 
@@ -85,6 +99,16 @@ namespace Soor.Spawner2d
         /// A flag used to signal a manual stop for the spawning process, typically set by calling <see cref="StopSpawning"/>.
         /// </summary>
         private bool _spawnerStopped = false;
+
+
+
+
+
+
+        
+        
+        
+        private ObjectPool<Poolable> _objectPool;
         
         #endregion FIELDS
 
@@ -94,6 +118,28 @@ namespace Soor.Spawner2d
         private void Start()
         {
             _allSpawnedObjects = new List<Spawnable>();
+        }
+
+        private void Update()
+        {
+#if UNITY_EDITOR || UNITY_EDITOR_OSX
+            if (!_useObjectPool) return;
+            
+            foreach (var spawnable in _spawnables)
+            {
+                var poolable = spawnable.gameObject.GetComponent<Poolable>();
+                    
+                if (poolable == null)
+                {
+                    poolable = spawnable.gameObject.AddComponent<Poolable>();
+                }
+
+                if (!_poolerSettings.ObjectsToPool.Contains(poolable))
+                {
+                    _poolerSettings.AddPoolablePrefab(poolable);
+                }
+            }
+#endif
         }
 
         #endregion MONOBEHAVIOUR_METHODS
@@ -171,6 +217,17 @@ namespace Soor.Spawner2d
         /// </summary>
         private void SpawnRandomSpawnable()
         {
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
             SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
         }
@@ -226,11 +283,17 @@ namespace Soor.Spawner2d
         /// <param name="spawnable">The spawnable prefab to be instantiated.</param>
         private async Task SpawnASpawnableOf(Spawnable spawnable)
         {
+            
+            
+            
+            
+            
+            
+            
             var newSpawnable = InstantiateSpawnable(spawnable);
 
             if (_isCollisionSafe)
             {
-
                 if (!_collisionSafetySettings.IsGridPlacement)
                 {
                     var hasPlaced = await _collisionSafetySettings.PlaceSpawnable(newSpawnable,
@@ -239,7 +302,25 @@ namespace Soor.Spawner2d
                     if (!hasPlaced)
                     {
                         _allSpawnedObjects.Remove(newSpawnable);
-                        Destroy(newSpawnable.gameObject);
+                        
+                        
+                        
+                        
+//                        Destroy(newSpawnable.gameObject);
+
+
+                        if (_useObjectPool)
+                        {
+                            _objectPool.Release(newSpawnable.gameObject.GetComponent<Poolable>());
+                        }
+                        else
+                        {
+                            Destroy(newSpawnable.gameObject);
+                        }
+                        
+                        
+                        
+                        
                     }
                 }
                 else
@@ -265,7 +346,46 @@ namespace Soor.Spawner2d
         /// <returns>The instantiated and configured object.</returns>
         private Spawnable InstantiateSpawnable(Spawnable spawnable)
         {
-            var newSpawnable = Instantiate(spawnable);
+//            var newSpawnable = Instantiate(spawnable);
+
+            Spawnable newSpawnable = null;
+
+
+            if (_useObjectPool)
+            {
+                if (_objectPool == null)
+                {
+                    _poolerSettings.GenerateObjectPool();
+                    _objectPool = _poolerSettings.ObjectPool;
+                }
+
+                var newPoolable = _objectPool.Get();
+//                var newSpawnable = newPoolable.gameObject.GetComponent<Spawnable>();
+                newSpawnable = newPoolable.gameObject.GetComponent<Spawnable>();
+            }
+            else
+            {
+//                var newSpawnable = Instantiate(spawnable);
+                newSpawnable = Instantiate(spawnable);
+            }
+
+
+
+//            if (_objectPool == null)
+//            {
+//                _poolerSettings.GenerateObjectPool();
+//                _objectPool = _poolerSettings.ObjectPool;
+//            }
+//
+//
+//
+//
+//            var newPoolable = _objectPool.Get();
+//            var newSpawnable = newPoolable.gameObject.GetComponent<Spawnable>();
+            
+            
+            
+            
             newSpawnable.SetTag(_spawnableTag);
             newSpawnable.enabled = false;
             newSpawnable.IsCollisionSafe = _isCollisionSafe;
@@ -316,7 +436,24 @@ namespace Soor.Spawner2d
             }
             else
             {
-                Destroy(spawnable.gameObject);
+//                Destroy(spawnable.gameObject);
+
+
+
+
+
+                if (_useObjectPool)
+                {
+                    _objectPool.Release(spawnable.gameObject.GetComponent<Poolable>());
+                }
+                else
+                {
+                    Destroy(spawnable.gameObject);
+                }
+                
+                
+                
+                
             }
         }
         

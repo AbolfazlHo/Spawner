@@ -218,6 +218,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "ir.soor.pooler": {
+      "version": "https://github.com/AbolfazlHo/Pooler.git?path=Assets/ir.soor.pooler",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4acbeef90aaa79d04f8e48de2ed8ac68b9bc3198"
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,

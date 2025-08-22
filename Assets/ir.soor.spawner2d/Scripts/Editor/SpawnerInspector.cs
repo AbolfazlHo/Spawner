@@ -14,6 +14,8 @@ namespace Soor.Spawner2d.Editor
         private SerializedProperty _isCollisionSafe;
         private SerializedProperty _collisionSafetySettings;
         private SerializedProperty _spawnableTag;
+        private SerializedProperty _useObjectPool;
+        private SerializedProperty _poolerSettings;
 
         #endregion SERIZLIZED_PORPERTIESD
 
@@ -26,6 +28,8 @@ namespace Soor.Spawner2d.Editor
             _isCollisionSafe = serializedObject.FindProperty("_isCollisionSafe");
             _collisionSafetySettings = serializedObject.FindProperty("_collisionSafetySettings");
             _spawnableTag = serializedObject.FindProperty("_spawnableTag");
+            _useObjectPool = serializedObject.FindProperty("_useObjectPool");
+            _poolerSettings = serializedObject.FindProperty("_poolerSettings");
         }
 
         public override void OnInspectorGUI()
@@ -54,7 +58,17 @@ namespace Soor.Spawner2d.Editor
 
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(_spawnableTag);
+            
             EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(_useObjectPool);
+
+            if (_useObjectPool.boolValue)
+            {
+                EditorGUILayout.PropertyField(_poolerSettings);
+            }
+            
+            EditorGUILayout.Space();
+
 
             serializedObject.ApplyModifiedProperties();
         }
