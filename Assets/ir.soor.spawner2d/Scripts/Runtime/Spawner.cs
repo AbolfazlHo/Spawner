@@ -370,8 +370,7 @@ namespace Soor.Spawner2d
 
             if (_isCollisionSafe && !_collisionSafetySettings.IsGridPlacement)
             {
-                _hasPlaced =
-                    await _collisionSafetySettings.ReleaseSpawnable(spawnable, (UniTask) => PlaceSpawnable(spawnable));
+                _hasPlaced = await _collisionSafetySettings.ReleaseSpawnable(spawnable, PlaceSpawnable);
             }
 
             if (_hasPlaced)
@@ -381,12 +380,6 @@ namespace Soor.Spawner2d
             }
             else
             {
-//                Destroy(spawnable.gameObject);
-
-
-
-
-
                 if (_useObjectPool)
                 {
                     _objectPool.Release(spawnable.gameObject.GetComponent<Poolable>());
@@ -395,10 +388,6 @@ namespace Soor.Spawner2d
                 {
                     Destroy(spawnable.gameObject);
                 }
-                
-                
-                
-                
             }
         }
         
