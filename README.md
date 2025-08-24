@@ -3,6 +3,7 @@
 ![Unity](https://img.shields.io/badge/Unity-6000.0.30f1%2B-black?logo=unity)
 ![License](https://img.shields.io/github/license/AbolfazlHo/Spawner)
 ![GitHub last commit](https://img.shields.io/github/last-commit/AbolfazlHo/Spawner)
+![Version](https://img.shields.io/badge/version-0.1.0-blue)
 
 [Read in Persian/پارسی](./README-PERSIAN.md)
 
@@ -43,6 +44,7 @@ A powerful and flexible 2D Spawner package for Unity, designed to streamline the
 * **Event-Driven**: Utilize Unity Events for flexible callbacks on spawn start, spawn end, and limitation reached.
 * **Highly Customizable**: Exposes key parameters in the Inspector for easy setup without coding.
 * **Object Pooling**: Utilize a highly efficient object pool to reuse spawned objects, drastically reducing instantiation overhead and improving performance.
+* **Prefab Selection Control**: Easily switch between randomly choosing prefabs from the list or spawning them in a sequential order.
 
 ## 📦 Installation
 
@@ -70,7 +72,7 @@ https://github.com/AbolfazlHo/Spawner.git?path=Assets/ir.soor.spawner2d
  2. Install the `2D Spawner` package via Git URL.
  3. Create an empty GameObject (e.g., `MySpawner`) in your scene.
  4. Add the `Spawner` component to it.
- 5. Assign the desired 2D prefabs to the `Spawnables` list.
+ 5. Assign the desired 2D prefabs to the `Spawnables` list. You can also toggle the Choose Spawnable Randomly property to switch between random and sequential prefab selection.
  6. Add a spawn area GameObject (with a Collider2D) and assign it in the `Spawner` component.
  7. Enable `Spawn Automatically`, or call `Spawn()` manually from script.
  
@@ -177,6 +179,10 @@ Main class to control the spawning process of game objects in the scene.
 - `string _spawnableTag`
 
   - Custom tag for identifying spawnable objects.
+
+- `bool _chooseSpawnableRandomly`
+
+  - When true, a random prefab is chosen for each spawn; otherwise, prefabs are spawned sequentially from the _spawnables list.
 
 - `bool _useObjectPool`
 
