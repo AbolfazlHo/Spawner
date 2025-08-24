@@ -190,12 +190,14 @@ MonoBehaviour:
       _rowsCount: -1
       _columnsCount: -1
   _spawnableTag: SoorSpawnable
+  _chooseSpawnableRandomly: 0
   _useObjectPool: 0
   _poolerSettings:
     _poolName: 
     _poolDefaultCapacity: 0
     _poolMaxCapacity: 0
     _objectsToPool: []
+    _poolRandomly: 0
     _onGenerateObjectPoolEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -283,6 +285,7 @@ MonoBehaviour:
       _rowsCount: -1
       _columnsCount: 5
   _spawnableTag: SpawnableTag_1
+  _chooseSpawnableRandomly: 0
   _useObjectPool: 1
   _poolerSettings:
     _poolName: 
@@ -291,6 +294,7 @@ MonoBehaviour:
     _objectsToPool:
     - {fileID: -9152385520126835810, guid: dbac77789060043ef9565641467c9c85, type: 3}
     - {fileID: -1700011556943604417, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
+    _poolRandomly: 0
     _onGenerateObjectPoolEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -423,12 +427,14 @@ MonoBehaviour:
       _rowsCount: -1
       _columnsCount: 5
   _spawnableTag: SpawnableTag_1
+  _chooseSpawnableRandomly: 0
   _useObjectPool: 0
   _poolerSettings:
     _poolName: 
     _poolDefaultCapacity: 0
     _poolMaxCapacity: 0
     _objectsToPool: []
+    _poolRandomly: 0
     _onGenerateObjectPoolEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -603,12 +609,14 @@ MonoBehaviour:
       _rowsCount: -1
       _columnsCount: -1
   _spawnableTag: SoorSpawnable
+  _chooseSpawnableRandomly: 0
   _useObjectPool: 0
   _poolerSettings:
     _poolName: 
     _poolDefaultCapacity: 0
     _poolMaxCapacity: 0
     _objectsToPool: []
+    _poolRandomly: 0
     _onGenerateObjectPoolEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -833,12 +841,14 @@ MonoBehaviour:
       _rowsCount: -1
       _columnsCount: 4
   _spawnableTag: SoorSpawnable
+  _chooseSpawnableRandomly: 0
   _useObjectPool: 0
   _poolerSettings:
     _poolName: 
     _poolDefaultCapacity: 0
     _poolMaxCapacity: 0
     _objectsToPool: []
+    _poolRandomly: 0
     _onGenerateObjectPoolEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -926,12 +936,14 @@ MonoBehaviour:
       _rowsCount: -1
       _columnsCount: -1
   _spawnableTag: SoorSpawnable
+  _chooseSpawnableRandomly: 0
   _useObjectPool: 0
   _poolerSettings:
     _poolName: 
     _poolDefaultCapacity: 0
     _poolMaxCapacity: 0
     _objectsToPool: []
+    _poolRandomly: 0
     _onGenerateObjectPoolEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1062,12 +1074,14 @@ MonoBehaviour:
       _rowsCount: -1
       _columnsCount: -1
   _spawnableTag: SoorSpawnable
+  _chooseSpawnableRandomly: 0
   _useObjectPool: 0
   _poolerSettings:
     _poolName: 
     _poolDefaultCapacity: 0
     _poolMaxCapacity: 0
     _objectsToPool: []
+    _poolRandomly: 0
     _onGenerateObjectPoolEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1155,12 +1169,14 @@ MonoBehaviour:
       _rowsCount: -1
       _columnsCount: 5
   _spawnableTag: SpawnableTag_1
+  _chooseSpawnableRandomly: 0
   _useObjectPool: 0
   _poolerSettings:
     _poolName: 
     _poolDefaultCapacity: 0
     _poolMaxCapacity: 0
     _objectsToPool: []
+    _poolRandomly: 0
     _onGenerateObjectPoolEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1369,12 +1385,14 @@ MonoBehaviour:
       _rowsCount: -1
       _columnsCount: -1
   _spawnableTag: SoorSpawnable
+  _chooseSpawnableRandomly: 0
   _useObjectPool: 0
   _poolerSettings:
     _poolName: 
     _poolDefaultCapacity: 0
     _poolMaxCapacity: 0
     _objectsToPool: []
+    _poolRandomly: 0
     _onGenerateObjectPoolEvent:
       m_PersistentCalls:
         m_Calls: []

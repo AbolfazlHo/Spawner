@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Soor.Pooler;
+using SoorPooler;
 using UnityEngine;
 using UnityEngine.Pool;
 using Random = UnityEngine.Random;
@@ -58,6 +58,19 @@ namespace Soor.Spawner2d
         /// </summary>
         [SerializeField] private string _spawnableTag = "SoorSpawnable";
 
+
+
+
+        
+        
+        [SerializeField] private bool _chooseSpawnableRandomly = false;
+        
+        
+        
+        
+        
+        
+
         /// <summary>
         /// When true, the spawner will use an object pool to manage instantiated objects instead of a direct Instantiate/Destroy approach.
         /// </summary>
@@ -67,7 +80,7 @@ namespace Soor.Spawner2d
         /// The settings for the object pool, which defines the objects to be pooled.
         /// This is only used when <see cref="_useObjectPool"/> is enabled.
         /// </summary>
-        [SerializeField] private Pooler.Pooler _poolerSettings;
+        [SerializeField] private SoorPooler.Pooler _poolerSettings;
         
         #endregion SERIALIZED_FIELDS
 
@@ -104,6 +117,16 @@ namespace Soor.Spawner2d
         /// A reference to the active object pool instance, used to get and release objects efficiently.
         /// </summary>
         private ObjectPool<Poolable> _objectPool;
+
+
+
+
+
+
+        private int _lastSpawnedSpawnableIndex = -1;
+        
+        
+        
         
         #endregion FIELDS
 
@@ -134,6 +157,8 @@ namespace Soor.Spawner2d
                     _poolerSettings.AddPoolablePrefab(poolable);
                 }
             }
+
+            _poolerSettings.PoolRandomly = _chooseSpawnableRandomly;
 #endif
         }
 
@@ -163,7 +188,7 @@ namespace Soor.Spawner2d
             }
             else
             {
-                SpawnRandomSpawnable();
+                SpawnSpawnable();
             }
         }
         
@@ -210,10 +235,41 @@ namespace Soor.Spawner2d
         /// Selects a random <see cref="Spawnable"/> from the list and passes it to the
         /// <see cref="SpawnASpawnableOf"/> method for instantiation and placement.
         /// </summary>
-        private void SpawnRandomSpawnable()
+//        private void SpawnSpawnable()
+        private void SpawnSpawnable()
         {
-            var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
-            SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
+            
+            
+            /////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////
+
+            if (_useObjectPool)
+            {
+                SpawnASpawnableOf(null).GetAwaiter();
+                return;
+            }
+            
+            if (_chooseSpawnableRandomly)
+            {
+                var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
+                SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
+                return;
+            }
+//            else
+//            {
+                if (_lastSpawnedSpawnableIndex >= _spawnables.Count - 1)
+                {
+                    _lastSpawnedSpawnableIndex = -1;
+                }
+
+                _lastSpawnedSpawnableIndex++;
+                SpawnASpawnableOf(_spawnables[_lastSpawnedSpawnableIndex]).GetAwaiter();
+//            }
+            
+//            var randomSpawnableIndex = Random.Range(0, _spawnables.Count);
+//            SpawnASpawnableOf(_spawnables[randomSpawnableIndex]).GetAwaiter();
         }
 
         /// <summary>
@@ -266,9 +322,38 @@ namespace Soor.Spawner2d
         /// destroying the object if placement fails and the `_useObjectPool` is false.
         /// </summary>
         /// <param name="spawnable">The spawnable prefab to be instantiated.</param>
+//        private async Task SpawnASpawnableOf(Spawnable spawnable)
         private async Task SpawnASpawnableOf(Spawnable spawnable)
         {
+            
+            ///////////////////////////////////////////////////
+            ///////////////////////////////////////////////////
+            ///////////////////////////////////////////////////
+            ///////////////////////////////////////////////////
+
+//            Spawnable newSpawnable;
+            
             var newSpawnable = InstantiateSpawnable(spawnable);
+            
+//            
+//            
+//            if (_useObjectPool)
+//            {
+//                if (_objectPool == null)
+//                {
+//                    _poolerSettings.GenerateObjectPool();
+//                    _objectPool = _poolerSettings.ObjectPool;
+//                }
+//
+//                var newPoolable = _objectPool.Get();
+//                newSpawnable = newPoolable.gameObject.GetComponent<Spawnable>();
+//            }
+//            else
+//            {
+//                newSpawnable = InstantiateSpawnable(spawnable);
+//            }
+//            
+            
 
             if (_isCollisionSafe)
             {
@@ -315,6 +400,16 @@ namespace Soor.Spawner2d
         {
             Spawnable newSpawnable = null;
 
+            
+            ////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////
+            
+            
+            
+            
+            
             if (_useObjectPool)
             {
                 if (_objectPool == null)
@@ -330,6 +425,17 @@ namespace Soor.Spawner2d
             {
                 newSpawnable = Instantiate(spawnable);
             }
+            
+            
+            
+            
+            
+//            newSpawnable = Instantiate(spawnable);
+            
+            
+            
+            
+            
 
             newSpawnable.SetTag(_spawnableTag);
             newSpawnable.enabled = false;
@@ -409,7 +515,7 @@ namespace Soor.Spawner2d
 
                 while (!_spawnAutomationSettings.LimitationSettings.LimitationReached(_allSpawnedObjects.Count) && !_spawnerStopped)
                 {
-                    SpawnRandomSpawnable();
+                    SpawnSpawnable();
                     yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
                 }
             }
@@ -417,7 +523,7 @@ namespace Soor.Spawner2d
             {
                 while (!_spawnerStopped)
                 {
-                    SpawnRandomSpawnable();
+                    SpawnSpawnable();
                     yield return new WaitForSeconds(_spawnAutomationSettings.PerSpawnInterval);
                 }
             }
