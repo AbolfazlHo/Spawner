@@ -3,7 +3,7 @@
 ![Unity](https://img.shields.io/badge/Unity-6000.0.30f1%2B-black?logo=unity)
 ![License](https://img.shields.io/github/license/AbolfazlHo/Spawner)
 ![GitHub last commit](https://img.shields.io/github/last-commit/AbolfazlHo/Spawner)
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Version](https://img.shields.io/badge/version-0.2.0-blue)
 
 [Read in Persian/پارسی](./README-PERSIAN.md)
 
