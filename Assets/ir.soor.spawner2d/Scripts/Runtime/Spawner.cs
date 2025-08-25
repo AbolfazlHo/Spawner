@@ -333,7 +333,7 @@ namespace Soor.Spawner2d
                 PlaceSpawnable(newSpawnable);
             }
 
-            await ReleaseSpawnable(newSpawnable);
+            await FinilizeSpawnable(newSpawnable);
         }
 
         /// <summary>
@@ -394,7 +394,7 @@ namespace Soor.Spawner2d
         /// If collision-safe placement fails, the object is destroyed.
         /// </summary>
         /// <param name="spawnable">The spawnable object to be finalized.</param>
-        private async Task ReleaseSpawnable(Spawnable spawnable)
+        private async Task FinilizeSpawnable(Spawnable spawnable)
         {
             var _hasPlaced = true;
 
@@ -405,7 +405,7 @@ namespace Soor.Spawner2d
 
             if (_hasPlaced)
             {
-                spawnable.Release();
+                spawnable.FinilizeSpawning();
                 _allSpawnedObjects.Add(spawnable);
             }
             else

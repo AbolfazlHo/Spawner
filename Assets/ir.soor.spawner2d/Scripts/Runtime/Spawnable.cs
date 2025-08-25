@@ -20,7 +20,7 @@ namespace Soor.Spawner2d
         /// <summary>
         /// Event triggered when the object is released and fully placed in the scene.
         /// </summary>
-        public UnityEvent onRelease;
+        public UnityEvent onFinilizeSpawning;
         
         /// <summary>
         /// Event triggered when the object is disabled.
@@ -120,11 +120,11 @@ namespace Soor.Spawner2d
         /// <summary>
         /// Finalizes the object's placement and makes it interactive in the scene.
         /// </summary>
-        public void Release()
+        public void FinilizeSpawning()
         {
             if (IsCollisionSafe) ReturnCollisionPropertiesToDefault();
             _spriteRenderer.enabled = true;
-            onRelease?.Invoke();
+            onFinilizeSpawning?.Invoke();
         }
         
         /// <summary>

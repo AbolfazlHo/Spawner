@@ -251,6 +251,9 @@ MonoBehaviour:
   _spawnAreaGameObject: {fileID: 1206056517}
   _spawnables:
   - {fileID: 1865368088099731149, guid: dbac77789060043ef9565641467c9c85, type: 3}
+  - {fileID: 1865368088099731149, guid: e66c3c2bd916e47fab09d61b2cf1bdfb, type: 3}
+  - {fileID: 1865368088099731149, guid: 41680f0344bc94716953dca0f8b3776a, type: 3}
+  - {fileID: 1865368088099731149, guid: b7dc410f355d940c69cdb632ab9e764d, type: 3}
   - {fileID: 7760752207694757053, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
   _spawnAutomatically: 0
   _spawnAutomationSettings:
@@ -293,6 +296,9 @@ MonoBehaviour:
     _poolMaxCapacity: 100
     _objectsToPool:
     - {fileID: -9152385520126835810, guid: dbac77789060043ef9565641467c9c85, type: 3}
+    - {fileID: -9152385520126835810, guid: e66c3c2bd916e47fab09d61b2cf1bdfb, type: 3}
+    - {fileID: -9152385520126835810, guid: 41680f0344bc94716953dca0f8b3776a, type: 3}
+    - {fileID: -9152385520126835810, guid: b7dc410f355d940c69cdb632ab9e764d, type: 3}
     - {fileID: -1700011556943604417, guid: 279b1af9f140042cf9120d04cc2a99d1, type: 3}
     _poolRandomly: 0
     _onGenerateObjectPoolEvent:
