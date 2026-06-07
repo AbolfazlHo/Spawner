@@ -11,11 +11,12 @@
     "spawner",
     "spawnable"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "ir.soor.pooler": "2.2.2"
+  },
   "samples": [{}],
   "relatedPackages": {
-    "com.cysharp.unitask": "2.5.10",
-    "ir.soor.pooler": "1.0.1"
+    "com.cysharp.unitask": "2.5.10"
   },
   "upmCi": {},
   "repository": {
