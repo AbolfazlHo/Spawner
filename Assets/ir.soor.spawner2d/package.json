@@ -1,7 +1,7 @@
 {
   "name": "ir.soor.spawner2d",
   "displayName": "2D Spawner",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "unity": "6000.0",
   "description": "Use this package to spawn 2D objects with customizable automation, collision safety, and grid-based placement.",
   "keywords": [
@@ -14,12 +14,12 @@
     "Spawner 2D"
   ],
   "dependencies": {
-    "ir.soor.pooler": "https://github.com/AbolfazlHo/Pooler.git?subdirectory=Assets/ir.soor.pooler#2.2.2",
-    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?subdirectory=src/UniTask/Assets/Plugins/UniTask#2.5.10"
+    "ir.soor.pooler": "2.2.2"
+    
   },
   "samples": [{}],
   "relatedPackages": {
-    
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?subdirectory=src/UniTask/Assets/Plugins/UniTask#2.5.10"
   },
   "upmCi": {},
   "repository": {
