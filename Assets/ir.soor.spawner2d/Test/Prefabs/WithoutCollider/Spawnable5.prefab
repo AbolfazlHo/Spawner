@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2542588134016301095}
   - component: {fileID: 4280787747467191582}
   - component: {fileID: 9021241991333222218}
+  - component: {fileID: 3168049912820400315}
   m_Layer: 0
   m_Name: Spawnable5
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,3 +111,33 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _spriteRenderer: {fileID: 4280787747467191582}
+--- !u!114 &3168049912820400315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4154855838601950939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8024710078944f558dddf4c8fce588f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCreateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onGetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onReleaseEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDestroyEvent:
+    m_PersistentCalls:
+      m_Calls: []

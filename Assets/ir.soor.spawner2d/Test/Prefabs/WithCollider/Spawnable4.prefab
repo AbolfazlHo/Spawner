@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 604991166951147198}
   - component: {fileID: -885365469870586866}
   - component: {fileID: 4978090135753818805}
+  - component: {fileID: -430223949041200218}
   m_Layer: 0
   m_Name: Spawnable4
   m_TagString: Untagged
@@ -185,3 +186,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-430223949041200218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5945340882066699625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8024710078944f558dddf4c8fce588f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCreateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onGetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onReleaseEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDestroyEvent:
+    m_PersistentCalls:
+      m_Calls: []

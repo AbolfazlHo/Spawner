@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 154661500}
   - component: {fileID: 154661499}
   m_Layer: 0
-  m_Name: Spoawner-LimitByTime
+  m_Name: Spoawner-LimitByCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,17 +150,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnAreaGameObject: {fileID: 1206056517}
   _spawnables:
-  - {fileID: 6636817266382076655, guid: 0bba49d890cef4df7bcbc42e9dd69e4a, type: 3}
-  - {fileID: 22335914781371674, guid: 3ffcfab00c7d24de38d89318dd194de2, type: 3}
-  - {fileID: 3116715904839642855, guid: dd7527db32c9f45cbbf862fa60ada8f4, type: 3}
-  - {fileID: 604991166951147198, guid: f3de6623a2da04d7c8679a64bfda33ee, type: 3}
-  - {fileID: 9021241991333222218, guid: 6cbb9a38f084b4b719b6279da191571e, type: 3}
-  - {fileID: 5138079186231035589, guid: 9d725595e724f4147b0758f232f0da45, type: 3}
-  - {fileID: 3312375889249444968, guid: f99c0faa03df2427cbaaf4b75c44401a, type: 3}
-  - {fileID: 2150207951854129632, guid: 70ae0ff302ef94a5baa1faf0f199db67, type: 3}
-  - {fileID: 3769679012779083094, guid: 113baad2a727f4d6b9554cb09dccf6f7, type: 3}
-  - {fileID: 1236244341877574093, guid: dd3daca9735ea4463bf33eeffe7ee443, type: 3}
-  - {fileID: 7037834245654890099, guid: f1d1ad765aaf14ca1afa12e09ab36ea8, type: 3}
+  - {fileID: 6636817266382076655, guid: 3aa66c5a4da134078937d7afaa9175b3, type: 3}
+  - {fileID: 22335914781371674, guid: ee5e08b64c14343f1ac178abfd5fa81f, type: 3}
+  - {fileID: 3116715904839642855, guid: 1f0953768078f4ab8bab05e067095e6f, type: 3}
+  - {fileID: 604991166951147198, guid: 670f3005cd6124f2bae4183617a23321, type: 3}
+  - {fileID: 9021241991333222218, guid: 134680600a250436fb20d5eb3c3b3a9e, type: 3}
+  - {fileID: 5138079186231035589, guid: 6971bb346f90a4b8286dcc6e01eb54e8, type: 3}
+  - {fileID: 3312375889249444968, guid: 9ce8af81217bf445ebeeca30ca6e47c3, type: 3}
+  - {fileID: 2150207951854129632, guid: f1aa9c0dce2694410ba6f230186e3ac9, type: 3}
+  - {fileID: 3769679012779083094, guid: 37b53ff3cc5554165ac0efcab518cb72, type: 3}
+  - {fileID: 1236244341877574093, guid: dc9bf3fbcccd146a09a47f988d55841e, type: 3}
+  - {fileID: 7037834245654890099, guid: d54fe85f3f3ad4960ab41f0c0ffdd55f, type: 3}
   _spawnAutomatically: 1
   _spawnAutomationSettings:
     _perSpawnInterval: 0.05
@@ -175,9 +175,9 @@ MonoBehaviour:
       onLimitationReachedEvent:
         m_PersistentCalls:
           m_Calls: []
-      _limitationType: 1
+      _limitationType: 0
       _limitTimeBy: 15
-      _limitCountBy: 10
+      _limitCountBy: 15
     onSpawnStartEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -285,7 +285,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5ab473f2365744094b7b38e0550c957d, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.12741414, g: 0.125534, b: 0.2924528, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -304,8 +304,8 @@ Transform:
   m_GameObject: {fileID: 1206056517}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 0, y: 1.7542, z: 0}
+  m_LocalScale: {x: 2.5835001, y: 4.5615, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -347,7 +347,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.044499822, g: 0.05654444, b: 0.0754717, a: 0}
+  m_BackGroundColor: {r: 0.1448469, g: 0.20019913, b: 0.2924528, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
